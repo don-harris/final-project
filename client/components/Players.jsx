@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {addAllPlayers} from '../actions/players'
 
 class Players extends React.Component {
   constructor (props) {
@@ -12,7 +13,7 @@ class Players extends React.Component {
     }
     this.addPlayer = this.addPlayer.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    // this.submitAllPlayers = this.submitAllPlayers.bind(this)
+    this.submitAllPlayers = this.submitAllPlayers.bind(this)
   }
   handleChange (evt) {
     const {pendingPlayer} = this.state
@@ -27,18 +28,20 @@ class Players extends React.Component {
     this.setState({players, pendingPlayer})
   }
 
-  // submitAllPlayers () {
-
-  // }
+  submitAllPlayers (e) {
+    e.preventDefault()
+    console.log(this.state.players)
+    this.props.dispatch(addAllPlayers(this.state.players))
+  }
 
   render () {
     const {players, pendingPlayer} = this.state
     return (
-      <form className="form container">
+      <form className="form container" >
         <div>
-          {players.map(player => <p>{player.name} {player.icon}</p>)}
+          {players.map((player, i) => <p key={i}>{player.name} {player.icon}</p>)}
         </div>
-        <input className="input" type="text" name="name" placeholder="Add Player Name..." value={pendingPlayer.name} onChange={this.handleChange} />
+        <input autoComplete="off" className="input" type="text" name="name" placeholder="Add Player Name..." value={pendingPlayer.name} onChange={this.handleChange} />
         <div className="control">
           <div className="select">
             <select name="icon" onChange={this.handleChange} >
@@ -53,9 +56,8 @@ class Players extends React.Component {
           </div>
           <button className="button" onClick={this.addPlayer}>Add Player</button>
         </div>
-
         <Link to="/round">
-          <button className="button is large">PLAY</button>
+          <input className="button is large" type="button" onClick={this.submitAllPlayers} value="PLAY" />
         </Link>
       </form>
     )
@@ -64,7 +66,7 @@ class Players extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    player: state.expenses || {}
+    players: state.players || {}
   }
 }
 
