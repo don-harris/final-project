@@ -11,7 +11,7 @@ class Players extends React.Component {
   render () {
     return (
       <div className="column is-4 is-desktop-only company">
-        <h1>Players Page :)</h1>
+        <h1>Players Page</h1>
         <Link to="/round">
           <button className="button is large">PLAY</button>
         </Link>
