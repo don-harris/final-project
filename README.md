@@ -76,7 +76,7 @@ Wednesday | Thursday | Friday | Saturday | Sunday | Monday | Tuesday | Wednesday
 
 ## MVP
 - two players
-- speach to text working
+- speech to text working
 - clip working
 - answer being saved as a string with speach to text. 
 
