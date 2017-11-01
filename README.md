@@ -51,5 +51,39 @@
 
 Wednesday | Thursday | Friday | Saturday | Sunday | Monday | Tuesday | Wednesday | Thursday
 |-------------------|------------------|-------------------|-------------------|------------------|-------------------|------------------|-------------------|-------------------|
-|Plan               | MOSH             |    MOSH               |     MOSH       | Soft MVP     | Hard MVP          | Final/ Stretch   | Product Refactor  |Present           |
-| Plan            | MOSH             |   MOSH                |     MOSH        | Soft MVP   | Hard MVP | Feature Freeze 12am    |Code freeze 12am  |Presentation Prep           |
+|Group Planing        | Work Hard      |Work Together      | Soft MVP       | Hard MVP    | Get er Done      | Final/ Stretch   | Product Refactor  |Presenting prep  |
+| Plan schedule       | Work             |   Normal work        |     More work        | Soft MVP   | Hard MVP | Feature Freeze 12am    |Code freeze 12am  |Presentation Prep   |
+
+# the PRODUCT
+
+## Goals
+- MVP by Sunday 
+- Update Master at the end of each day.
+- One test writen by each member. 
+- Styling at the end of each day.
+
+## User Stories
+- When I go to the home page I can see a get players, instructions and about us buttons, I also see a title and logo.
+- When I click play - this takes me to a place where I can add players.
+- I want to play against everyone.
+- I hit play and a random clip and player a chosen.
+- I want to see the start of a clip then try an guess the next line.
+- I want to have a button that will allow me to go to the next round.
+- I want to see a score board after every round.
+- Three rounds
+- Reset to play another game. 
+
+
+## MVP
+- two players
+- speach to text working
+- clip working
+- answer being saved as a string with speach to text. 
+
+## Stretchs
+- web sockets
+- timer you only have 30 sec to finish the clip.
+- add a 3..2..1 count down animation. 
+- Do over button to allow a player who got it right to try again, because tech didn't work.
+- Done recording button to finish playing the clip to see the guessed line. 
+
