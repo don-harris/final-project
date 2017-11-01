@@ -1,4 +1,4 @@
-# (Incert App Name) - an at home fun game to play with you drunk mates.
+# (Insert App Name) - an at home game to play with your mates.
 
 # group DYNAMICS
 ## TEAM ROLES ##
@@ -24,12 +24,11 @@
 
 ## TEAM AGREEMENTS ##
 
-##Daily Stand-Up Schedule##
-- stand ups will occure several times a day, the scheduled ones are:
+### Daily Stand-Up Schedule
+- Stand ups will occure several times a day, the scheduled ones are:
 - In the morning before coding
 - Before Lunch
 - After the evening clap
-- More can be called through out the day. 
 
 ### CONFLICT RESOLUTION
 - A pair or group dealing with conflict will try to work through it before coming to the group.
@@ -44,15 +43,13 @@
     - We agree that a standup will have a five minute warning.
 
 ### DAILY CODE AGREEMENT
-- There will be a feature freeze at 3pm.
-- A code freeze at 4pm.
 - After 5pm we will each write one test.
-- We will write tests or refactor code until 5pm.
+- We will refactor code and work on styling in the evning.
 #### **We agree to show up and stay until designated times, and that if we need to leave we will communicate this with the other members of the group.**
 
 ## LOGISTICS
 
 Wednesday | Thursday | Friday | Saturday | Sunday | Monday | Tuesday | Wednesday | Thursday
 |-------------------|------------------|-------------------|-------------------|------------------|-------------------|------------------|-------------------|-------------------|
-|Plan               | MOSH             |    MOSH               |     MOSH       | Soft MVP     | Hard MVP          | Final Stretch   | Product Refactor  |Present           |
+|Plan               | MOSH             |    MOSH               |     MOSH       | Soft MVP     | Hard MVP          | Final/ Stretch   | Product Refactor  |Present           |
 | Plan            | MOSH             |   MOSH                |     MOSH        | Soft MVP   | Hard MVP | Feature Freeze 12am    |Code freeze 12am  |Presentation Prep           |
