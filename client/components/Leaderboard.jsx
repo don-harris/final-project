@@ -10,15 +10,22 @@ class Leaderboard extends React.Component {
 
   render () {
     return (
-      <div className="column is-4 is-desktop-only company">
+      <div className="container">
         <h1>Leaderboard page</h1>
-        <table className="table is-bordered">
-          <thead>
-            <tr><th>Position</th><th>Round 1</th><th>Round 2</th><th>Round 3</th></tr>
+        <table className="table is-bordered is-fullwidth">
+          <thead className="thead">
+            <tr className="tr">
+              <th className="th has-text-centered">Position</th>
+              <th className="th has-text-centered">Round 1</th>
+              <th className="th has-text-centered">Round 2</th>
+              <th className="th has-text-centered">Round 3</th>
+            </tr>
           </thead>
-          <tbody>
+          <tbody className="tbody">
           </tbody>
         </table>
+        <hr />
+        <Link className="button is-large" to="/">Play Again</Link>
       </div>
     )
   }
