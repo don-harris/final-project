@@ -7,7 +7,7 @@ import Leaderboard from './Leaderboard'
 
 const App = () => (
   <Router>
-    <div className='app-container'>
+    <div className='app-container has-text-centered'>
       <Route exact path="/" component={Homepage} />
       <Route path="/players" component={Players} />
       <Route path="/round" component={Round} />
