@@ -3,7 +3,6 @@
 export const ADD_PLAYERS = 'ADD_PLAYERS'
 
 export const addAllPlayers = (players) => {
-  console.log(players)
   return {
     type: ADD_PLAYERS,
     players: players

@@ -30,7 +30,6 @@ class Players extends React.Component {
 
   submitAllPlayers (e) {
     e.preventDefault()
-    console.log(this.state.players)
     this.props.dispatch(addAllPlayers(this.state.players))
   }
 
