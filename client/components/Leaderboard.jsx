@@ -12,7 +12,7 @@ class Leaderboard extends React.Component {
     return (
       <div className="column is-4 is-desktop-only company">
         <h1>Leaderboard page</h1>
-        <table className="table is-striped">
+        <table className="table is-bordered">
           <thead>
             <tr><th>Position</th><th>Round 1</th><th>Round 2</th><th>Round 3</th></tr>
           </thead>
