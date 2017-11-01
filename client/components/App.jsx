@@ -1,12 +1,17 @@
 import React from 'react'
-import {HashRouter as Router, Route} from 'react-router-dom'
-import Greetings from './Greetings'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import Players from './Players'
+import Homepage from './Homepage'
+import Round from './Round'
+import Leaderboard from './Leaderboard'
 
 const App = () => (
   <Router>
     <div className='app-container'>
-      <h1>Hello World</h1>
-      <Route exact path="/" component={Greetings} />
+      <Route exact path="/" component={Homepage} />
+      <Route path="/players" component={Players} />
+      <Route path="/round" component={Round} />
+      <Route path="/leaderboard" component={Leaderboard} />
     </div>
   </Router>
 )
