@@ -1,7 +1,7 @@
 const request = require('supertest')
 
 jest.mock('../../server/db/videos', () => ({
-  getvideos: () => Promise.resolve([
+  getVideos: () => Promise.resolve([
     {id: 1, text: 'test text 1'},
     {id: 2, text: 'test text 2'}
   ])
