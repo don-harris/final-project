@@ -5,3 +5,43 @@ body {
 button {
   background-color: "red";
 }
+
+.homepageimage {
+  background-image: url("/images/homepageimage.jpg");
+  background-repeat: repeat;
+  height: 100vh;
+  margin-top: -40px;
+}
+
+.sub-buttons {
+   margin-top: 250px;
+}
+.title{
+font-family: 'Abril Fatface',
+cursive;
+}
+
+
+.main-title{
+  margin-top: 100px;
+  margin-right: 25px;
+}
+
+.spoken{
+  color: lightblue;
+ }
+
+/* .homepageimage{
+  width: 50px;
+  max-height: 50px;
+  
+} */
+
+
+.aboutus {
+  margin: 25px;
+}
+
+.instructions {
+  margin: 25px;
+}
