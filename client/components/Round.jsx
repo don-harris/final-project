@@ -14,6 +14,7 @@ class Round extends React.Component {
     const currentPlayer = this.props.players[0]
     const remainingPlayers = this.props.players.slice(1)
     this.props.dispatch(startRound(currentPlayer, remainingPlayers))
+    window.localStorage.setItem('rounds', JSON.stringify(this.props.rounds))
   }
 
   render () {

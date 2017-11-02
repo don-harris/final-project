@@ -1,6 +1,11 @@
 import {ADD_PLAYERS} from '../actions/rounds.js'
 
-export default function rounds (state = [], action) {
+const getRoundsFromLocalStorage = () => {
+  const rounds = window.localStorage.getItem('rounds')
+  return rounds ? JSON.parse(rounds) : []
+}
+
+export default function rounds (state = getRoundsFromLocalStorage(), action) {
   // console.log('This is action: ', action.remainingPlayers)
   switch (action.type) {
     case 'START_ROUND':

@@ -36,9 +36,7 @@ class Players extends React.Component {
       return newPlayer
     })
     window.localStorage.setItem('players', JSON.stringify(playersWithId))
-    // console.log('This is playersWithId: ', playersWithId)
     this.props.dispatch(addAllPlayers(playersWithId))
-    // this.props.dispatch(getCurrentPlayer(playersWithId))
     this.props.history.push('/round')
   }
 
