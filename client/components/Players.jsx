@@ -8,7 +8,7 @@ class Players extends React.Component {
     this.state = {
       // players: [{icon: 'icon1', name: 'Bob'}, {icon: null, name: 'Harrison'}]
       players: [],
-      pendingPlayer: {icon: null, name: ''}
+      pendingPlayer: {id: null, icon: null, name: ''}
     }
     this.addPlayer = this.addPlayer.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -23,13 +23,19 @@ class Players extends React.Component {
     evt.preventDefault()
     let {players, pendingPlayer} = this.state
     players.push(pendingPlayer)
-    pendingPlayer = {icon: null, name: ''}
+    pendingPlayer = {id: null, icon: null, name: ''}
     this.setState({players, pendingPlayer})
   }
 
   submitAllPlayers (e) {
     e.preventDefault()
-    this.props.dispatch(addAllPlayers(this.state.players))
+    const playersWithId = this.state.players.map((player, i) => {
+      const newPlayers = Object.assign({}, player)
+      newPlayers.id = i + 1
+      return newPlayers
+    })
+    console.log('This is newPlayers: :', playersWithId)
+    this.props.dispatch(addAllPlayers(playersWithId))
     this.props.history.push('/round')
   }
 
