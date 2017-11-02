@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addAllPlayers} from '../actions/players'
 
@@ -31,6 +30,7 @@ class Players extends React.Component {
   submitAllPlayers (e) {
     e.preventDefault()
     this.props.dispatch(addAllPlayers(this.state.players))
+    this.props.history.push('/round')
   }
 
   render () {
@@ -55,9 +55,7 @@ class Players extends React.Component {
           </div>
           <button className="button" onClick={this.addPlayer}>Add Player</button>
         </div>
-        <Link to="/round">
-          <input className="button is large" type="button" onClick={this.submitAllPlayers} value="PLAY" />
-        </Link>
+        <input className="button is large" type="button" onClick={this.submitAllPlayers} value="PLAY" />
       </form>
     )
   }
