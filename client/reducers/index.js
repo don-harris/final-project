@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
 
-import greetings from './greetings' 
+import players from './players'
+import videos from './videos'
 
 export default combineReducers({
-  greetings
+  players,
+  videos
 })
