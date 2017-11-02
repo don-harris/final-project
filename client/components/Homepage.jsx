@@ -9,23 +9,29 @@ class Homepage extends React.Component {
   }
 
   render () {
-    return <div className="container">
-      <div className="main-title">
-        <h1 className="title is-1">Spoken,<br/> Not Stirred</h1>
-        <Link to="/players">
-          <button className="button is large">Get started</button>
-        </Link>
-      </div>
-      <div className="sub-buttons is-level">
-        <Link to="/aboutus" className="level-right">
-          <button className="button is large">About Us</button>
-        </Link>
-        <Link to="/instructions" className="level-right">
-          <button className="button is large">Instructions</button>
-        </Link>
+    return <div className="columns">
+      <div className="homepageimage column is-two-fifths" ></div>
+      <div className="container column is-half">
+        <div className="main-title">
+          <h1 className="title is-1"><div className="spoken">Spoken,</div> Not Stirred</h1>
+          <Link to="/players">
+            <button className="button is large">Get started</button>
+          </Link>
+        </div>
+        <div className="sub-buttons">
+          <Link to="/aboutus" className="aboutus">
+            <button className="button is large">About Us</button>
+          </Link>
+          
+          <Link to="/instructions" className="instructions" >
+            <button className="button is large">Instructions</button>
+          </Link>
+        </div>
       </div>
     </div>
   }
 }
 
 export default Homepage
+
+  // < img src= "/images/homepageimage.jpg" className= "homepageimage column is-half" />
