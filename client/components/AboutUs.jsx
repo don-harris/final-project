@@ -18,38 +18,31 @@ const AboutUs = props => {
       <div>
         <AboutUsPeople 
           name="Joe"
-          email="joe@joe.come"
+          email="joe@joe.com"
           githubUserName="JosephJvB"
           imageSrc="joe.jpg" 
         />
-
-        <br />
           <AboutUsPeople
             name="Annah"
             email="agerletti@gmail.com"
             githubUserName="AnnahGerletti"
             imageSrc="annah.jpg"
           />
-        <br />
          <AboutUsPeople
             name="Don"
-            email="don@gmail.com"
+            email="donald.walter.harris@gmail.com"
             githubUserName="don-harris"
             imageSrc="donh.jpg"
           />
-        
-        <br />
           <AboutUsPeople
             name="Richard"
             email="richard@gmail.com"
             githubUserName="richardjohns"
             imageSrc="rich.jpg"
           />
-        
-        <br />
           <AboutUsPeople
             name="Callan"
-            email="callan@gmail.com"
+            email="strettcall@yahoo.com"
             githubUserName="callan-stretton"
             imageSrc="cal.png"
           />
