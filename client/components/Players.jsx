@@ -38,20 +38,31 @@ class Players extends React.Component {
     return (
       <form className="form container" >
         <div>
-          {players.map((player, i) => <p key={i}>{player.name} {player.icon}</p>)}
+          {players.map((player, i) => <p key={i}>{player.name} <img src={player.icon}/></p>)}
         </div>
         <input autoComplete="off" className="input" type="text" name="name" placeholder="Add Player Name..." value={pendingPlayer.name} onChange={this.handleChange} />
         <div className="control">
-          <div className="select">
+          {/* <div className="select">
             <select name="icon" onChange={this.handleChange} >
               <option>Select your icon</option>
-              <option>icon 1</option>
-              <option>icon 2</option>
-              <option>icon 3</option>
-              <option>icon 4</option>
-              <option>icon 5</option>
-              <option>icon 6</option>
-            </select>
+              <option style={{backgroundImage: 'url(/images/braveheart.png)'}}></option>
+              {/* <option ><img src="/images/darthvader.png" /></option>
+              <option style="back"><img src="/images/hunter.png" /></option>
+              <option style="back"><img src="/images/kruger.png" /></option>
+              <option style="back"><img src="/images/runlolarun.png" /></option>
+              <option style="back"><img src="/images/space.png" /></option> */}
+          {/* </select> */}
+          {/* </div> */} 
+
+          <div className="control">
+            <label className="radio">
+              <input type="radio" name="icon" onChange={this.handleChange} />
+              <img src="/images/braveheart.png" />
+            </label>
+            <label className="radio">
+              <input type="radio" name="icon" onChange={this.handleChange} />
+              <img src="/images/darthvader.png" />
+            </label>
           </div>
           <button className="button" onClick={this.addPlayer}>Add Player</button>
         </div>
