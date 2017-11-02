@@ -3,6 +3,10 @@ exports.up = function (knex, Promise) {
     table.increments('id').primary()
     table.string('vid_url')
     table.string('quote')
+    table.integer('startTime')
+    table.integer('quoteStart')
+    table.integer('quoteEnd')
+    table.integer('pauseTime')
   })
 }
 
