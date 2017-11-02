@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import ContactUs from './ContactUs'
+import AboutUs from './AboutUs'
 import Instructions from './Instructions'
 import Players from './Players'
 import Homepage from './Homepage'
@@ -11,7 +11,7 @@ const App = () => (
   <Router>
     <div className="app-container has-text-centered">
       <Route exact path="/" component={Homepage} />
-      <Route path="/aboutUs" component={ContactUs} />
+      <Route path="/aboutus" component={AboutUs} />
       <Route path="/instructions" component={Instructions} />
       <Route path="/players" component={Players} />
       <Route path="/round" component={Round} />
