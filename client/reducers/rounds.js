@@ -1,4 +1,4 @@
-import {ADD_PLAYERS} from '../actions/rounds.js'
+import {START_ROUND, END_PLAYER_TURN} from '../actions/rounds.js'
 
 const getRoundsFromLocalStorage = () => {
   const rounds = window.localStorage.getItem('rounds')
@@ -8,7 +8,7 @@ const getRoundsFromLocalStorage = () => {
 export default function rounds (state = getRoundsFromLocalStorage(), action) {
   // console.log('This is action: ', action.remainingPlayers)
   switch (action.type) {
-    case 'START_ROUND':
+    case START_ROUND:
       return [...state,
         {
           roundNumber: action.roundNumber,
@@ -16,6 +16,16 @@ export default function rounds (state = getRoundsFromLocalStorage(), action) {
           videosPlayed: [],
           currentPlayer: action.currentPlayer,
           remainingPlayers: action.remainingPlayers
+        }
+      ]
+    case END_PLAYER_TURN:
+      return [...state,
+        {
+          roundNumber: state.roundNumber,
+          playerScores: [...state.playerScore, action.playerScore],
+          videosPlayed: [...state.videosPlayed, action.videosPlayed],
+          currentPlayer: state.remainingPlayers[0],
+          remainingPlayers: state.remainingPlayers.slice(1)
         }
       ]
     default:
