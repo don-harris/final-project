@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AboutUsPeople = props => {
-  const {name, githubUserName, imageSrc, email} = this.props
+  const {name, githubUserName, imageSrc, email} = props
 
 return (
  <article className="media">
@@ -30,3 +30,5 @@ return (
     </div>
   </article>
 )}
+
+export default AboutUsPeople
