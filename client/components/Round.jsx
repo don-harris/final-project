@@ -1,13 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { getCurrentPlayer } from '../actions/rounds'
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class Round extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentPlayer: null
+      currentPlayer: {}
     }
     this.findNextPlayer = this.findNextPlayer.bind(this)
   }
@@ -24,6 +23,7 @@ class Round extends React.Component {
       document.getElementById('next').click()
     }
     this.setState({ currentPlayer: newPlayer })
+    this.props.dispatch()
   }
   componentWillMount () {
     this.props.dispatch({type: 'START_ROUND', roundNumber: 1})
@@ -59,6 +59,7 @@ const mapStateToProps = state => {
   return {
     players: state.players,
     rounds: state.rounds
+    // activePlayer: state.players[state.round.activeIndex]
   }
 }
 
