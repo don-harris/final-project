@@ -5,3 +5,13 @@ body {
 button {
   background-color: "red";
 }
+
+.sub-buttons {
+  margin-right: 250px;
+  margin-top: 250px;
+}
+
+.main-title{
+  margin-left: 750px;
+  margin-top: 100px;
+}
