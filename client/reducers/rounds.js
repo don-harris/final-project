@@ -12,7 +12,6 @@ export default function rounds (state = [], action) {
         }
       ]
     default:
-      console.log({action})
       return state
   }
 }

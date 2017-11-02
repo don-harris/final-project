@@ -34,7 +34,7 @@ class Players extends React.Component {
       newPlayers.id = i + 1
       return newPlayers
     })
-    console.log('This is newPlayers: :', playersWithId)
+    // console.log('This is playersWithId: ', playersWithId)
     this.props.dispatch(addAllPlayers(playersWithId))
     this.props.history.push('/round')
   }

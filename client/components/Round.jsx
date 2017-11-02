@@ -17,8 +17,12 @@ class Round extends React.Component {
   }
   findNextPlayer (nextProps) {
     const props = nextProps || this.props
-    const remainingPlayers = props.players.filter(player => !props.rounds.playerScores.find(score => score.player_id == player.id))
+    console.log(props)
+    const remainingPlayers = props.players.filter(player => !props.rounds.playerScores.find(score => score.playerid === player.id))
     const newPlayer = remainingPlayers[Math.round(Math.random() * remainingPlayers.length)]
+    if (remainingPlayers.length === 0) {
+      document.getElementById('next').click()
+    }
     this.setState({ currentPlayer: newPlayer })
   }
   componentWillMount () {
@@ -36,12 +40,13 @@ class Round extends React.Component {
 
   render () {
     const { players, rounds } = this.props
-    console.log({players, rounds}, this.state)
+    // console.log({players, rounds}, this.state)
     return (
       <div>
         <h1>Round Page</h1>
+        {/* <h2>{this.state.currentPlayer.name}</h2> */}
         <Link to="/leaderboard">
-          <button className="button is large" onClick={this.nextPlayer}>
+          <button id="next" className="button is large" onClick={this.nextPlayer}>
             Continue
           </button>
         </Link>
