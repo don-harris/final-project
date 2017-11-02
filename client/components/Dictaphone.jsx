@@ -4,13 +4,14 @@ import SpeechRecognition from 'react-speech-recognition'
 const propTypes = {
   // Props injected by SpeechRecognition
   transcript: PropTypes.string,
-  resetTranscript: PropTypes.func,
+  startListening: PropTypes.func,
+  stopListening: PropTypes.func,
   browserSupportsSpeechRecognition: PropTypes.bool
 }
 
 class Dictaphone extends Component {
   render() {
-    const { transcript, resetTranscript, browserSupportsSpeechRecognition } = this.props
+    const { transcript, startListening, stopListening, browserSupportsSpeechRecognition } = this.props
 
     if (!browserSupportsSpeechRecognition) {
       return null
@@ -18,8 +19,9 @@ class Dictaphone extends Component {
 
     return (
       <div>
-        <button onClick={resetTranscript}>Reset</button>
-        <span>{transcript}</span>
+        <button onClick={startListening}>Speak</button>
+        <button onClick={stopListening}>Stop/Submit</button>
+        <h2><span>{transcript}</span></h2>
       </div>
     )
   }
@@ -27,4 +29,8 @@ class Dictaphone extends Component {
 
 Dictaphone.propTypes = propTypes
 
-export default SpeechRecognition(Dictaphone)
+const options = {
+  autoStart: false
+}
+
+export default SpeechRecognition(options)(Dictaphone)
