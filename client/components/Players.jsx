@@ -30,10 +30,12 @@ class Players extends React.Component {
   submitAllPlayers (e) {
     e.preventDefault()
     const playersWithId = this.state.players.map((player, i) => {
-      const newPlayers = Object.assign({}, player)
-      newPlayers.id = i + 1
-      return newPlayers
+      const newPlayer = Object.assign({}, player)
+      newPlayer.id = i + 1
+      
+      return newPlayer
     })
+    window.localStorage.setItem('players', JSON.stringify(playersWithId))
     // console.log('This is playersWithId: ', playersWithId)
     this.props.dispatch(addAllPlayers(playersWithId))
     // this.props.dispatch(getCurrentPlayer(playersWithId))

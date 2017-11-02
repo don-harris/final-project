@@ -1,26 +1,19 @@
-// import {GET_PLAYERS} from '../actions/rounds.js'
 import {ADD_PLAYERS} from '../actions/rounds.js'
 
-export default function rounds (state = {}, action) {
-  console.log(action)
+export default function rounds (state = [], action) {
+  // console.log('This is action: ', action.remainingPlayers)
   switch (action.type) {
     case 'START_ROUND':
-      return {
-        roundNumber: action.roundNumber,
-        playerScores: [],
-        videosPlayed: [],
-        remainingPlayers: action.players
-      }
-    case 'ADD_PLAYERS':
-      return {
-        roundNumber: null,
-        playerScores: [],
-        videosPlayed: [],
-        remainingPlayers: action.players
-      }
-
+      return [...state,
+        {
+          roundNumber: action.roundNumber,
+          playerScores: [],
+          videosPlayed: [],
+          currentPlayer: action.currentPlayer,
+          remainingPlayers: action.remainingPlayers
+        }
+      ]
     default:
-
       return state
   }
 }
