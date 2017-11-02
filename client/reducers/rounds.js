@@ -1,12 +1,22 @@
-import {GET_CURRENT_PLAYER} from '../actions/rounds.js'
+// import {GET_PLAYERS} from '../actions/rounds.js'
+import {ADD_PLAYERS} from '../actions/rounds.js'
 
 export default function rounds (state = {}, action) {
+  console.log(action)
   switch (action.type) {
     case 'START_ROUND':
       return {
         roundNumber: action.roundNumber,
         playerScores: [],
-        videosPlayed: []
+        videosPlayed: [],
+        remainingPlayers: action.players
+      }
+    case 'ADD_PLAYERS':
+      return {
+        roundNumber: null,
+        playerScores: [],
+        videosPlayed: [],
+        remainingPlayers: action.players
       }
 
     default:

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { addAllPlayers } from '../actions/rounds'
 
 class Round extends React.Component {
   constructor (props) {
@@ -11,6 +12,7 @@ class Round extends React.Component {
     this.findNextPlayer = this.findNextPlayer.bind(this)
   }
   componentWillReceiveProps (nextProps) {
+    console.log('This is nextProps: ', nextProps)
     if (!this.state.currentPlayer) this.findNextPlayer(nextProps)
     // console.log(nextProps)
   }
@@ -18,12 +20,14 @@ class Round extends React.Component {
     const props = nextProps || this.props
     console.log(props)
     const remainingPlayers = props.players.filter(player => !props.rounds.playerScores.find(score => score.playerid === player.id))
+    console.log('This is remainingPlayers: ', remainingPlayers)
     const newPlayer = remainingPlayers[Math.round(Math.random() * remainingPlayers.length)]
+    console.log('This is newPlayer: ', newPlayer)
     if (remainingPlayers.length === 0) {
       document.getElementById('next').click()
     }
     this.setState({ currentPlayer: newPlayer })
-    this.props.dispatch()
+    this.props.dispatch(addAllPlayers(props.players))
   }
   componentWillMount () {
     this.props.dispatch({type: 'START_ROUND', roundNumber: 1})

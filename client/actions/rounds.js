@@ -1,8 +1,8 @@
-export const GET_CURRENT_PLAYER = 'GET_CURRENT_PLAYER'
+export const ADD_PLAYERS = 'ADD_PLAYERS'
 
-export const getCurrentPlayer = (players) => {
+export const addAllPlayers = (players) => {
   return {
-    type: GET_CURRENT_PLAYER,
+    type: ADD_PLAYERS,
     players: players
   }
 }
