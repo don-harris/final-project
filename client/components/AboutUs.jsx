@@ -19,7 +19,7 @@ const AboutUs = props => {
         <AboutUsPeople 
           name="Joe"
           email="joe@joe.come"
-          githubUserName="to-do"
+          githubUserName="JosephJvB"
           imageSrc="joe.jpg" 
         />
 
@@ -27,14 +27,14 @@ const AboutUs = props => {
           <AboutUsPeople
             name="Annah"
             email="agerletti@gmail.com"
-            githubUserName="https://github.com/AnnahGerletti"
+            githubUserName="AnnahGerletti"
             imageSrc="annah.jpg"
           />
         <br />
          <AboutUsPeople
             name="Don"
             email="don@gmail.com"
-            githubUserName="to-do"
+            githubUserName="don-harris"
             imageSrc="donh.jpg"
           />
         
@@ -42,7 +42,7 @@ const AboutUs = props => {
           <AboutUsPeople
             name="Richard"
             email="richard@gmail.com"
-            githubUserName="to-do"
+            githubUserName="richardjohns"
             imageSrc="rich.jpg"
           />
         
@@ -50,7 +50,7 @@ const AboutUs = props => {
           <AboutUsPeople
             name="Callan"
             email="callan@gmail.com"
-            githubUserName="to-do"
+            githubUserName="callan-stretton"
             imageSrc="cal.png"
           />
         </div>
