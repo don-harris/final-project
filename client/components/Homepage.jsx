@@ -15,8 +15,8 @@ class Homepage extends React.Component {
       <Link to="/players">
         <button className="button is large">Get started</button>
       </Link>
-      <Link to="/contactus">
-        <button className="button is large">Contact Us</button>
+      <Link to="/aboutus">
+        <button className="button is large">About US</button>
       </Link>
       <Link to="/instructions">
         <button className="button is large">Instructions</button>
