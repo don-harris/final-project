@@ -7,7 +7,7 @@ return (
  <article className="media">
     <figure className="media-left">
       <p className="image is-128x128">
-        <img src={imageSrc} />
+        <img src={`/images/ ${imageSrc}`} />
       </p>
     </figure>
     <div className="media-content">
