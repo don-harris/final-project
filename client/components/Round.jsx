@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Speech from './Speech'
 
 class Round extends React.Component {
   constructor (props) {
@@ -12,6 +13,7 @@ class Round extends React.Component {
     return (
       <div>
         <h1>Round Page</h1>
+        <Speech />
         <Link to="/leaderboard">
           <button className="button is large">Continue</button>
         </Link>
