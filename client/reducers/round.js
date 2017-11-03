@@ -1,8 +1,8 @@
-import {START_ROUND, NEXT_PLAYER} from '../actions/rounds.js'
+import {START_ROUND, NEXT_PLAYER} from '../actions/round.js'
 
 const getRoundsFromLocalStorage = () => {
-  const rounds = window.localStorage.getItem('rounds')
-  return rounds ? JSON.parse(rounds) : {}
+  const round = window.localStorage.getItem('round')
+  return round ? JSON.parse(round) : {}
 }
 
 export default function rounds (state = getRoundsFromLocalStorage(), action) {

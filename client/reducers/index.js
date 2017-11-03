@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux'
 
 import players from './players'
-import rounds from './rounds'
+import round from './round'
 import videos from './videos'
 import currentPlayer from './currentplayer'
 
 export default combineReducers({
   players,
-  rounds,
+  round,
   videos,
   currentPlayer
 })
