@@ -1,6 +1,6 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
-import { Provider } from 'react-redux'
+import {shallow, mount} from 'enzyme'
+import {Provider} from 'react-redux'
 
 import {MemoryRouter as Router} from 'react-router-dom'
 
