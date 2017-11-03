@@ -1,14 +1,28 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Instructions = props => {
   return (
-  <Link to="/">
-      <button className="button is large">Instructions to Home</button>
-  </Link>
+    <div className="instruction-container">
+      <div className="instruction header">
+          <Link to="/">
+              <button className="button is large">Back to Home</button>
+          </Link>
+            <h2 className="title subtitle is-2">How to play the game</h2>
+        </div>
+       
+         
+         <div className="level getting-started">
+           <div className="level-left">
+           <li> pick your players </li>
+           </div>
+         </div>
+         
+        
+
+    </div>
   )
 };
 
-export default connect()(Instructions);
+export default Instructions
 
