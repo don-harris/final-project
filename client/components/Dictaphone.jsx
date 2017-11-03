@@ -21,7 +21,8 @@ class Dictaphone extends Component {
       <div>
         <button onClick={startListening}>Speak</button>
         <button onClick={stopListening}>Stop/Submit</button>
-        <h2><span>{transcript}</span></h2>
+        <br/>
+        <span id="speech-field">{transcript}</span>
       </div>
     )
   }

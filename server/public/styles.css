@@ -49,3 +49,8 @@ cursive;
 .team-info {
   margin-top: 1.5em;
 }
+
+#speech-field {
+  font-size: 40px;
+  color: teal;
+}
