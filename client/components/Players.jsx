@@ -8,7 +8,6 @@ const icons = [
   '/images/runlolarun.png',
   '/images/space.png',
   '/images/darthvader.png'
-
 ]
 
 class Players extends React.Component {

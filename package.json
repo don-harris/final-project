@@ -7,6 +7,7 @@
   "scripts": {
     "postinstall": "webpack && knex migrate:latest",
     "dev": "nodemon --watch server & webpack --watch",
+    "devtest": "jest && nodemon --watch server & webpack --watch",
     "start": "node server/index",
     "test": "jest",
     "watch": "nodemon -e js,jsx -x npm test",
