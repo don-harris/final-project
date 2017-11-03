@@ -13,6 +13,7 @@ class Round extends React.Component {
       id: 1
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
   componentWillMount () {
     const currentPlayer = this.props.players[0]
@@ -28,6 +29,14 @@ class Round extends React.Component {
     round.remainingPlayers.length === 0 ? this.props.history.push('/leaderboard') : console.log('keep playing')
   }
 
+  // form field 
+  handleChange (evt) {
+    this.setState({
+      score: Number(evt.target.value),
+      id: this.props.round.currentPlayer.id
+    })
+  }
+
   render () {
     const {currentPlayer} = this.props.round
     return (
@@ -35,6 +44,7 @@ class Round extends React.Component {
         <h1>Round Page</h1>
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
         <Dictaphone />
+        <input onChange={this.handleChange} type="text" />
         <button id="next" className="button is large" onClick={this.handleClick}>
             Continue
         </button>
