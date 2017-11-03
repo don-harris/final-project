@@ -1,6 +1,6 @@
 export const ADD_PLAYERS = 'ADD_PLAYERS'
 export const START_ROUND = 'START_ROUND'
-export const END_PLAYER_TURN = 'END_PLAYER_TURN'
+export const NEXT_PLAYER = 'NEXT_PLAYER'
 
 export const addAllPlayers = (players) => {
   return {
@@ -18,12 +18,20 @@ export const startRound = (current, remaining) => {
   }
 }
 
-export const endPlayerTurn = (id, score, video) => {
+export const nextPlayer = ({id, score, video}, current, remaining, number) => {
+  const nextRoundNumber = getNextRoundNumber(remaining, number)
   return {
-    type: END_PLAYER_TURN,
+    type: NEXT_PLAYER,
+    roundNumber: nextRoundNumber,
     playerScore: {id, score},
-    videosPlayed: video
+    videosPlayed: video,
+    currentPlayer: remaining[0],
+    remainingPlayers: remaining.slice(1)
   }
+}
+
+function getNextRoundNumber (remainingPlayers, roundNumber) {
+  return remainingPlayers.length > 0 ? roundNumber + 1 : roundNumber
 }
 
 // export function addAllPlayersAsync (players) {

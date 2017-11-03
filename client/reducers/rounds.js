@@ -1,36 +1,38 @@
-import {START_ROUND, END_PLAYER_TURN} from '../actions/rounds.js'
+import {START_ROUND, NEXT_PLAYER} from '../actions/rounds.js'
 
 const getRoundsFromLocalStorage = () => {
   const rounds = window.localStorage.getItem('rounds')
-  return rounds ? JSON.parse(rounds) : []
+  return rounds ? JSON.parse(rounds) : {}
 }
 
 export default function rounds (state = getRoundsFromLocalStorage(), action) {
-  // console.log('This is action: ', action.remainingPlayers)
   switch (action.type) {
     case START_ROUND:
-      return [...state,
-        {
-          roundNumber: action.roundNumber,
-          playerScores: [],
-          videosPlayed: [],
-          currentPlayer: action.currentPlayer,
-          remainingPlayers: action.remainingPlayers
-        }
-      ]
-    case END_PLAYER_TURN:
-      return [...state,
-        {
-          roundNumber: state.roundNumber,
-          playerScores: [...state.playerScore, action.playerScore],
-          videosPlayed: [...state.videosPlayed, action.videosPlayed],
-          currentPlayer: state.remainingPlayers[0],
-          remainingPlayers: state.remainingPlayers.slice(1)
-        }
-      ]
+      return {
+        roundNumber: action.roundNumber,
+        playerScores: [],
+        videosPlayed: [],
+        currentPlayer: action.currentPlayer,
+        remainingPlayers: action.remainingPlayers
+      }
+
+    case NEXT_PLAYER:
+      return {
+        roundNumber: action.roundNumber,
+        playerScores: [...state.playerScores, action.playerScore],
+        videosPlayed: [...state.videosPlayed, action.videosPlayed],
+        currentPlayer: action.currentPlayer,
+        remainingPlayers: action.remainingPlayers
+      }
     default:
       return state
   }
 }
 
 //       const remainingPlayers = action.players.filter(player => player.name !== currentPlayer.name)
+
+//  roundNumber: state[state.length - 1].roundNumber,
+//       playerScores: [...state[state.length - 1].playerScore, action.playerScore],
+//       videosPlayed: [...state[state.length - 1].videosPlayed, action.videosPlayed],
+//       currentPlayer: state[state.length - 1].remainingPlayers[0],
+//       remainingPlayers: state[state.length - 1].remainingPlayers.slice(1)
