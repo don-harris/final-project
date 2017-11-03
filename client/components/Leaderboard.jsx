@@ -13,7 +13,7 @@ class Leaderboard extends React.Component {
     console.log(this.props.players)
     return (
       <div className="container">
-        <h1>Leaderboard page</h1>
+        <h1 className="leadertitle title is-1">Leaderboard page</h1>
         <table className="table is-bordered is-fullwidth is-striped">
           <thead className="thead">
             <tr className="tr">
@@ -49,7 +49,7 @@ class Leaderboard extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    players: state.players || {}
+    players: state.players
   }
 }
 

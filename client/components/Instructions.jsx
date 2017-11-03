@@ -15,6 +15,9 @@ const Instructions = props => {
          <div className="level getting-started">
            <div className="level-left">
            <li> pick your players </li>
+           <li> Hit the play button </li>
+           <li> THere will be three  </li>
+           <li> Hit the play button </li>
            </div>
          </div>
          

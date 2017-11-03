@@ -1,12 +1,12 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import {shallow, mount} from 'enzyme'
 
-import App from '../../client/components/App'
+import Homepage from '../../client/components/Homepage'
 import './setup-dom'
 
-App.prototype.componentDidMount = () => {}
+Homepage.prototype.componentDidMount = () => {}
 
-test('Hello World renders on App', () => {
-  const wrapper = shallow(<App />)
-  expect(wrapper.find('h1').text()).toBe('Hello World')
+test('Title renders on homepage', () => {
+  const wrapper = shallow(<Homepage />)
+  expect(wrapper.find('h1').text()).toBe('Spoken, Not Stirred')
 })
