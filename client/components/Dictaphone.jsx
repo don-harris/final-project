@@ -12,50 +12,45 @@ const propTypes = {
   browserSupportsSpeechRecognition: PropTypes.bool
 }
 
-// function stopSubmit () {
-//   this.props.stopListening
-
-// }
-var actual = "Great job, keep it up"
+var actual = 'Great job, keep it up'
 
 function straightLace (stopListening, transcript) {
   stopListening()
   console.log(transcript, actual)
   if (transcript.toLowerCase() === actual.toLowerCase()) {
-    console.log("Correct!")
+    console.log('Correct!')
   } else {
     console.log("That's not it.")
   }
 }
 
-
 class Dictaphone extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       randomVid: null
     }
   }
-  componentWillReceiveProps(nextProps) {
-    if (!this.state.randomVid) this.setState({ randomVid: nextProps.videos[Math.floor(Math.random() * nextProps.videos.length)]})
+  componentWillReceiveProps (nextProps) {
+    if (!this.state.randomVid) this.setState({randomVid: nextProps.videos[Math.floor(Math.random() * nextProps.videos.length)]})
   }
-  componentDidMount() {
+  componentDidMount () {
     this.props.dispatch(getVideos())
   }
-  render() {
+  render () {
     const { transcript, startListening, stopListening, browserSupportsSpeechRecognition } = this.props
     console.log(this.props)
     function compareText () {
       stopListening()
       var points = 0
       transcript.toLowerCase().split(' ').forEach((char, idx, transcriptArr) => {
-        const actualArr = actual.toLowerCase().split(' ') 
+        const actualArr = actual.toLowerCase().split(' ')
         console.log(actualArr, transcriptArr)
         if (actualArr.find(actualChar => actualChar == char)) points++
       })
       if (transcript.toLowerCase() === actual.toLowerCase()) {
-        console.log("Correct!")
-        points = points*2
+        console.log('Correct!')
+        points = points * 2
       } else {
         console.log("That's not it.")
       }
@@ -64,7 +59,7 @@ class Dictaphone extends Component {
     if (!browserSupportsSpeechRecognition) {
       return null
     }
-    const {randomVid} =  this.state
+    const {randomVid} = this.state
     console.log(randomVid)
     return (
       <div>
