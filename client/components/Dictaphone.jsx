@@ -40,14 +40,15 @@ class Dictaphone extends Component {
   }
   render () {
     const { transcript, startListening, stopListening, browserSupportsSpeechRecognition } = this.props
-    console.log("props =" + this.props)
+    const {randomVid} = this.state
+    console.log('props =' + this.props)
     function compareText () {
       stopListening()
       var points = 0
-      var actual = 'Get to the chopper'
+      var actual = randomVid.quote
       // console.log("randomVid.quote = " + this.state.randomVid.quote)
-      // console.log("this.props.videos = " + this.props.quote)
-      console.log("transcript = " + transcript) // look at final transcript
+      console.log('can you see this = ', randomVid.quote)
+      console.log('transcript = ' + transcript) // look at final transcript
       transcript.toLowerCase().split(' ').forEach((char, idx, transcriptArr) => {
         const actualArr = actual.toLowerCase().split(' ')
         console.log(actualArr, transcriptArr)
@@ -57,15 +58,14 @@ class Dictaphone extends Component {
         console.log('Correct, double points!')
         points = points * 2
       } else {
-        console.log("Not quite...")
+        console.log('Not quite...')
       }
-      console.log("points: " + points)
+      console.log('points: ' + points)
     }
     if (!browserSupportsSpeechRecognition) {
       return null
     }
-    const {randomVid} = this.state
-    console.log("randomVid = " + randomVid)
+    // const {randomVid} = this.state
     return (
       <div>
         <button onClick={startListening}>Speak</button>
@@ -80,7 +80,7 @@ class Dictaphone extends Component {
 }
 
 Dictaphone.propTypes = propTypes
-  
+
 const options = {
   autoStart: false
 }
