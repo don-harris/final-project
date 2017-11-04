@@ -2,10 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {startRound, nextPlayer} from '../actions/round'
-<<<<<<< HEAD
-=======
 import {playerScores} from '../actions/playerScores'
->>>>>>> 8d27846ed986a6b5e37931116138ff32052c7604
 import Dictaphone from './Dictaphone'
 import {getVideos} from '../actions/videos'
 import Video from './Video'
@@ -69,7 +66,7 @@ const mapStateToProps = state => {
   return {
     players: state.players,
     round: state.round,
-    videos: state.videos
+    videos: state.videos,
     game: state.game
   }
 }
