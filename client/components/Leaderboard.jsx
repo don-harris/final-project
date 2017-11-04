@@ -71,10 +71,7 @@ class Leaderboard extends React.Component {
 function mapStateToProps (state) {
   return {
     players: state.players,
-<<<<<<< HEAD
-=======
     game: state.game,
->>>>>>> a6c836e56342ca9b9f148db1d1d48a82ad348663
     round: state.round
   }
 }
