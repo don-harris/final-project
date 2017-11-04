@@ -11,6 +11,7 @@ class Leaderboard extends React.Component {
   }
 
   render () {
+    console.log('this is playerScores: ', this.props.round.playerScores)
     console.log(this.props.players)
     console.log('round object', this.props.round)
     return (
@@ -34,17 +35,10 @@ class Leaderboard extends React.Component {
                 <td className="th has-text-centered">1st</td>
                 <td className="th has-text-centered"><img src={player.icon} /></td>
                 <td className="th has-text-centered">{player.name} </td>
-              </tr>
+                <td className="th has-text-centered" >{this.props.round.playerScores.map(score => { return score.score })}</td>
+                </tr>
             })}
-                {this.props.round.playerScores.map(score => {
-                  return <tr className="tr" key={score.id}>
-                <td className="th has-text-centered">{score.score}</td>
-                <td className="th has-text-centered">points</td>
-                <td className="th has-text-centered">points</td>
-                <td className="th has-text-centered">Total score</td>
-                
-             </tr>
-            })}
+
           </tbody>
         </table>
 
