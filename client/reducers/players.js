@@ -8,7 +8,6 @@ const getPlayersFromLocalStorage = () => {
 export default function players (state = getPlayersFromLocalStorage(), action) {
   switch (action.type) {
     case ADD_PLAYERS:
-      // console.log('This is action.players: ', action.players)
       return action.players
     default:
       return state
