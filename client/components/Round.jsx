@@ -18,7 +18,6 @@ class Round extends React.Component {
   }
   componentWillMount () {
     const currentPlayer = this.props.players[0]
-    console.log(currentPlayer)
     const remainingPlayers = this.props.players.slice(1)
     this.props.dispatch(startRound(currentPlayer, remainingPlayers))
     window.localStorage.setItem('round', JSON.stringify(this.props.round))
@@ -58,7 +57,8 @@ class Round extends React.Component {
 const mapStateToProps = state => {
   return {
     players: state.players,
-    round: state.round
+    round: state.round,
+    game: state.game
   }
 }
 
