@@ -1,16 +1,34 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {endRound, resetGame} from '../actions/round'
 
 class Leaderboard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
     }
+    this.handleClick = this.handleClick.bind(this)
+    this.endGame = this.endGame.bind(this)
+  }
+
+  componentDidMount () {
+    const {dispatch, round} = this.props
+    dispatch(endRound(round))
+  }
+
+  handleClick () {
+    const {game, history} = this.props
+    game.length < 3 ? history.push('/round') : this.endGame()
+  }
+
+  endGame () {
+    const {dispatch, history} = this.props
+    dispatch(resetGame())
+    history.push('/')
   }
 
   render () {
-    console.log(this.props.players)
     return (
       <div className="container">
         <h1 className="leadertitle title is-1">Leaderboard page</h1>
@@ -41,7 +59,7 @@ class Leaderboard extends React.Component {
           </tbody>
         </table>
         <hr />
-        <Link className="button is-large" to="/">Play Again</Link>
+        <button onClick={this.handleClick}>continue</button>
       </div>
     )
   }
@@ -49,7 +67,9 @@ class Leaderboard extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    players: state.players
+    players: state.players,
+    game: state.game,
+    round: state.round
   }
 }
 

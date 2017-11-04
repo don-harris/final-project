@@ -1,11 +1,11 @@
 import {START_ROUND, NEXT_PLAYER} from '../actions/round.js'
 
-const getRoundsFromLocalStorage = () => {
+const getRoundFromLocalStorage = () => {
   const round = window.localStorage.getItem('round')
   return round ? JSON.parse(round) : {}
 }
 
-export default function rounds (state = getRoundsFromLocalStorage(), action) {
+export default function round (state = getRoundFromLocalStorage(), action) {
   switch (action.type) {
     case START_ROUND:
       return {
@@ -28,11 +28,3 @@ export default function rounds (state = getRoundsFromLocalStorage(), action) {
       return state
   }
 }
-
-//       const remainingPlayers = action.players.filter(player => player.name !== currentPlayer.name)
-
-//  roundNumber: state[state.length - 1].roundNumber,
-//       playerScores: [...state[state.length - 1].playerScore, action.playerScore],
-//       videosPlayed: [...state[state.length - 1].videosPlayed, action.videosPlayed],
-//       currentPlayer: state[state.length - 1].remainingPlayers[0],
-//       remainingPlayers: state[state.length - 1].remainingPlayers.slice(1)
