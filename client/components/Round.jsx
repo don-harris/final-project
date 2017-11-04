@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { startRound, nextPlayer } from '../actions/rounds'
+import { startRound, nextPlayer } from '../actions/round'
 import Dictaphone from './Dictaphone'
 
 class Round extends React.Component {
@@ -13,28 +13,38 @@ class Round extends React.Component {
       id: 1
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
   componentWillMount () {
     const currentPlayer = this.props.players[0]
     console.log(currentPlayer)
     const remainingPlayers = this.props.players.slice(1)
     this.props.dispatch(startRound(currentPlayer, remainingPlayers))
-    window.localStorage.setItem('rounds', JSON.stringify(this.props.rounds))
+    window.localStorage.setItem('round', JSON.stringify(this.props.round))
   }
 
   handleClick () {
-    const {rounds} = this.props
-    this.props.dispatch(nextPlayer(this.state, rounds.currentPlayer, rounds.remainingPlayers, rounds.roundNumber))
-    rounds.remainingPlayers.length === 0 ? this.props.history.push('/leaderboard') : console.log('keep playing')
+    const {round} = this.props
+    this.props.dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
+    round.remainingPlayers.length === 0 ? this.props.history.push('/leaderboard') : console.log('keep playing')
+  }
+
+  // form field 
+  handleChange (evt) {
+    this.setState({
+      score: Number(evt.target.value),
+      id: this.props.round.currentPlayer.id
+    })
   }
 
   render () {
-    const {currentPlayer} = this.props.rounds
+    const {currentPlayer} = this.props.round
     return (
       <div>
         <h1>Round Page</h1>
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
         <Dictaphone />
+        <input onChange={this.handleChange} type="text" />
         <button id="next" className="button is large" onClick={this.handleClick}>
             Continue
         </button>
@@ -46,7 +56,7 @@ class Round extends React.Component {
 const mapStateToProps = state => {
   return {
     players: state.players,
-    rounds: state.rounds
+    round: state.round
   }
 }
 
