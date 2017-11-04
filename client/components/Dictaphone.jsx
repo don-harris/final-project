@@ -20,8 +20,8 @@ class Dictaphone extends Component {
     function compareText () {
       stopListening()
       var points = 0
-      var actual = randomVid
-      console.log('quote from database = ', this.props.quote)
+      var actual = randomVid.quote
+      console.log('quote from database = ', actual)
       console.log('transcript = ' + transcript) // look at final transcript
       transcript.toLowerCase().split(' ').forEach((char, idx, transcriptArr) => {
         const actualArr = actual.toLowerCase().split(' ')
