@@ -5,8 +5,9 @@
   "repository": "https://github.com/dev-academy-challenges/boilerplate-react-webpack.git",
   "main": "server/index.js",
   "scripts": {
-    "postinstall": "webpack",
+    "postinstall": "webpack && knex migrate:latest",
     "dev": "nodemon --watch server & webpack --watch",
+    "devtest": "jest && nodemon --watch server & webpack --watch",
     "start": "node server/index",
     "test": "jest",
     "watch": "nodemon -e js,jsx -x npm test",
@@ -52,6 +53,7 @@
     "react-router-dom": "^4.1.1",
     "react-speech-recognition": "^1.0.4",
     "react-test-renderer": "^15.5.4",
+    "react-youtube": "^7.5.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "superagent": "^2.2.0",

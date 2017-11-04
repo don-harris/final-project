@@ -1,7 +1,7 @@
 const request = require('supertest')
 
-jest.mock('../../server/db/greeting', () => ({
-  getGreetings: () => Promise.resolve([
+jest.mock('../../server/db/videos', () => ({
+  getVideos: () => Promise.resolve([
     {id: 1, text: 'test text 1'},
     {id: 2, text: 'test text 2'}
   ])
@@ -9,9 +9,9 @@ jest.mock('../../server/db/greeting', () => ({
 
 const server = require('../../server/server')
 
-test('GET /', () => {
+test('GET /round', () => {
   return request(server)
-    .get('/api/greetings')
+    .get('/api/v1/round')
     .expect(200)
     .then(res => {
       expect(res.body.length).toBe(2)

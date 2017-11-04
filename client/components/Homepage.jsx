@@ -9,6 +9,7 @@ class Homepage extends React.Component {
   }
 
   render () {
+
     return <div className="columns">
       <div className="homepageimage column is-two-fifths" ></div>
       <div className="container column is-half">

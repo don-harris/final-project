@@ -1,4 +1,4 @@
-# (Insert App Name) - an at home game to play with your mates.
+# Spoken, Not Stirred - an at home game to play with your mates.
 
 # group DYNAMICS
 ## TEAM ROLES ##
@@ -86,4 +86,3 @@ Wednesday | Thursday | Friday | Saturday | Sunday | Monday | Tuesday | Wednesday
 - add a 3..2..1 count down animation. 
 - Do over button to allow a player who got it right to try again, because tech didn't work.
 - Done recording button to finish playing the clip to see the guessed line. 
-
