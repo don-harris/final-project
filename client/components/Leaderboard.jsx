@@ -14,7 +14,7 @@ class Leaderboard extends React.Component {
   handleClick () {
     const {game, dispatch, round, history} = this.props
     dispatch(endRound(round))
-    game.length < 2 ? history.push('/round') : console.log('game over')
+    game.length < 2 ? history.push('/round') : history.push('/')
   }
 
   render () {
