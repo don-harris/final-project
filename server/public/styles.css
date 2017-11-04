@@ -51,5 +51,10 @@ cursive;
 }
 
 .leadertitle {
- margin: 25px; 
+ margin: 25px;
+}
+ 
+#speech-field {
+  font-size: 40px;
+  color: teal;
 }
