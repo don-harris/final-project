@@ -2,6 +2,10 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {startRound, nextPlayer} from '../actions/round'
+<<<<<<< HEAD
+=======
+import {playerScores} from '../actions/playerScores'
+>>>>>>> 8d27846ed986a6b5e37931116138ff32052c7604
 import Dictaphone from './Dictaphone'
 import {getVideos} from '../actions/videos'
 import Video from './Video'
@@ -29,9 +33,10 @@ class Round extends React.Component {
     if (!this.state.randomVid) this.setState({ randomVid: nextProps.videos[Math.floor(Math.random() * nextProps.videos.length)] })
   }
   handleClick () {
-    const {round} = this.props
-    this.props.dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
-    round.remainingPlayers.length === 0 ? this.props.history.push('/leaderboard') : console.log('keep playing')
+    const {round, dispatch, history} = this.props
+    dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
+    round.remainingPlayers.length === 0 ? history.push('/leaderboard') : console.log('keep playing')
+    dispatch(playerScores(this.state.score, round.currentPlayer))
   }
 
   // form field 
@@ -65,6 +70,7 @@ const mapStateToProps = state => {
     players: state.players,
     round: state.round,
     videos: state.videos
+    game: state.game
   }
 }
 
