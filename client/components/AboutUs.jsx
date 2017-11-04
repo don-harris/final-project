@@ -10,9 +10,9 @@ const AboutUs = props => {
           Back to Home
       </Link>
       <div className='something'>
-        <p>We are five excited devs coming together to create the ultimate party game!</p>
+        <p className="subtitle">We are five excited devs coming together to create the ultimate party game!</p>
         <br />
-        <h2 className= "subtitle is-2">Meet the Team</h2>
+        <h2 className= "title subtitle is-2">Meet the Team</h2>
       </div>
 
       <div>
