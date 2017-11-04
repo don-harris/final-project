@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { startRound, nextPlayer } from '../actions/round'
-// import {addPlayerScore} from '../actions/players'
 import Dictaphone from './Dictaphone'
 
 class Round extends React.Component {
@@ -26,7 +25,6 @@ class Round extends React.Component {
   handleClick () {
     const {round} = this.props
     this.props.dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
-    // this.props.dispatch(addPlayerScore(this.state, round.currentPlayer))
     round.remainingPlayers.length === 0 ? this.props.history.push('/leaderboard') : console.log('round not done')
   }
 
