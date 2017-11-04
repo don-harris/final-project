@@ -5,8 +5,8 @@ const Instructions = props => {
   return <div>
       <section className="instruction-section">
         <div className="instruction-container">
-          <h1 className="title">Spoken,</h1>
-          <h1 className="title">Not Stirred</h1>
+          <h1 className="title is-1"><div className="spoken">Spoken,</div></h1>
+          <h1 className="title is-1">Not Stirred</h1>
         </div>
       </section>
 
@@ -16,8 +16,7 @@ const Instructions = props => {
           <h1 className="title">Actors Guide</h1>
           <br />
           <h2 className="subtitle">
-            It's time to see if you've got what it takes to foot it with your <strong> favourite movie stars
-            </strong>, as they deliver some of the best one-liners of all time...
+            It's time to see if you've got what it takes to foot it with your <strong> favourite movie stars</strong>, as they deliver some of the best one-liners of all time...
           </h2>
           <br />
           <h2 className="subtitle">
