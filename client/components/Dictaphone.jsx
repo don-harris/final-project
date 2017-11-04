@@ -21,19 +21,21 @@ class Dictaphone extends Component {
       stopListening()
       var points = 0
       var actual = randomVid.quote
+      const actualArr = actual.toLowerCase().split(' ')
       console.log('quote from database = ', actual)
       console.log('transcript = ' + transcript) // look at final transcript
       transcript.toLowerCase().split(' ').forEach((char, idx, transcriptArr) => {
-        const actualArr = actual.toLowerCase().split(' ')
         if (actualArr.find(actualChar => actualChar == char)) points++
       })
       if (transcript.toLowerCase() === actual.toLowerCase()) {
         console.log('Correct, double points!')
-        points = points * 2
+        points = 20
+        console.log('points: ' + points)
       } else {
         console.log('Not quite...')
+        let pointsPercent = Math.round((points / actualArr.length) * 10)
+        console.log('points: ' + pointsPercent)
       }
-      console.log('points: ' + points)
     }
     if (!browserSupportsSpeechRecognition) {
       return null
