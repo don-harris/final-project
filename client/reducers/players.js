@@ -13,12 +13,3 @@ export default function players (state = getPlayersFromLocalStorage(), action) {
       return state
   }
 }
-
-// case ADD_PLAYER_SCORE:
-//   console.log('This is action for ADD_PLAYER_SCORE: ', action)
-//   return {
-//     id: action.id,
-//     icon: action.icon,
-//     name: action.name,
-//     totalScore: getTotalScore(state.totalScore, action.score)
-//   }

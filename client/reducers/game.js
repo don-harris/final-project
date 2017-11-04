@@ -10,12 +10,3 @@ export default function game (state = [], action) {
       return state
   }
 }
-
-// {
-//   type: 'END_ROUND',
-//     round: {
-//     roundNumber: 1,
-//       playerScores: [{ id: 1, score: 2 }, { id: 2, score: 1 }],
-//         videosPlayed: [2, 1]
-//   }
-// }

@@ -44,17 +44,3 @@ export const resetGame = () => {
     type: RESET_GAME
   }
 }
-
-// function getNextRoundNumber (remainingPlayers, roundNumber, currentPlayer) {
-//   return remainingPlayers.length > 0 && currentPlayer.length > 0 ? roundNumber + 1 : roundNumber
-// }
-
-// export function addAllPlayersAsync (players) {
-//   return dispatch => {
-//     addAllPlayers(players)
-
-//     // .catch(err => {
-//     //   dispatch(showError(err.message))
-//     // })
-//   }
-// }

@@ -28,11 +28,3 @@ export default function round (state = getRoundFromLocalStorage(), action) {
       return state
   }
 }
-
-//       const remainingPlayers = action.players.filter(player => player.name !== currentPlayer.name)
-
-//  roundNumber: state[state.length - 1].roundNumber,
-//       playerScores: [...state[state.length - 1].playerScore, action.playerScore],
-//       videosPlayed: [...state[state.length - 1].videosPlayed, action.videosPlayed],
-//       currentPlayer: state[state.length - 1].remainingPlayers[0],
-//       remainingPlayers: state[state.length - 1].remainingPlayers.slice(1)
