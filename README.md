@@ -51,4 +51,4 @@ If ever you need to rollback, you can also just use `npm run h:rollback`
 ## Ta-Da!
 Your app should be deployed!
 
-I can add some exercises/comments to this repo if there is desire for such, but for now, hopefully this proves useful :)
+I can add some exercises/comments to this repo if there is desire for such, but for now, hopefully this proves useful :D
