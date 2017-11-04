@@ -30,9 +30,6 @@ class Leaderboard extends React.Component {
   }
 
   render () {
-    console.log('this is playerScores: ', this.props.round.playerScores)
-    console.log(this.props.players)
-    console.log('round object', this.props.round)
     return (
       <div className="container">
         <h1 className="leadertitle title is-1">Leaderboard page</h1>
@@ -49,7 +46,7 @@ class Leaderboard extends React.Component {
             </tr>
           </thead>
           <tbody className="tbody">
-            {this.props.round.playersScores.map(player => {
+            {this.props.scores.map(player => {
               return <tr className="tr" key={player.name}>
                 <td className="th has-text-centered">1st</td>
                 <td className="th has-text-centered"><img src={player.icon} /></td>
@@ -72,7 +69,8 @@ function mapStateToProps (state) {
   return {
     players: state.players,
     game: state.game,
-    round: state.round
+    round: state.round,
+    scores: state.playerScores
   }
 }
 

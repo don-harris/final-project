@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Instructions = props => {
   return (
-  <Link to="/">
-      <button className="button is large">Instructions to Home</button>
+  <Link to="/" className="button is-large">
+    Instructions to Home
   </Link>
   )
 };

@@ -6,8 +6,8 @@ import AboutUsPeople from './AboutUsPeople'
 const AboutUs = props => {
   return (
     <div>
-      <Link to="/">
-          <button className="button is large">Back to Home</button>
+      <Link to="/" className="button is-large">
+          Back to Home
       </Link>
       <div className='something'>
         <p>We are five excited devs coming together to create the ultimate party game!</p>
