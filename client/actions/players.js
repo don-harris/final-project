@@ -1,7 +1,7 @@
 // import { showError } from './error-message'
 
 export const ADD_PLAYERS = 'ADD_PLAYERS'
-export const CALC_PLAYER_TOTAL = 'CALC_PLAYER_TOTAL'
+export const ADD_PLAYER_SCORE = 'ADD_PLAYER_SCORE'
 
 export const addAllPlayers = (players) => {
   return {
@@ -10,27 +10,31 @@ export const addAllPlayers = (players) => {
   }
 }
 
-export const calcPlayerTotal = (game) => {
-  return {
-    type: 'CALC_PLAYER_TOTAL',
-    game: game
-  }
-}
+// export const addPlayerScore = (state, current) => {
+//   const { id, score } = state
+//   const { icon, name } = current
+//   return {
+//     type: 'ADD_PLAYER_SCORE',
+//     icon,
+//     name,
+//     id,
+//     score
+//   }
+// }
 
+// function sumTotal (game) {
+//   return game.reduce((totalExpense, round) => {
+//     return totalExpense + parseFloat(expense.amount)
+//   }, 0)
+// }
 
-function sumTotal(game) {
-  return game.reduce((totalExpense, round) => {
-    return totalExpense + parseFloat(expense.amount)
-  }, 0)
-}
-
-function calcPlayerTotals (game) {
-  game.forEach(function(round) {
-    round.playerScores.forEach(function(score) {
-      console.log(score)
-    })
-  })
-}
+// function calcPlayerTotals(game) {
+//   game.forEach(function (round) {
+//     round.playerScores.forEach(function (score) {
+//       console.log(score.score)
+//     })
+//   })
+// }
 
 // export function addAllPlayersAsync (players) {
 //   return dispatch => {

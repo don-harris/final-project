@@ -20,7 +20,6 @@ export const startRound = (current, remaining) => {
 }
 
 export const nextPlayer = ({id, score, video}, current, remaining, number) => {
-  console.log('this is current', current)
   // const nextRoundNumber = getNextRoundNumber(remaining, number, current)
   return {
     type: NEXT_PLAYER,
