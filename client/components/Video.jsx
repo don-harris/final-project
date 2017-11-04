@@ -1,8 +1,6 @@
 import React from 'react'
 import YouTube from 'react-youtube'
 
-import { getVidData } from '../client-api'
-
 class Video extends React.Component {
   constructor (props) {
     super(props)
@@ -19,21 +17,7 @@ class Video extends React.Component {
     this.pauseClip = this.pauseClip.bind(this)
     this.restartClip = this.restartClip.bind(this)
     this.endVideo = this.endVideo.bind(this)
-    
   }
-
-  // renderVid (err, props) {
-  //   console.log('renderVid props: ', props.randomVid)
-  //   const {randomVid} = this.props
-  //   this.setState({
-  //     error: err,
-  //     vidurl: randomVid.vid_url,
-  //     startTime: randomVid.startTime,
-  //     quoteStart: randomVid.quoteStart,
-  //     quoteEnd: randomVid.quoteEnd,
-  //     pauseTime: randomVid.pauseTime
-  //   })
-  // }
 
   componentWillMount () {
     const { randomVid } = this.props
@@ -46,7 +30,6 @@ class Video extends React.Component {
       pauseTime: randomVid.pauseTime
     })
   }
-
 
   startClip (event) {
     console.log('randomVid: ', this.props.randomVid.vid_url)
