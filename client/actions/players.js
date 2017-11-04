@@ -1,6 +1,7 @@
 // import { showError } from './error-message'
 
 export const ADD_PLAYERS = 'ADD_PLAYERS'
+export const ADD_PLAYER_SCORE = 'ADD_PLAYER_SCORE'
 
 export const addAllPlayers = (players) => {
   return {
@@ -8,13 +9,3 @@ export const addAllPlayers = (players) => {
     players: players
   }
 }
-
-// export function addAllPlayersAsync (players) {
-//   return dispatch => {
-//     addAllPlayers(players)
-
-//     // .catch(err => {
-//     //   dispatch(showError(err.message))
-//     // })
-//   }
-// }

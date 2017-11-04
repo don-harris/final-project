@@ -1,6 +1,8 @@
 export const ADD_PLAYERS = 'ADD_PLAYERS'
 export const START_ROUND = 'START_ROUND'
 export const NEXT_PLAYER = 'NEXT_PLAYER'
+export const END_ROUND = 'END_ROUND'
+export const RESET_GAME = 'RESET_GAME'
 
 export const addAllPlayers = (players) => {
   return {
@@ -19,10 +21,10 @@ export const startRound = (current, remaining) => {
 }
 
 export const nextPlayer = ({id, score, video}, current, remaining, number) => {
-  const nextRoundNumber = getNextRoundNumber(remaining, number)
+  // const nextRoundNumber = getNextRoundNumber(remaining, number, current)
   return {
     type: NEXT_PLAYER,
-    roundNumber: nextRoundNumber,
+    roundNumber: number,
     playerScore: {id, score},
     videosPlayed: video,
     currentPlayer: remaining[0],
@@ -30,16 +32,15 @@ export const nextPlayer = ({id, score, video}, current, remaining, number) => {
   }
 }
 
-function getNextRoundNumber (remainingPlayers, roundNumber) {
-  return remainingPlayers.length > 0 ? roundNumber + 1 : roundNumber
+export const endRound = (round) => {
+  return {
+    type: END_ROUND,
+    round
+  }
 }
 
-// export function addAllPlayersAsync (players) {
-//   return dispatch => {
-//     addAllPlayers(players)
-
-//     // .catch(err => {
-//     //   dispatch(showError(err.message))
-//     // })
-//   }
-// }
+export const resetGame = () => {
+  return {
+    type: RESET_GAME
+  }
+}

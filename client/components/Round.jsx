@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { startRound, nextPlayer } from '../actions/round'
+import {startRound, nextPlayer} from '../actions/round'
+import {playerScores} from '../actions/playerScores'
 import Dictaphone from './Dictaphone'
 
 class Round extends React.Component {
@@ -17,16 +18,16 @@ class Round extends React.Component {
   }
   componentWillMount () {
     const currentPlayer = this.props.players[0]
-    console.log(currentPlayer)
     const remainingPlayers = this.props.players.slice(1)
     this.props.dispatch(startRound(currentPlayer, remainingPlayers))
     window.localStorage.setItem('round', JSON.stringify(this.props.round))
   }
 
   handleClick () {
-    const {round} = this.props
-    this.props.dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
-    round.remainingPlayers.length === 0 ? this.props.history.push('/leaderboard') : console.log('keep playing')
+    const {round, dispatch, history} = this.props
+    dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
+    round.remainingPlayers.length === 0 ? history.push('/leaderboard') : console.log('keep playing')
+    dispatch(playerScores(this.state.score, round.currentPlayer))
   }
 
   // form field 
@@ -56,7 +57,8 @@ class Round extends React.Component {
 const mapStateToProps = state => {
   return {
     players: state.players,
-    round: state.round
+    round: state.round,
+    game: state.game
   }
 }
 
