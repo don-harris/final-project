@@ -2,6 +2,7 @@ export const ADD_PLAYERS = 'ADD_PLAYERS'
 export const START_ROUND = 'START_ROUND'
 export const NEXT_PLAYER = 'NEXT_PLAYER'
 export const END_ROUND = 'END_ROUND'
+export const RESET_GAME = 'RESET_GAME'
 
 export const addAllPlayers = (players) => {
   return {
@@ -35,6 +36,12 @@ export const endRound = (round) => {
   return {
     type: END_ROUND,
     round
+  }
+}
+
+export const resetGame = () => {
+  return {
+    type: RESET_GAME
   }
 }
 

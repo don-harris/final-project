@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {endRound} from '../actions/round'
+import {endRound, resetGame} from '../actions/round'
 
 class Leaderboard extends React.Component {
   constructor (props) {
@@ -9,12 +9,23 @@ class Leaderboard extends React.Component {
     this.state = {
     }
     this.handleClick = this.handleClick.bind(this)
+    this.endGame = this.endGame.bind(this)
+  }
+
+  componentDidMount () {
+    const {dispatch, round} = this.props
+    dispatch(endRound(round))
   }
 
   handleClick () {
-    const {game, dispatch, round, history} = this.props
-    dispatch(endRound(round))
-    game.length < 2 ? history.push('/round') : history.push('/')
+    const {game, history} = this.props
+    game.length < 3 ? history.push('/round') : this.endGame()
+  }
+
+  endGame () {
+    const {dispatch, history} = this.props
+    dispatch(resetGame())
+    history.push('/')
   }
 
   render () {
