@@ -56,7 +56,8 @@ class Round extends React.Component {
 const mapStateToProps = state => {
   return {
     players: state.players,
-    round: state.round
+    round: state.round,
+    game: state.game
   }
 }
 

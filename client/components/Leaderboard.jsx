@@ -7,6 +7,16 @@ class Leaderboard extends React.Component {
     super(props)
     this.state = {
     }
+    this.calcPlayerTotals = this.calcPlayerTotals.bind(this)
+  }
+
+  calcPlayerTotals (game) {
+    this.props.dispatch()
+    game.forEach(function (round) {
+      round.playerScores.forEach(function (score) {
+        console.log('This is score.score: ', score.score)
+      })
+    })
   }
 
   render () {
@@ -42,6 +52,9 @@ class Leaderboard extends React.Component {
         </table>
         <hr />
         <Link className="button is-large" to="/">Play Again</Link>
+        <button id="next" className="button is large" onClick={() => this.calcPlayerTotals(this.props.game)}>
+          Get Player Total Score
+        </button>
       </div>
     )
   }
@@ -49,7 +62,8 @@ class Leaderboard extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    players: state.players
+    players: state.players,
+    game: state.game
   }
 }
 
