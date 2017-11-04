@@ -52,6 +52,8 @@ class Leaderboard extends React.Component {
                 <td className="th has-text-centered"><img src={player.icon} /></td>
                 <td className="th has-text-centered">{player.name} </td>
                 <td className="th has-text-centered" >{player.score}</td>
+                <td className="th has-text-centered" >{player.score}</td>
+                <td className="th has-text-centered" >{player.score}</td>
                 </tr>
             })}
 
@@ -59,7 +61,7 @@ class Leaderboard extends React.Component {
         </table>
 
         <hr />
-        <button onClick={this.handleClick}>continue</button>
+        <button className="button is-medium" onClick={this.handleClick}>continue</button>
       </div>
     )
   }
