@@ -15,6 +15,7 @@ class Dictaphone extends Component {
     this.state = {
     }
   }
+
   render () {
     const {transcript, startListening, stopListening, browserSupportsSpeechRecognition, randomVid} = this.props
     function compareText () {
@@ -29,7 +30,7 @@ class Dictaphone extends Component {
       })
       if (transcript.toLowerCase() === actual.toLowerCase()) {
         console.log('Correct, double points!')
-        points = 20
+        points = 20 // maybe just keep as 10, without double points
         console.log('points: ' + points)
       } else {
         console.log('Not quite...')
