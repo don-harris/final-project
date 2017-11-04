@@ -83,5 +83,4 @@ const Instructions = props => {
 
 export default Instructions
 
->>>>>>> 1a4db99374520b7c4f14d27a97ec37c235198f8a
 
