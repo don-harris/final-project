@@ -3,7 +3,7 @@ const router = express.Router()
 
 const videosDb = require('../db/videos')
 
-router.get('/round', (req, res) => {
+router.get('/videos', (req, res) => {
   videosDb.getVideos()
     .then(videos => {
       res.json(videos)

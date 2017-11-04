@@ -1,27 +1,55 @@
-// this component will be rendered inside the round component :)
-// will need to take video info from the database. Send a GET request on mount?
-
 import React from 'react'
 import YouTube from 'react-youtube'
+
+import { getVidData } from '../client-api'
 
 class Video extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       video: null,
-      startTime: 99,
-      quoteStart: 129,
-      quoteEnd: 132,
-      pauseTime: 5
+      vidurl: '',
+      startTime: 0,
+      quoteStart: 0,
+      quoteEnd: 0,
+      pauseTime: 0
     }
     this.startClip = this.startClip.bind(this)
     this.muteClip = this.muteClip.bind(this)
     this.pauseClip = this.pauseClip.bind(this)
     this.restartClip = this.restartClip.bind(this)
     this.endVideo = this.endVideo.bind(this)
+    
   }
 
+  // renderVid (err, props) {
+  //   console.log('renderVid props: ', props.randomVid)
+  //   const {randomVid} = this.props
+  //   this.setState({
+  //     error: err,
+  //     vidurl: randomVid.vid_url,
+  //     startTime: randomVid.startTime,
+  //     quoteStart: randomVid.quoteStart,
+  //     quoteEnd: randomVid.quoteEnd,
+  //     pauseTime: randomVid.pauseTime
+  //   })
+  // }
+
+  componentWillMount () {
+    const { randomVid } = this.props
+    console.log(randomVid)
+    this.setState({
+      vidurl: randomVid.vid_url,
+      startTime: randomVid.startTime,
+      quoteStart: randomVid.quoteStart,
+      quoteEnd: randomVid.quoteEnd,
+      pauseTime: randomVid.pauseTime
+    })
+  }
+
+
   startClip (event) {
+    console.log('randomVid: ', this.props.randomVid.vid_url)
     this.setState({
       video: event.target
     })
@@ -56,7 +84,7 @@ class Video extends React.Component {
     return (
       <div>
 
-        <YouTube videoId="TU7CDejp6Lw" opts={opts} onReady={this.startClip} />
+        <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.startClip} />
 
       </div>
     )
