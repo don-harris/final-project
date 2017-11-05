@@ -1,7 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {endRound, resetGame} from '../actions/round'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { endRound, resetGame } from '../actions/round'
 
 class Leaderboard extends React.Component {
   constructor (props) {
@@ -13,17 +13,17 @@ class Leaderboard extends React.Component {
   }
 
   componentDidMount () {
-    const {dispatch, round} = this.props
+    const { dispatch, round } = this.props
     dispatch(endRound(round))
   }
 
   handleClick () {
-    const {game, history} = this.props
+    const { game, history } = this.props
     game.length < 3 ? history.push('/round') : this.endGame()
   }
 
   endGame () {
-    const {dispatch, history} = this.props
+    const { dispatch, history } = this.props
     dispatch(resetGame())
     history.push('/')
   }
@@ -41,19 +41,19 @@ class Leaderboard extends React.Component {
               <th className="th has-text-centered">Round 1</th>
               <th className="th has-text-centered">Round 2</th>
               <th className="th has-text-centered">Round 3</th>
-              <th className="th has-text-centered">Final Score</th>
+              <th className="th has-text-centered">Total</th>
             </tr>
           </thead>
           <tbody className="tbody">
             {this.props.players.map(player => {
-              return <tr className="tr" key={player.name}>
-                <th className="th has-text-centered">1st</th>
+              return <tr className="tr" key={player.id}>
+                <th className="th has-text-centered">{player.id}st</th>
                 <th className="th has-text-centered"><img src={player.icon} /></th>
                 <th className="th has-text-centered">{player.name} </th>
-                <th className="th has-text-centered">Tick or cross</th>
-                <th className="th has-text-centered">Tick or cross</th>
-                <th className="th has-text-centered">Tick or cross</th>
-                <th className="th has-text-centered">Total score</th>
+                <th className="th has-text-centered">{player.rounds[0]}</th>
+                <th className="th has-text-centered">{player.rounds[1]}</th>
+                <th className="th has-text-centered">{player.rounds[2]}</th>
+                <th className="th has-text-centered">look at my good score</th>
               </tr>
             })}
           </tbody>
@@ -67,10 +67,29 @@ class Leaderboard extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    players: state.players,
-    game: state.game,
-    round: state.round
+    players: makeLeaderBoard(state.playerScores),
+    round: state.round,
+    game: state.game
   }
+}
+
+function makeLeaderBoard (scores) {
+  const players = []
+  scores.forEach(score => {
+    const foundPlayer = players.find(player => player.id === score.id)
+    if (foundPlayer) {
+      foundPlayer.rounds.push(score.score)
+    } else {
+      const playerEdit = Object.assign({}, foundPlayer)
+      playerEdit.id = score.id
+      playerEdit.name = score.name
+      playerEdit.icon = score.icon
+      playerEdit.rounds = [score.score]
+      return players.push(playerEdit)
+    }
+  })
+  console.log('this is players: ', players)
+  return players
 }
 
 export default connect(mapStateToProps)(Leaderboard)
