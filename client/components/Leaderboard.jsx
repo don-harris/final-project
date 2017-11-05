@@ -46,7 +46,7 @@ class Leaderboard extends React.Component {
             </tr>
           </thead>
           <tbody className="tbody">
-            {this.props.scores.map(player => {
+            {this.props.players.map(player => {
               return <tr className="tr" key={player.id}>
                 <td className="th has-text-centered">1st</td>
                 <td className="th has-text-centered"><img src={player.icon} /></td>
@@ -70,10 +70,16 @@ class Leaderboard extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    players: state.players,
-    game: state.game,
-    round: state.round,
-    scores: state.playerScores
+    players: makeLeaderBoard(state.playerScores)
+  }
+  function makeLeaderBoard(scores) {
+    const players = []
+    const rounds = []
+    scores.forEach(playerProfile => {
+      players.find(player.id===playerProfile.id) ? rounds.push(playerProfile.score) : players.push(playersProfile)
+      
+    })
+      return players
   }
 }
 

@@ -18,7 +18,6 @@ class Round extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.roundNumber = this.roundNumber.bind(this)
   }
   componentWillMount () {
     const currentPlayer = this.props.players[0]
