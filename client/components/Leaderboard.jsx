@@ -10,6 +10,7 @@ class Leaderboard extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.endGame = this.endGame.bind(this)
+    this.calcTotal = this.calcTotal.bind(this)
   }
 
   componentDidMount () {
@@ -26,6 +27,17 @@ class Leaderboard extends React.Component {
     const { dispatch, history } = this.props
     dispatch(resetGame())
     history.push('/')
+  }
+
+  calcTotal (rounds) {
+    console.log('This is rounds.length',rounds.length)
+    if(rounds.length === 3) {
+      return rounds[0] + rounds[1] + rounds[2]
+    } else if (rounds.length === 2) {
+      return rounds[0] + rounds[1];
+    } else {
+      return rounds[0]
+    }
   }
 
   render () {
@@ -53,7 +65,7 @@ class Leaderboard extends React.Component {
                 <th className="th has-text-centered">{player.rounds[0]}</th>
                 <th className="th has-text-centered">{player.rounds[1]}</th>
                 <th className="th has-text-centered">{player.rounds[2]}</th>
-                <th className="th has-text-centered">look at my good score</th>
+                <th className="th has-text-centered">{this.calcTotal(player.rounds)}</th>
               </tr>
             })}
           </tbody>
