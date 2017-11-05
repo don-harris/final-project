@@ -54,14 +54,17 @@ class Players extends React.Component {
     const playersWithId = this.state.players.map((player, i) => {
       const newPlayer = Object.assign({}, player)
       newPlayer.id = i + 1
-
       return newPlayer
     })
     window.localStorage.setItem('players', JSON.stringify(playersWithId))
     this.props.dispatch(addAllPlayers(playersWithId))
     this.props.history.push('/round')
   }
-
+  componentDidMount() {
+    window.localStorage.setItem('players', null)
+    window.localStorage.setItem('round', null)
+    this.props.dispatch({type: 'INIT'})
+  }
   render () {
     const {players, pendingPlayer} = this.state
     const PlayerReady = ({player}) => <div className="box column is-6 has-text-centered">

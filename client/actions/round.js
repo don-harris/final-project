@@ -20,13 +20,13 @@ export const startRound = (current, remaining) => {
   }
 }
 
-export const nextPlayer = ({id, score, video}, current, remaining, number) => {
+export const nextPlayer = ({id, score, randomVid}, current, remaining, number) => {
   // const nextRoundNumber = getNextRoundNumber(remaining, number, current)
   return {
     type: NEXT_PLAYER,
     roundNumber: number,
     playerScore: {id, score},
-    videosPlayed: video,
+    videosPlayed: randomVid,
     currentPlayer: remaining[0],
     remainingPlayers: remaining.slice(1)
   }

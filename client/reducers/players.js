@@ -7,6 +7,8 @@ const getPlayersFromLocalStorage = () => {
 
 export default function players (state = getPlayersFromLocalStorage(), action) {
   switch (action.type) {
+    case 'INIT':
+      return []
     case ADD_PLAYERS:
       return action.players
     default:
