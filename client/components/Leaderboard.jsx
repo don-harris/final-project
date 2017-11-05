@@ -42,7 +42,6 @@ class Leaderboard extends React.Component {
       return rounds[0];
     }
     console.log(total);
-
   }
 
   render () {
