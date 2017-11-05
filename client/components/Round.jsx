@@ -51,6 +51,7 @@ class Round extends React.Component {
     return (
       <div>
         <h1>Round Page</h1>
+        {currentPlayer && <img src={currentPlayer.icon}/>}
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
         {randomVid && <Video randomVid={randomVid} />}
         <Dictaphone randomVid={randomVid}/>
