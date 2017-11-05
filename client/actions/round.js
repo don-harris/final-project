@@ -3,7 +3,6 @@ export const START_ROUND = 'START_ROUND'
 export const NEXT_PLAYER = 'NEXT_PLAYER'
 export const END_ROUND = 'END_ROUND'
 export const RESET_GAME = 'RESET_GAME'
-// export const NEXT_ROUND = 'NEXT_ROUND'
 
 export const addAllPlayers = (players) => {
   return {
