@@ -7,6 +7,7 @@ const propTypes = {
   transcript: PropTypes.string,
   startListening: PropTypes.func,
   stopListening: PropTypes.func,
+  resetTranscript: PropTypes.func,
   browserSupportsSpeechRecognition: PropTypes.bool
 }
 
@@ -25,7 +26,7 @@ class Dictaphone extends Component {
   }
 
   render () {
-    const {transcript, startListening, stopListening, browserSupportsSpeechRecognition, randomVid, dispatch, round, playerScores} = this.props
+    const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, randomVid, dispatch, round, playerScores} = this.props
     function compareText () {
       stopListening()
       var points = 0
@@ -62,6 +63,7 @@ class Dictaphone extends Component {
         <br/>
         <input type="text" value={transcript} id="speech-field"/>
         {playerScores.length > 0 && <p>Score: {playerScores[playerScores.length - 1].score}</p>}
+        <input type="button" value="Reset Transcription" onClick={resetTranscript}/>
       </div>
     )
   }
@@ -80,7 +82,6 @@ const mapStateToProps = state => {
     videos: state.videos,
     game: state.game,
     playerScores: state.playerScores
-
   }
 }
 
