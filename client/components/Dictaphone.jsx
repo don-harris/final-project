@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import SpeechRecognition from 'react-speech-recognition'
-import { playerScores } from '../actions/playerScores'
+import {setPlayerScores} from '../actions/playerScores'
 
 import {connect} from 'react-redux'
 const propTypes = {
@@ -21,12 +21,11 @@ class Dictaphone extends Component {
 
   dispatchScore (points) {
     console.log('playerScores points: ', points)
-    this.props.dispatch(playerScores(points, this.props.round.currentPlayer))
+    this.props.dispatch(setPlayerScores(points, this.props.round.currentPlayer))
   }
 
   render () {
-    const {transcript, startListening, stopListening, browserSupportsSpeechRecognition, randomVid, dispatch, round} = this.props
-    // console.log('this.props',this.props)
+    const {transcript, startListening, stopListening, browserSupportsSpeechRecognition, randomVid, dispatch, round, playerScores} = this.props
     function compareText () {
       stopListening()
       var points = 0
@@ -41,26 +40,28 @@ class Dictaphone extends Component {
         console.log('Correct, double points!')
         points = 20 // maybe just keep as 10, without double points
         console.log('points: ' + points)
-        dispatch(playerScores(points, round.currentPlayer))
+        dispatch(setPlayerScores(points, round.currentPlayer))
+        return points
       } else {
         console.log('Not quite...')
         points = Math.round((points / actualArr.length) * 10)
         console.log('points: ' + points)
-        dispatch(playerScores(points, round.currentPlayer))
+        dispatch(setPlayerScores(points, round.currentPlayer))
+        return points
       }
     }
     if (!browserSupportsSpeechRecognition) {
       return null
     }
 
+    // const printScore = playerScores[playerScores.length - 1].score ? playerScores[playerScores.length - 1].score : 'score here'
     return (
       <div>
         <button onClick={startListening}>Speak</button>
         <button onClick={compareText.bind(null, stopListening, transcript)}>Stop/Submit</button>
         <br/>
         <input type="text" value={transcript} id="speech-field"/>
-        <br/>
-        {randomVid && <p>{randomVid.quote}</p>}
+        {playerScores.length > 0 && <p>Score: {playerScores[playerScores.length - 1].score}</p>}
       </div>
     )
   }
@@ -77,7 +78,9 @@ const mapStateToProps = state => {
     players: state.players,
     round: state.round,
     videos: state.videos,
-    game: state.game
+    game: state.game,
+    playerScores: state.playerScores
+
   }
 }
 
