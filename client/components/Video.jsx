@@ -64,9 +64,10 @@ class Video extends React.Component {
       height: '390',
       width: '640',
       playerVars: {
-        modestbranding: 1,
         rel: 0,
-        controls: 0
+        controls: 0,
+        showinfo: 0,
+        modestbranding: 1
       }
     }
     return (
