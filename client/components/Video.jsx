@@ -1,6 +1,3 @@
-// this component will be rendered inside the round component :)
-// will need to take video info from the database. Send a GET request on mount?
-
 import React from 'react'
 import YouTube from 'react-youtube'
 
@@ -9,10 +6,11 @@ class Video extends React.Component {
     super(props)
     this.state = {
       video: null,
-      startTime: 99,
-      quoteStart: 129,
-      quoteEnd: 132,
-      pauseTime: 5
+      vidurl: '',
+      startTime: 0,
+      quoteStart: 0,
+      quoteEnd: 0,
+      pauseTime: 0
     }
     this.startClip = this.startClip.bind(this)
     this.muteClip = this.muteClip.bind(this)
@@ -21,7 +19,20 @@ class Video extends React.Component {
     this.endVideo = this.endVideo.bind(this)
   }
 
+  componentWillMount () {
+    const { randomVid } = this.props
+    console.log(randomVid)
+    this.setState({
+      vidurl: randomVid.vid_url,
+      startTime: randomVid.startTime,
+      quoteStart: randomVid.quoteStart,
+      quoteEnd: randomVid.quoteEnd,
+      pauseTime: randomVid.pauseTime
+    })
+  }
+
   startClip (event) {
+    console.log('randomVid: ', this.props.randomVid.vid_url)
     this.setState({
       video: event.target
     })
@@ -51,16 +62,23 @@ class Video extends React.Component {
   render () {
     const opts = {
       height: '390',
-      width: '640'
+      width: '640',
+      playerVars: {
+        rel: 0,
+        controls: 0,
+        showinfo: 0,
+        modestbranding: 1,
+        iv_load_policy: 3
+      }
     }
     return (
       <div>
 
-        <YouTube videoId="TU7CDejp6Lw" opts={opts} onReady={this.startClip} />
+        <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.startClip} />
 
       </div>
     )
   }
 }
-
+ 
 export default Video
