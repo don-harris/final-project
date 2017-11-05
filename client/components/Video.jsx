@@ -67,7 +67,8 @@ class Video extends React.Component {
         rel: 0,
         controls: 0,
         showinfo: 0,
-        modestbranding: 1
+        modestbranding: 1,
+        iv_load_policy: 3
       }
     }
     return (
