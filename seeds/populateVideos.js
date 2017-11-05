@@ -2,7 +2,7 @@ exports.seed = function (knex, Promise) {
   return knex('videos').del()
     .then(() => {
       return knex('videos').insert([
-        {id: 1, vid_url: 'VQNoPqLuZ74', quote: 'You have a breathtaking hiney', startTime: 0, quoteStart: 25, quoteEnd: 33, pauseTime: 10},
+        {id: 1, vid_url: 'gId6nrMDmUU', quote: 'I love lamp', startTime: 0, quoteStart: 13, quoteEnd: 15, pauseTime: 10},
         {id: 2, vid_url: 'VWb1z6ZwUoY', quote: 'We came we saw we kicked its ass', startTime: 42, quoteStart: 73, quoteEnd: 81, pauseTime: 10},
         {id: 3, vid_url: 'Coemj2qdWMw', quote: 'Happy people just don\'t shoot their husbands', startTime: 63, quoteStart: 76, quoteEnd: 97, pauseTime: 10},
         {id: 4, vid_url: 'pEOVNmSR7_c', quote: 'Yippee ki-yay mother f*****', startTime: 81, quoteStart: 107, quoteEnd: 112, pauseTime: 10},
