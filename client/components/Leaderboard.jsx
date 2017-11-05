@@ -31,13 +31,18 @@ class Leaderboard extends React.Component {
 
   calcTotal (rounds) {
     console.log('This is rounds.length',rounds.length)
+    // const total = rounds.reduce((accumulator, ) => {
+    //   accumulator + currentValue;
+    // });
     if(rounds.length === 3) {
       return rounds[0] + rounds[1] + rounds[2]
     } else if (rounds.length === 2) {
-      return rounds[0] + rounds[1];
+      return rounds[0] + rounds[1]
     } else {
-      return rounds[0]
+      return rounds[0];
     }
+    console.log(total);
+
   }
 
   render () {
