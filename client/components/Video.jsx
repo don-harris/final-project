@@ -27,6 +27,7 @@ class Video extends React.Component {
     const remainingPlayers = this.props.players.slice(1)
     const currentVideo = this.props.videos[0].vid_url
     const remainingVideos = this.props.videos.slice(1)
+    
     this.props.dispatch(startRound(currentPlayer, remainingPlayers, currentVideo, remainingVideos))
     window.localStorage.setItem('round', JSON.stringify(this.props.round))
     console.log('this should be all vids: ', this.props.videos)
