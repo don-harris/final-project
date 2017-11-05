@@ -59,8 +59,6 @@ class Dictaphone extends Component {
         <button onClick={compareText.bind(null, stopListening, transcript)}>Stop/Submit</button>
         <br/>
         <input type="text" value={transcript} id="speech-field"/>
-        <br/>
-        {randomVid && <p>{randomVid.quote}</p>}
       </div>
     )
   }
