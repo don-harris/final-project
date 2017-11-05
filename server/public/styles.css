@@ -57,4 +57,5 @@ cursive;
 #speech-field {
   font-size: 40px;
   color: teal;
+  width: 100vw;
 }

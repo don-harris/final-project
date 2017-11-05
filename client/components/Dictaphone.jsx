@@ -34,9 +34,10 @@ class Dictaphone extends Component {
         console.log('points: ' + points)
       } else {
         console.log('Not quite...')
-        let pointsPercent = Math.round((points / actualArr.length) * 10)
-        console.log('points: ' + pointsPercent)
+        points = Math.round((points / actualArr.length) * 10)
+        console.log('points: ' + points)
       }
+      // this.props.dispatch(playerScores(this.state.score, round.currentPlayer))
     }
     if (!browserSupportsSpeechRecognition) {
       return null
