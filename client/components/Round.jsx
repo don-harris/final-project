@@ -6,6 +6,7 @@ import {playerScores} from '../actions/playerScores'
 import Dictaphone from './Dictaphone'
 import {getVideos} from '../actions/videos'
 import Video from './Video'
+import {nextVideo} from '../actions/videoChanger'
 
 class Round extends React.Component {
   constructor (props) {
@@ -30,10 +31,14 @@ class Round extends React.Component {
     if (!this.state.randomVid) this.setState({ randomVid: nextProps.videos[Math.floor(Math.random() * nextProps.videos.length)] })
   }
   handleClick () {
-    const {round, dispatch, history, playerScores} = this.props
+    const {round, dispatch, history, playerScores, videos} = this.props
+    const currentVideo = this.state.randomVid
+    const remainingVideos = videos.slice(1)
+    dispatch(nextVideo(currentVideo, remainingVideos))
     console.log('playerScores: ', playerScores)
     dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
     round.remainingPlayers.length === 0 ? history.push('/leaderboard') : console.log('keep playing')
+    console.log('this is current video: ', currentVideo)
     // dispatch(playerScores(this.state.score, round.currentPlayer))
   }
 
@@ -47,13 +52,14 @@ class Round extends React.Component {
   render () {
     const {currentPlayer} = this.props.round
     const {randomVid} = this.state
+    const {currentVideo} = this.props
     // console.log('quote from database = ', randomVid.quote)
     return (
       <div>
         <h1>Round Page</h1>
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
-        {randomVid && <Video randomVid={randomVid} />}
-        <Dictaphone randomVid={randomVid}/>
+        {currentVideo && <Video randomVid={currentVideo} />}
+        <Dictaphone randomVid={currentVideo}/>
         {/* <input onChange={this.handleChange} type="text" /> */}
         <button id="next" className="button is large" onClick={this.handleClick}>
             Continue
@@ -69,7 +75,9 @@ const mapStateToProps = state => {
     round: state.round,
     videos: state.videos,
     game: state.game,
-    playerScores: state.playerScores
+    playerScores: state.playerScores,
+    currentVideo: state.currentVideo,
+    remainingVideos: state.remainingVideos
   }
 }
 

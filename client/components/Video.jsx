@@ -21,7 +21,7 @@ class Video extends React.Component {
 
   componentWillMount () {
     const { randomVid } = this.props
-    console.log(randomVid)
+    console.log('test: ', randomVid)
     this.setState({
       vidurl: randomVid.vid_url,
       startTime: randomVid.startTime,
