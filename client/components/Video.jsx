@@ -1,5 +1,7 @@
 import React from 'react'
 import YouTube from 'react-youtube'
+import {startRound} from '../actions/round'
+import { connect } from 'react-redux'
 
 class Video extends React.Component {
   constructor (props) {
@@ -21,7 +23,13 @@ class Video extends React.Component {
 
   componentWillMount () {
     const { randomVid } = this.props
-    console.log(randomVid)
+    const currentPlayer = this.props.players[0]
+    const remainingPlayers = this.props.players.slice(1)
+    const currentVideo = this.props.videos[0].vid_url
+    const remainingVideos = this.props.videos.slice(1)
+    this.props.dispatch(startRound(currentPlayer, remainingPlayers, currentVideo, remainingVideos))
+    window.localStorage.setItem('round', JSON.stringify(this.props.round))
+    console.log('this should be all vids: ', this.props.videos)
     this.setState({
       vidurl: randomVid.vid_url,
       startTime: randomVid.startTime,
@@ -33,6 +41,7 @@ class Video extends React.Component {
 
   startClip (event) {
     console.log('randomVid: ', this.props.randomVid.vid_url)
+    console.log('this is currentVid: ', this.props.round)
     this.setState({
       video: event.target
     })
@@ -73,5 +82,14 @@ class Video extends React.Component {
     )
   }
 }
- 
-export default Video
+
+const mapStateToProps = state => {
+  return {
+    players: state.players,
+    round: state.round,
+    videos: state.videos,
+    game: state.game
+  }
+}
+
+export default connect(mapStateToProps)(Video)

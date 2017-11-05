@@ -11,24 +11,27 @@ export const addAllPlayers = (players) => {
   }
 }
 
-export const startRound = (current, remaining) => {
+export const startRound = (current, remaining, currentVideo, remainingVideos) => {
   return {
     type: START_ROUND,
     roundNumber: 1,
     currentPlayer: current,
-    remainingPlayers: remaining
+    remainingPlayers: remaining,
+    currentVideo: currentVideo,
+    remainingVideos: remainingVideos
   }
 }
 
-export const nextPlayer = ({id, score, video}, current, remaining, number) => {
+export const nextPlayer = ({id, score, video}, current, remaining, number, remainingVideos) => {
   // const nextRoundNumber = getNextRoundNumber(remaining, number, current)
   return {
     type: NEXT_PLAYER,
     roundNumber: number,
     playerScore: {id, score},
-    videosPlayed: video,
     currentPlayer: remaining[0],
-    remainingPlayers: remaining.slice(1)
+    remainingPlayers: remaining.slice(1),
+    currentVideo: remainingVideos[0],
+    remainingVideos: remainingVideos.slice(1)
   }
 }
 

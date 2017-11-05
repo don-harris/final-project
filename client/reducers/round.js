@@ -11,18 +11,20 @@ export default function round (state = getRoundFromLocalStorage(), action) {
       return {
         roundNumber: action.roundNumber,
         playerScores: [],
-        videosPlayed: [],
         currentPlayer: action.currentPlayer,
-        remainingPlayers: action.remainingPlayers
+        remainingPlayers: action.remainingPlayers,
+        currentVideo: action.currentVideo,
+        remainingVideos: action.remainingVideos
       }
 
     case NEXT_PLAYER:
       return {
         roundNumber: action.roundNumber,
         playerScores: [...state.playerScores, action.playerScore],
-        videosPlayed: [...state.videosPlayed, action.videosPlayed],
         currentPlayer: action.currentPlayer,
-        remainingPlayers: action.remainingPlayers
+        remainingPlayers: action.remainingPlayers,
+        currentVideo: action.currentVideo,
+        remainingVideos: action.remainingVideos
       }
     default:
       return state

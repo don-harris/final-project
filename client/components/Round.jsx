@@ -20,10 +20,13 @@ class Round extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
   componentWillMount () {
-    const currentPlayer = this.props.players[0]
-    const remainingPlayers = this.props.players.slice(1)
-    this.props.dispatch(startRound(currentPlayer, remainingPlayers))
-    window.localStorage.setItem('round', JSON.stringify(this.props.round))
+    // const currentPlayer = this.props.players[0]
+    // const remainingPlayers = this.props.players.slice(1)
+    // const currentVideo = this.props.videos[0].vid_url
+    // const remainingVideos = this.props.videos.slice(1)
+    // console.log(this.props.videos)
+    // this.props.dispatch(startRound(currentPlayer, remainingPlayers))
+    // window.localStorage.setItem('round', JSON.stringify(this.props.round))
     this.props.dispatch(getVideos())
   }
   componentWillReceiveProps (nextProps) {
@@ -31,7 +34,7 @@ class Round extends React.Component {
   }
   handleClick () {
     const {round, dispatch, history} = this.props
-    dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
+    dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber, round.remainingVideos))
     round.remainingPlayers.length === 0 ? history.push('/leaderboard') : console.log('keep playing')
     dispatch(playerScores(this.state.score, round.currentPlayer))
   }
@@ -51,7 +54,7 @@ class Round extends React.Component {
       <div>
         <h1>Round Page</h1>
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
-        {randomVid && <Video randomVid={randomVid} />}
+        {randomVid && <Video randomVid={randomVid}/>}
         <Dictaphone randomVid={randomVid}/>
         <input onChange={this.handleChange} type="text" />
         <button id="next" className="button is large" onClick={this.handleClick}>
