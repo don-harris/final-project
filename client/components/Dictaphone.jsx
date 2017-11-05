@@ -42,12 +42,15 @@ class Dictaphone extends Component {
         points = 20 // maybe just keep as 10, without double points
         console.log('points: ' + points)
         dispatch(playerScores(points, round.currentPlayer))
+        return points
       } else {
         console.log('Not quite...')
         points = Math.round((points / actualArr.length) * 10)
         console.log('points: ' + points)
         dispatch(playerScores(points, round.currentPlayer))
+        return points
       }
+      console.log("new points = " + points)
     }
     if (!browserSupportsSpeechRecognition) {
       return null
