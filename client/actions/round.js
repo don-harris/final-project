@@ -3,6 +3,7 @@ export const START_ROUND = 'START_ROUND'
 export const NEXT_PLAYER = 'NEXT_PLAYER'
 export const END_ROUND = 'END_ROUND'
 export const RESET_GAME = 'RESET_GAME'
+// export const NEXT_ROUND = 'NEXT_ROUND'
 
 export const addAllPlayers = (players) => {
   return {
@@ -11,7 +12,7 @@ export const addAllPlayers = (players) => {
   }
 }
 
-export const startRound = (current, remaining) => {
+export const startRound = (current, remaining, number) => {
   return {
     type: START_ROUND,
     roundNumber: 1,
@@ -21,7 +22,6 @@ export const startRound = (current, remaining) => {
 }
 
 export const nextPlayer = ({id, score, video}, current, remaining, number) => {
-  // const nextRoundNumber = getNextRoundNumber(remaining, number, current)
   return {
     type: NEXT_PLAYER,
     roundNumber: number,

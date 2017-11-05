@@ -15,20 +15,26 @@ class Round extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.roundNumber = this.roundNumber.bind(this)
   }
   componentWillMount () {
     const currentPlayer = this.props.players[0]
     const remainingPlayers = this.props.players.slice(1)
-    this.props.dispatch(startRound(currentPlayer, remainingPlayers))
+    this.props.dispatch(startRound(currentPlayer, remainingPlayers, ))
     window.localStorage.setItem('round', JSON.stringify(this.props.round))
   }
 
   handleClick () {
-    const {round, dispatch, history} = this.props
+    const {round, dispatch, history, players} = this.props
     dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
     round.remainingPlayers.length === 0 ? history.push('/leaderboard') : console.log('keep playing')
     dispatch(playerScores(this.state.score, round.currentPlayer))
   }
+
+roundNumber () {
+  const {round} = this.props
+  return round.remainingPlayers.length === 0 ? round.roundNumber++ : round.roundNumber
+}
 
   // form field 
   handleChange (evt) {
@@ -40,9 +46,10 @@ class Round extends React.Component {
 
   render () {
     const {currentPlayer} = this.props.round
+    const {game} = this.props
     return (
       <div>
-        <h1>Round Page</h1>
+        <h1>Round {game.length +1}</h1>
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
         <Dictaphone />
         <input onChange={this.handleChange} type="text" />

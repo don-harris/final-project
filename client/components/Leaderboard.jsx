@@ -47,13 +47,14 @@ class Leaderboard extends React.Component {
           </thead>
           <tbody className="tbody">
             {this.props.scores.map(player => {
-              return <tr className="tr" key={player.name}>
+              return <tr className="tr" key={player.id}>
                 <td className="th has-text-centered">1st</td>
                 <td className="th has-text-centered"><img src={player.icon} /></td>
                 <td className="th has-text-centered">{player.name} </td>
                 <td className="th has-text-centered" >{player.score}</td>
                 <td className="th has-text-centered" >{player.score}</td>
                 <td className="th has-text-centered" >{player.score}</td>
+                <td className="th has-text-centered" >{player.score*3}</td>
                 </tr>
             })}
 

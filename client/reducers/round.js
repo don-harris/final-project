@@ -1,4 +1,4 @@
-import {START_ROUND, NEXT_PLAYER} from '../actions/round.js'
+import {START_ROUND, NEXT_PLAYER, NEXT_ROUND} from '../actions/round.js'
 
 const getRoundFromLocalStorage = () => {
   const round = window.localStorage.getItem('round')
@@ -18,11 +18,20 @@ export default function round (state = getRoundFromLocalStorage(), action) {
 
     case NEXT_PLAYER:
       return {
-        roundNumber: action.roundNumber,
+        roundNumber: state.roundNumber,
         playerScores: [...state.playerScores, action.playerScore],
         videosPlayed: [...state.videosPlayed, action.videosPlayed],
         currentPlayer: action.currentPlayer,
         remainingPlayers: action.remainingPlayers
+      }
+
+      case NEXT_ROUND:
+      return {
+        roundNumber: action.roundNumber,
+        playerScores: [state.playerScores],
+        videosPlayed: [state.videosPlayed],
+        currentPlayer: state.currentPlayer,
+        remainingPlayers: state.remainingPlayers
       }
     default:
       return state

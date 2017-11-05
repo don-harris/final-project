@@ -103,7 +103,7 @@ class Players extends React.Component {
         </div>
 
 
-        <input className="button is large" type="button" onClick={this.submitAllPlayers} value="PLAY" />
+        <input className="button is-large" type="button" onClick={this.submitAllPlayers} value="PLAY" />
       </div>
     )
   }
