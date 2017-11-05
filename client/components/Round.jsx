@@ -11,7 +11,7 @@ class Round extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      score: 10,
+      score: null,
       video: 'funny cat',
       id: 1,
       randomVid: null
@@ -30,10 +30,11 @@ class Round extends React.Component {
     if (!this.state.randomVid) this.setState({ randomVid: nextProps.videos[Math.floor(Math.random() * nextProps.videos.length)] })
   }
   handleClick () {
-    const {round, dispatch, history} = this.props
+    const {round, dispatch, history, playerScores} = this.props
+    console.log('playerScores: ', playerScores)
     dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
     round.remainingPlayers.length === 0 ? history.push('/leaderboard') : console.log('keep playing')
-    dispatch(playerScores(this.state.score, round.currentPlayer))
+    // dispatch(playerScores(this.state.score, round.currentPlayer))
   }
 
   // form field 
@@ -67,7 +68,8 @@ const mapStateToProps = state => {
     players: state.players,
     round: state.round,
     videos: state.videos,
-    game: state.game
+    game: state.game,
+    playerScores: state.playerScores
   }
 }
 

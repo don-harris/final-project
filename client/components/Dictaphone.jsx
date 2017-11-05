@@ -26,7 +26,7 @@ class Dictaphone extends Component {
 
   render () {
     const {transcript, startListening, stopListening, browserSupportsSpeechRecognition, randomVid, dispatch, round} = this.props
-    console.log('this.props',this.props)
+    // console.log('this.props',this.props)
     function compareText () {
       stopListening()
       var points = 0
