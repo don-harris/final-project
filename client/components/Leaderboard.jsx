@@ -29,6 +29,7 @@ class Leaderboard extends React.Component {
   }
 
   render () {
+    console.log(this.props.round)
     return (
       <div className="container">
         <h1 className="leadertitle title is-1">Leaderboard page</h1>
