@@ -70,8 +70,7 @@ class Round extends React.Component {
         {
           !disableButton && <div>
             {randomVid && <Video randomVid={randomVid} />}
-            <Dictaphone randomVid={randomVid}/>
-            <button id="next" className="button is large" onClick={this.handleClick}>Continue</button>
+            <Dictaphone randomVid={randomVid} handleClick={this.handleClick}/>
           </div>
         }
         {/* <input onChange={this.handleChange} type="text" /> */}
