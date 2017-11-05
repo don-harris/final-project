@@ -11,7 +11,7 @@ export const addAllPlayers = (players) => {
   }
 }
 
-export const startRound = (current, remaining, number) => {
+export const startRound = (current, remaining) => {
   return {
     type: START_ROUND,
     roundNumber: 1,

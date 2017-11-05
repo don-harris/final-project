@@ -20,21 +20,16 @@ class Round extends React.Component {
   componentWillMount () {
     const currentPlayer = this.props.players[0]
     const remainingPlayers = this.props.players.slice(1)
-    this.props.dispatch(startRound(currentPlayer, remainingPlayers, ))
+    this.props.dispatch(startRound(currentPlayer, remainingPlayers))
     window.localStorage.setItem('round', JSON.stringify(this.props.round))
   }
 
   handleClick () {
-    const {round, dispatch, history, players} = this.props
+    const {round, dispatch, history} = this.props
     dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
     round.remainingPlayers.length === 0 ? history.push('/leaderboard') : console.log('keep playing')
     dispatch(playerScores(this.state.score, round.currentPlayer))
   }
-
-roundNumber () {
-  const {round} = this.props
-  return round.remainingPlayers.length === 0 ? round.roundNumber++ : round.roundNumber
-}
 
   // form field 
   handleChange (evt) {
