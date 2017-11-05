@@ -63,7 +63,7 @@ class Dictaphone extends Component {
         <button onClick={compareText.bind(null, stopListening, transcript)}>Stop/Submit</button>
         <br/>
         <input type="text" value={transcript} id="speech-field"/>
-        {playerScores.length > 0 && <p>{playerScores[playerScores.length - 1].score}</p>}
+        {playerScores.length > 0 && <p>Score: {playerScores[playerScores.length - 1].score}</p>}
       </div>
     )
   }
