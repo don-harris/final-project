@@ -13,7 +13,13 @@ exports.seed = function (knex, Promise) {
         {id: 9, vid_url: 'vUN7yu7zvz8', quote: 'you\'re a wizard harry', startTime: 14, quoteStart: 21, quoteEnd: 23, pauseTime: 10, title: 'Harry Potter and the Scorcerer\'s Stone'},
         {id: 10, vid_url: 'EemLsTG5fX8', quote: 'I wrote you everyday for a year', startTime: 76, quoteStart: 101, quoteEnd: 104, pauseTime: 10, title: 'The Notebook'},
         {id: 11, vid_url: 'NVPLqbWXdDA', quote: 'leelou dallas multipass', startTime: 50, quoteStart: 59, quoteEnd: 62, pauseTime: 10, title: 'The 5th Element'},
-        {id: 12, vid_url: 'RKysEIVJfBs', quote: 'the names bond james bond', startTime: 67, quoteStart: 80, quoteEnd: 90, pauseTime: 10, title: 'Casino Royale'}
+        {id: 12, vid_url: 'RKysEIVJfBs', quote: 'the names bond james bond', startTime: 67, quoteStart: 80, quoteEnd: 90, pauseTime: 10, title: 'Casino Royale'},
+        {id: 13, vid_url: 'AyrP-pwDayE', quote: 'you had me at hello', startTime: 75, quoteStart: 91, quoteEnd: 94, pauseTime: 10, title: 'Jerry Maguire'},
+        {id: 14, vid_url: 'vL-KQij0I8I', quote: 'from a pile of stuff', startTime: 84, quoteStart: 108, quoteEnd: 111, pauseTime: 10, title: 'The Devil Wears Prada'},
+        {id: 15, vid_url: 'oKxsW8DKJQQ', quote: 'you\'re gonna need a bigger boat', startTime: 57, quoteStart: 74, quoteEnd: 77, pauseTime: 10, title: 'Jaws'},
+        {id: 16, vid_url: '9FnO3igOkOk', quote: 'you can\'t handle the truth', startTime: 33, quoteStart: 44, quoteEnd: 47, pauseTime: 10, title: 'A Few Good Men'},
+        {id: 17, vid_url: 'YbBiXPVKuTA', quote: 'are you not entertained', startTime: 70, quoteStart: 84, quoteEnd: 90, pauseTime: 10, title: 'Gladiator'},
+        {id: 18, vid_url: 'luBk4VrMHNI', quote: 'become a pop star and they give you them for free', startTime: 12, quoteStart: 21, quoteEnd: 28, pauseTime: 10, title: 'Love Actually'}
       ])
     })
 }
