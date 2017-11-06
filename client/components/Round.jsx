@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 import {startRound, nextPlayer} from '../actions/round'
 import {playerScores} from '../actions/playerScores'
 import Dictaphone from './Dictaphone'
-import {getVideos} from '../actions/videos'
 import Video from './Video'
+import Header from './Header'
+import {getVideos} from '../actions/videos'
 import {nextVideo} from '../actions/videoChanger'
 
 class Round extends React.Component {
@@ -65,6 +66,7 @@ class Round extends React.Component {
     // console.log('quote from database = ', randomVid.quote)
     return (
       <div>
+        <Header/>
         <h1>Round Page</h1>
         {currentPlayer && <img src={currentPlayer.icon}/>}
         {currentPlayer && <h2>{currentPlayer.name}</h2>}

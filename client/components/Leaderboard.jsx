@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Header from "./Header";
+
 import { endRound, resetGame } from '../actions/round'
 
 class Leaderboard extends React.Component {
@@ -54,9 +56,9 @@ class Leaderboard extends React.Component {
       if (aTotal < bTotal) return 1
     })
     
-    return (
-      <div className="container">
-        <h1 className="leadertitle title is-1">Leaderboard page</h1>
+    return <div className="container">
+        <Header />
+        <h1 className="leadertitle title is-1">And the nominations are...</h1>
         <table className="table is-bordered is-fullwidth is-striped">
           <thead className="thead">
             <tr className="tr">
@@ -72,21 +74,32 @@ class Leaderboard extends React.Component {
           <tbody className="tbody">
             {this.props.players.map((player, i) => {
               return <tr className="tr" key={player.id}>
-                <th className="th has-text-centered">{i+1}</th>
-                <th className="th has-text-centered"><img src={player.icon} /></th>
-                <th className="th has-text-centered">{player.name} </th>
-                <th className="th has-text-centered">{player.rounds[0]}</th>
-                <th className="th has-text-centered">{player.rounds[1]}</th>
-                <th className="th has-text-centered">{player.rounds[2]}</th>
-                <th className="th has-text-centered">{this.calcTotal(player.rounds)}</th>
-              </tr>
+                  <th className="th has-text-centered">{i + 1}</th>
+                  <th className="th has-text-centered">
+                    <img src={player.icon} />
+                  </th>
+                  <th className="th has-text-centered">{player.name} </th>
+                  <th className="th has-text-centered">
+                    {player.rounds[0]}
+                  </th>
+                  <th className="th has-text-centered">
+                    {player.rounds[1]}
+                  </th>
+                  <th className="th has-text-centered">
+                    {player.rounds[2]}
+                  </th>
+                  <th className="th has-text-centered">
+                    {this.calcTotal(player.rounds)}
+                  </th>
+                </tr>;
             })}
           </tbody>
         </table>
         <hr />
-        <button onClick={this.handleClick}>continue</button>
-      </div>
-    )
+        <button className="button is-large is-danger" onClick={this.handleClick}>
+          <strong>Continue</strong>
+        </button>
+      </div>;
   }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addAllPlayers} from '../actions/players'
+import Header from './Header'
 const icons = [
   '/images/braveheart.png',
   '/images/hunter.png',
@@ -72,43 +73,59 @@ class Players extends React.Component {
       <img className="image" style={{ margin: 'auto' }} src={player.icon} />
     </div>
 
-    return (
-      <div>
+    return <div>
+        <Header />
+        <br />
         <div className="columns is-multiline">
-          {players.map((player, i) => <PlayerReady key={i} player={player} />)}
+          {players.map((player, i) => (
+            <PlayerReady key={i} player={player} />
+          ))}
           <div className="box column is-6 has-text-centered">
             <div>
-              <p className="title is-3">{pendingPlayer.name || 'Now Enter Your Name'} </p>
-              <img className="image" style={{ margin: 'auto' }} src={pendingPlayer.icon} />
+              <p className="title is-3">
+                {pendingPlayer.name || "Join the cast"}{" "}
+              </p>
+              <img className="image" style={{ margin: "auto" }} src={pendingPlayer.icon} />
             </div>
             <field className="field has-icons-right">
               <input autoComplete="off" className="input" type="text" name="name" placeholder="Add Player Name..." value={pendingPlayer.name} onChange={this.handleChange} />
             </field>
             <div className="control">
-              <div className={`dropdown ${this.state.dropdownActive ? 'is-active' : ''}`} onMouseEnter={() => this.toggleDropDown(true)} onMouseLeave={() => this.toggleDropDown(false)}>
+              <div className={`dropdown ${this.state.dropdownActive ? "is-active" : ""}`} onMouseEnter={() => this.toggleDropDown(true)} onMouseLeave={() => this.toggleDropDown(false)}>
                 <div className="dropdown-trigger">
                   <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
                     <span>Select Icon</span>
                     <span className="icon is-small">
-                      <i className="fa fa-angle-down" aria-hidden="true"></i>
+                      <i className="fa fa-angle-down" aria-hidden="true" />
                     </span>
                   </button>
                 </div>
-                <div className="dropdown-menu" id="dropdown-menu" role="menu" >
-                  <div className="dropdown-content" name="name" >
-                    {icons.filter(icon => !players.find(player => player.icon === icon)).map(image => <a className="dropdown-item" key={image}><img onClick={() => this.selectIcon(image)} src={image} /></a>)}
+                <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                  <div className="dropdown-content" name="name">
+                    {icons
+                      .filter(
+                        icon =>
+                          !players.find(player => player.icon === icon)
+                      )
+                      .map(image => (
+                        <a className="dropdown-item" key={image}>
+                          <img
+                            onClick={() => this.selectIcon(image)}
+                            src={image}
+                          />
+                        </a>
+                      ))}
                   </div>
                 </div>
               </div>
-              <button className="button" onClick={this.addPlayer}>Add Player</button>
+              <button className="button" onClick={this.addPlayer}>
+                Add Player
+              </button>
             </div>
           </div>
         </div>
-
-
-        <input className="button is large" type="button" onClick={this.submitAllPlayers} value="PLAY" />
-      </div>
-    )
+        <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />
+      </div>;
   }
 }
 
