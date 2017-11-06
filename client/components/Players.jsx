@@ -67,7 +67,7 @@ class Players extends React.Component {
     this.props.dispatch(addAllPlayers(playersWithId))
     this.props.history.push('/round')
   }
-  componentDidMount() {
+  componentDidMount () {
     window.localStorage.setItem('players', null)
     window.localStorage.setItem('round', null)
     this.props.dispatch({type: 'INIT'})
@@ -80,53 +80,53 @@ class Players extends React.Component {
     </div>
 
     return <div>
-        <Header />
-        <br />
-        <div className="columns is-multiline">
-          {players.map((player, i) => (
-            <PlayerReady key={i} player={player} />
-          ))}
-          <div className="box column is-6 has-text-centered">
-            <div>
-              <p className="title is-3">
-                {pendingPlayer.name || "Join the cast"}{" "}
-              </p>
-              <img className="image" style={{ margin: "auto" }} src={pendingPlayer.icon} />
-            </div>
+      <Header />
+      <br />
+      <div className="columns is-multiline">
+        {players.map((player, i) => (
+          <PlayerReady key={i} player={player} />
+        ))}
+        <div className="box column is-6 has-text-centered">
+          <div>
+            <p className="title is-3">
+              {pendingPlayer.name || 'Join the cast'}{' '}
+            </p>
+            <img className="image" style={{ margin: 'auto' }} src={pendingPlayer.icon} />
+          </div>
 
-            <field className="field">
-              <div className="control has-icons-left has-icons-right">
+          <field className="field">
+            <div className="control has-icons-left has-icons-right">
               <input autoComplete="off" className="input playernameinput" type="text" name="name" placeholder="Add Player Name..." value={pendingPlayer.name} onChange={this.handleChange} />
               <span className="icon is-small is-left">
                 <i className="fa fa-user" />
               </span>
-              </div>
-            </field>
-
-            <div className="control">
-              <div className={`dropdown ${this.state.dropdownActive ? "is-active" : ""}`} onMouseEnter={() => this.toggleDropDown(true)} onMouseLeave={() => this.toggleDropDown(false)}>
-                <div className="dropdown-trigger">
-                  <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                    <span>Select Icon</span>
-                    <span className="icon is-small">
-                      <i className="fa fa-angle-down" aria-hidden="true" />
-                    </span>
-                  </button>
-                </div>
-                <div className="dropdown-menu" id="dropdown-menu" role="menu" >
-                  <div className="dropdown-content" name="name"  >
-                    {icons.filter(icon => !players.find(player => player.icon === icon)).map(image => <a className="dropdown-item" key={image} onClick={() => this.selectIcon(image)} ><img src={image} /></a>)}
-                  </div>
-                </div>
-              </div>
-              <button className="button" onClick={this.addPlayer}>
-                Add Player
-              </button>
             </div>
+          </field>
+
+          <div className="control">
+            <div className={`dropdown ${this.state.dropdownActive ? 'is-active' : ''}`} onMouseEnter={() => this.toggleDropDown(true)} onClick={() => this.toggleDropDown(false)}>
+              <div className="dropdown-trigger">
+                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                  <span>Select Icon</span>
+                  <span className="icon is-small">
+                    <i className="fa fa-angle-down" aria-hidden="true" />
+                  </span>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="dropdown-menu" role="menu" >
+                <div className="dropdown-content" name="name" >
+                  {icons.filter(icon => !players.find(player => player.icon === icon)).map(image => <a className="dropdown-item" key={image} onClick={() => this.selectIcon(image)} ><img src={image} /></a>)}
+                </div>
+              </div>
+            </div>
+            <button className="button" onClick={this.addPlayer}>
+                Add Player
+            </button>
           </div>
         </div>
-        <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />
-      </div>;
+      </div>
+      <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />
+    </div>
   }
 }
 
