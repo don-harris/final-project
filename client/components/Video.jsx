@@ -27,6 +27,7 @@ class Video extends React.Component {
     const { randomVid } = this.props
     console.log('test: ', randomVid)
     this.setState({
+      speakPromptIsVisible: false,
       countdownIsVisible: false,
       vidurl: randomVid.vid_url,
       startTime: randomVid.startTime,
@@ -49,7 +50,9 @@ class Video extends React.Component {
   hideCountdown () {
     this.setState({countdownIsVisible: false})
   }
-
+  hideSpeakPrompt () {
+    this.setState({speakPromptIsVisible: false})
+  }
   muteClip () {
     this.state.video.mute()
     setTimeout(() => this.pauseClip(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
@@ -57,6 +60,7 @@ class Video extends React.Component {
   }
   pauseClip () {
     this.hideCountdown()
+    this.setState({ speakPromptIsVisible: true })
     console.log(this.state.countdownIsVisible)
     this.state.video.pauseVideo()
     setTimeout(() => this.restartClip(), this.state.pauseTime * 1000)
@@ -65,6 +69,7 @@ class Video extends React.Component {
     this.state.video.seekTo(this.state.quoteStart)
     this.state.video.unMute()
     setTimeout(() => this.endVideo(), 500)
+    this.hideSpeakPrompt()
   }
   endVideo () {
     this.state.video.playVideo()
@@ -91,7 +96,8 @@ class Video extends React.Component {
             size={100} />}
         </div>
         <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.startClip} />
-
+        <hr/>
+        {this.state.speakPromptIsVisible && <h2>Please Speak into the microphone</h2>}
       </div>
     )
   }
