@@ -32,6 +32,17 @@ class Dictaphone extends Component {
     resetTranscript()
     this.props.handleClick()
   }
+
+  reworking (points) { // used for minusing points, but not reaching below 0
+    if (points < 0) {
+      let reworkedPoints = 1 // 1 point (because they still go something right)
+      return reworkedPoints
+    } else {
+      let reworkedPoints = points
+      return reworkedPoints
+    }
+  }
+
   compareText () {
     const {transcript, stopListening, randomVid, dispatch, round} = this.props
     this.setState({
@@ -53,17 +64,16 @@ class Dictaphone extends Component {
       console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       return points
-    }
-    else if (transArr.length > actualArr.length) {
+    } else if (transArr.length > actualArr.length) {
       let adjustedPoints = (points - (transArr.length - actualArr.length))
       let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
-      points = percentagePoints
+      points = this.reworking(percentagePoints)
+
       console.log('Ooh, additional words will lose you points')
       console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       return points
-    }
-    else {
+    } else {
       console.log('Not quite...')
       points = Math.round((points / actualArr.length) * 10)
       console.log('points: ' + points)
