@@ -15,9 +15,14 @@ class Dictaphone extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      continueIsVisible: false,
       points: null
     }
     this.dispatchScore = this.dispatchScore.bind(this)
+  }
+
+  componentDidMount () {
+    this.setState({continueIsVisible: false})
   }
 
   dispatchScore (points) {
@@ -32,6 +37,9 @@ class Dictaphone extends Component {
   render () {
     const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, randomVid, dispatch, round, playerScores} = this.props
     function compareText () {
+      this.setState({
+        continueIsVisible: true
+      })
       stopListening()
       var points = 0
       var actual = randomVid.quote
@@ -67,7 +75,7 @@ class Dictaphone extends Component {
         <input type="text" value={transcript} id="speech-field"/>
         {playerScores.length > 0 && <p>Score: {playerScores[playerScores.length - 1].score}</p>}
         <br/>
-        <button id="next" className="button is large" onClick={() => this.submit(resetTranscript, stopListening)}>Continue</button>
+        {this.state.continueIsVisible && <button id="next" className="button is large" onClick={() => this.submit(resetTranscript, stopListening)}>Continue</button>}
       </div>
     )
   }
