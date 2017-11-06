@@ -15,22 +15,18 @@ class Dictaphone extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      continueIsVisible: false,
+      playerHasSubmitted: false,
       points: null
     }
-    this.dispatchScore = this.dispatchScore.bind(this)
     this.compareText = this.compareText.bind(this)
   }
 
   componentDidMount () {
-    console.log('continue is: ', this.state.continueIsVisible)
-    this.setState({continueIsVisible: false})
+    this.setState({
+      playerHasSubmitted: false
+    })
   }
 
-  dispatchScore (points) {
-    console.log('playerScores points: ', points)
-    this.props.dispatch(setPlayerScores(points, this.props.round.currentPlayer))
-  }
   submit (resetTranscript, stopListening) {
     stopListening()
     resetTranscript()
@@ -38,7 +34,9 @@ class Dictaphone extends Component {
   }
   compareText () {
     const {transcript, stopListening, randomVid, dispatch, round} = this.props
-    this.setState({continueIsVisible: true})
+    this.setState({
+      playerHasSubmitted: true
+    })
     stopListening()
     var points = 0
     var actual = randomVid.quote
@@ -68,22 +66,22 @@ class Dictaphone extends Component {
       return null
     }
     return <div>
-        <button className="button" onClick={startListening}>
+      <button className="button" onClick={startListening}>
           Speak
-        </button>
-        <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
+      </button>
+      <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
           Stop/Submit
-        </button>
-        <br />
-        <input type="text" value={transcript} id="speech-field" />
-        {playerScores.length > 0 && <p>
+      </button>
+      <br />
+      <input type="text" value={transcript} id="speech-field" />
+      {this.state.playerHasSubmitted && playerScores.length > 0 && <p>
             Score: {playerScores[playerScores.length - 1].score}
-          </p>}
-        <br />
-        {this.state.continueIsVisible && <button id="next" className="button is-large is-danger" onClick={() => this.submit(resetTranscript, stopListening)}>
+      </p>}
+      <br />
+      {this.state.playerHasSubmitted && <button id="next" className="button is-large is-danger" onClick={() => this.submit(resetTranscript, stopListening)}>
             Continue
-          </button>}
-      </div>;
+      </button>}
+    </div>
   }
 }
 
