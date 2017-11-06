@@ -42,10 +42,19 @@ class Leaderboard extends React.Component {
       return rounds[0];
     }
     console.log(total);
-
   }
 
+
   render () {
+    this.props.players.sort((a,b) => {
+      const aTotal = this.calcTotal(a.rounds)
+      const bTotal = this.calcTotal(b.rounds)
+      const total = 0 
+      if (aTotal > bTotal) return total - 1
+      if (aTotal < bTotal) return total + 1
+      return total
+    })
+    
     return (
       <div className="container">
         <h1 className="leadertitle title is-1">Leaderboard page</h1>
@@ -62,9 +71,9 @@ class Leaderboard extends React.Component {
             </tr>
           </thead>
           <tbody className="tbody">
-            {this.props.players.map(player => {
+            {this.props.players.map((player, i) => {
               return <tr className="tr" key={player.id}>
-                <th className="th has-text-centered">{player.id}st</th>
+                <th className="th has-text-centered">{i+1}</th>
                 <th className="th has-text-centered"><img src={player.icon} /></th>
                 <th className="th has-text-centered">{player.name} </th>
                 <th className="th has-text-centered">{player.rounds[0]}</th>
