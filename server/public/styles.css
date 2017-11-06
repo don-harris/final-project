@@ -90,9 +90,8 @@ line-height: 1;
 }
 
 .countdown {
-  margin: 40px;
-  
-  position: absolute;
+ text-align: center;
+ margin-right: 100px;
 }
 .strong {
   font-weight: bold;

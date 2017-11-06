@@ -6,6 +6,7 @@ class Video extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      countdownIsVisible: false,
       video: null,
       vidurl: '',
       startTime: 0,
@@ -19,12 +20,14 @@ class Video extends React.Component {
     this.pauseClip = this.pauseClip.bind(this)
     this.restartClip = this.restartClip.bind(this)
     this.endVideo = this.endVideo.bind(this)
+    this.hideCountdown = this.hideCountdown.bind(this)
   }
 
   componentWillMount () {
     const { randomVid } = this.props
     console.log('test: ', randomVid)
     this.setState({
+      countdownIsVisible: false,
       vidurl: randomVid.vid_url,
       startTime: randomVid.startTime,
       quoteStart: randomVid.quoteStart,
@@ -42,21 +45,19 @@ class Video extends React.Component {
     event.target.playVideo()
     setTimeout(() => this.muteClip(), (this.state.quoteStart - this.state.startTime) * 1000)
   }
-  // countdown () {
-  //   const downloadTimer = setInterval(function () {
-  //     timeleft--
-  //     if (timeleft <= 0)
-  //       {clearInterval(downloadTimer)}
-  //   }, 1000)
-  //   this.setState({
-  //     timeLeft: timeleft
-  //   })
-  // }
+
+  hideCountdown () {
+    this.setState({countdownIsVisible: false})
+  }
+
   muteClip () {
     this.state.video.mute()
     setTimeout(() => this.pauseClip(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
+    this.setState({ countdownIsVisible: true })
   }
   pauseClip () {
+    this.hideCountdown()
+    console.log(this.state.countdownIsVisible)
     this.state.video.pauseVideo()
     setTimeout(() => this.restartClip(), this.state.pauseTime * 1000)
   }
@@ -85,9 +86,9 @@ class Video extends React.Component {
     return (
       <div>
         <div className="countdown title has-text-centered">
-          <ReactCountdownClock seconds={3}
+          {this.state.countdownIsVisible && <ReactCountdownClock seconds={this.state.quoteEnd - this.state.quoteStart}
             color="#DC143C"
-            size={100} />
+            size={100} />}
         </div>
         <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.startClip} />
 
