@@ -1,5 +1,6 @@
 import React from 'react'
 import YouTube from 'react-youtube'
+import ReactCountdownClock from 'react-countdown-clock'
 
 class Video extends React.Component {
   constructor (props) {
@@ -10,7 +11,8 @@ class Video extends React.Component {
       startTime: 0,
       quoteStart: 0,
       quoteEnd: 0,
-      pauseTime: 0
+      pauseTime: 0,
+      timeLeft: 3
     }
     this.startClip = this.startClip.bind(this)
     this.muteClip = this.muteClip.bind(this)
@@ -40,7 +42,16 @@ class Video extends React.Component {
     event.target.playVideo()
     setTimeout(() => this.muteClip(), (this.state.quoteStart - this.state.startTime) * 1000)
   }
-
+  // countdown () {
+  //   const downloadTimer = setInterval(function () {
+  //     timeleft--
+  //     if (timeleft <= 0)
+  //       {clearInterval(downloadTimer)}
+  //   }, 1000)
+  //   this.setState({
+  //     timeLeft: timeleft
+  //   })
+  // }
   muteClip () {
     this.state.video.mute()
     setTimeout(() => this.pauseClip(), (this.state.quoteEnd - this.state.quoteStart) * 1000)
@@ -73,12 +84,18 @@ class Video extends React.Component {
     }
     return (
       <div>
-
+        <div className="countdown title has-text-centered">
+          <ReactCountdownClock seconds={3}
+            color="#DC143C"
+            size={100} />
+        </div>
         <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.startClip} />
 
       </div>
     )
   }
 }
- 
+
 export default Video
+
+// < CountdownTimer endDate= { moment().startOf('second').fromNow() } />

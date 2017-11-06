@@ -60,3 +60,9 @@ cursive;
   width: 100vw;
   text-align: center;
 }
+
+.countdown {
+  margin: 40px;
+  
+  position: absolute;
+}
