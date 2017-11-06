@@ -6,6 +6,7 @@ import {playerScores} from '../actions/playerScores'
 import Dictaphone from './Dictaphone'
 import {getVideos} from '../actions/videos'
 import Video from './Video'
+import {nextVideo} from '../actions/videoChanger'
 
 class Round extends React.Component {
   constructor (props) {
@@ -14,7 +15,8 @@ class Round extends React.Component {
       score: null,
       video: 'funny cat',
       id: 1,
-      randomVid: null
+      randomVid: null,
+      disableButton: false
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -27,13 +29,24 @@ class Round extends React.Component {
     this.props.dispatch(getVideos())
   }
   componentWillReceiveProps (nextProps) {
-    if (!this.state.randomVid) this.setState({ randomVid: nextProps.videos[Math.floor(Math.random() * nextProps.videos.length)] })
+    if (!this.state.randomVid) this.randomiseVideo(nextProps)
+  }
+  randomiseVideo(nextProps) {
+    const props = nextProps || this.props
+    console.log("randomising video", props.videos, props.round.videosPlayed)
+    if (this.state.randomVid) props.round.videosPlayed.push(this.state.randomVid)
+    const videosRemaining = props.videos.filter(video => !props.round.videosPlayed.find(played => played.id == video.id))
+    console.log({videosRemaining})
+      this.setState({ randomVid: videosRemaining[Math.floor(Math.random() * videosRemaining.length)], disableButton: true })
+    setTimeout(() => this.setState({disableButton: false}), 1000)
   }
   handleClick () {
-    const {round, dispatch, history, playerScores} = this.props
-    console.log('playerScores: ', playerScores)
+    const {round, dispatch, history, playerScores, videos} = this.props
+    const currentVideo = this.state.randomVid
+    const remainingVideos = videos
+    dispatch(nextVideo(currentVideo, remainingVideos))
     dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
-    round.remainingPlayers.length === 0 ? history.push('/leaderboard') : console.log('keep playing')
+    round.remainingPlayers.length === 0 ? history.push('/leaderboard') : this.randomiseVideo()
     // dispatch(playerScores(this.state.score, round.currentPlayer))
   }
 
@@ -46,18 +59,22 @@ class Round extends React.Component {
   }
   render () {
     const {currentPlayer} = this.props.round
-    const {randomVid} = this.state
+    const {randomVid, disableButton} = this.state
+    const {currentVideo} = this.props
+    console.log(this.props, this.state.randomVid)
     // console.log('quote from database = ', randomVid.quote)
     return (
       <div>
         <h1>Round Page</h1>
+        {currentPlayer && <img src={currentPlayer.icon}/>}
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
-        {randomVid && <Video randomVid={randomVid} />}
-        <Dictaphone randomVid={randomVid}/>
+        {
+          !disableButton && <div>
+            {randomVid && <Video randomVid={randomVid} />}
+            <Dictaphone randomVid={randomVid} handleClick={this.handleClick}/>
+          </div>
+        }
         {/* <input onChange={this.handleChange} type="text" /> */}
-        <button id="next" className="button is large" onClick={this.handleClick}>
-            Continue
-        </button>
       </div>
     )
   }
@@ -69,7 +86,9 @@ const mapStateToProps = state => {
     round: state.round,
     videos: state.videos,
     game: state.game,
-    playerScores: state.playerScores
+    playerScores: state.playerScores,
+    currentVideo: state.currentVideo,
+    remainingVideos: state.remainingVideos
   }
 }
 

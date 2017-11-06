@@ -1,7 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {endRound, resetGame} from '../actions/round'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { endRound, resetGame } from '../actions/round'
 
 class Leaderboard extends React.Component {
   constructor (props) {
@@ -10,25 +10,50 @@ class Leaderboard extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.endGame = this.endGame.bind(this)
+    this.calcTotal = this.calcTotal.bind(this)
   }
 
   componentDidMount () {
-    const {dispatch, round} = this.props
+    const { dispatch, round } = this.props
     dispatch(endRound(round))
   }
 
   handleClick () {
-    const {game, history} = this.props
+    const { game, history } = this.props
     game.length < 3 ? history.push('/round') : this.endGame()
   }
 
   endGame () {
-    const {dispatch, history} = this.props
+    const { dispatch, history } = this.props
     dispatch(resetGame())
     history.push('/')
   }
 
+  calcTotal (rounds) {
+    console.log('This is rounds.length',rounds.length)
+    // const total = rounds.reduce((accumulator, ) => {
+    //   accumulator + currentValue;
+    // });
+    if(rounds.length === 3) {
+      return rounds[0] + rounds[1] + rounds[2]
+    } else if (rounds.length === 2) {
+      return rounds[0] + rounds[1]
+    } else {
+      return rounds[0];
+    }
+    console.log(total);
+  }
+
+
   render () {
+    this.props.players.sort((a,b) => {
+      const aTotal = this.calcTotal(a.rounds)
+      const bTotal = this.calcTotal(b.rounds)
+      const total = 0 
+      if (aTotal > bTotal) return - 1
+      if (aTotal < bTotal) return 1
+    })
+    
     return (
       <div className="container">
         <h1 className="leadertitle title is-1">Leaderboard page</h1>
@@ -41,19 +66,19 @@ class Leaderboard extends React.Component {
               <th className="th has-text-centered">Round 1</th>
               <th className="th has-text-centered">Round 2</th>
               <th className="th has-text-centered">Round 3</th>
-              <th className="th has-text-centered">Final Score</th>
+              <th className="th has-text-centered">Total</th>
             </tr>
           </thead>
           <tbody className="tbody">
-            {this.props.players.map(player => {
-              return <tr className="tr" key={player.name}>
-                <th className="th has-text-centered">1st</th>
+            {this.props.players.map((player, i) => {
+              return <tr className="tr" key={player.id}>
+                <th className="th has-text-centered">{i+1}</th>
                 <th className="th has-text-centered"><img src={player.icon} /></th>
                 <th className="th has-text-centered">{player.name} </th>
-                <th className="th has-text-centered">Tick or cross</th>
-                <th className="th has-text-centered">Tick or cross</th>
-                <th className="th has-text-centered">Tick or cross</th>
-                <th className="th has-text-centered">Total score</th>
+                <th className="th has-text-centered">{player.rounds[0]}</th>
+                <th className="th has-text-centered">{player.rounds[1]}</th>
+                <th className="th has-text-centered">{player.rounds[2]}</th>
+                <th className="th has-text-centered">{this.calcTotal(player.rounds)}</th>
               </tr>
             })}
           </tbody>
@@ -67,10 +92,29 @@ class Leaderboard extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    players: state.players,
-    game: state.game,
-    round: state.round
+    players: makeLeaderBoard(state.playerScores),
+    round: state.round,
+    game: state.game
   }
+}
+
+function makeLeaderBoard (scores) {
+  const players = []
+  scores.forEach(score => {
+    const foundPlayer = players.find(player => player.id === score.id)
+    if (foundPlayer) {
+      foundPlayer.rounds.push(score.score)
+    } else {
+      const playerEdit = Object.assign({}, foundPlayer)
+      playerEdit.id = score.id
+      playerEdit.name = score.name
+      playerEdit.icon = score.icon
+      playerEdit.rounds = [score.score]
+      return players.push(playerEdit)
+    }
+  })
+  console.log('this is players: ', players)
+  return players
 }
 
 export default connect(mapStateToProps)(Leaderboard)

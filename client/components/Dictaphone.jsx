@@ -15,55 +15,67 @@ class Dictaphone extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      continueIsVisible: false,
       points: null
     }
     this.dispatchScore = this.dispatchScore.bind(this)
+    this.compareText = this.compareText.bind(this)
+  }
+
+  componentDidMount () {
+    console.log('continue is: ', this.state.continueIsVisible)
+    this.setState({continueIsVisible: false})
   }
 
   dispatchScore (points) {
     console.log('playerScores points: ', points)
     this.props.dispatch(setPlayerScores(points, this.props.round.currentPlayer))
   }
-
-  render () {
-    const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, randomVid, dispatch, round, playerScores} = this.props
-    function compareText () {
-      stopListening()
-      var points = 0
-      var actual = randomVid.quote
-      const actualArr = actual.toLowerCase().split(' ')
-      console.log('quote from database = ', actual)
-      console.log('transcript = ' + transcript) // look at final transcript
-      transcript.toLowerCase().split(' ').forEach((char, idx, transcriptArr) => {
-        if (actualArr.find(actualChar => actualChar == char)) points++
-      })
-      if (transcript.toLowerCase() === actual.toLowerCase()) {
-        console.log('Correct, double points!')
-        points = 20 // maybe just keep as 10, without double points
-        console.log('points: ' + points)
-        dispatch(setPlayerScores(points, round.currentPlayer))
-        return points
-      } else {
-        console.log('Not quite...')
-        points = Math.round((points / actualArr.length) * 10)
-        console.log('points: ' + points)
-        dispatch(setPlayerScores(points, round.currentPlayer))
-        return points
-      }
+  submit (resetTranscript, stopListening) {
+    stopListening()
+    resetTranscript()
+    this.props.handleClick()
+  }
+  compareText () {
+    const {transcript, stopListening, randomVid, dispatch, round} = this.props
+    this.setState({continueIsVisible: true})
+    stopListening()
+    var points = 0
+    var actual = randomVid.quote
+    const actualArr = actual.toLowerCase().split(' ')
+    console.log('quote from database = ', actual)
+    console.log('transcript = ' + transcript) // look at final transcript
+    transcript.toLowerCase().split(' ').forEach((char, idx, transcriptArr) => {
+      if (actualArr.find(actualChar => actualChar == char)) points++
+    })
+    if (transcript.toLowerCase() === actual.toLowerCase()) {
+      console.log('Correct, double points!')
+      points = 20 // maybe just keep as 10, without double points
+      console.log('points: ' + points)
+      dispatch(setPlayerScores(points, round.currentPlayer))
+      return points
+    } else {
+      console.log('Not quite...')
+      points = Math.round((points / actualArr.length) * 10)
+      console.log('points: ' + points)
+      dispatch(setPlayerScores(points, round.currentPlayer))
+      return points
     }
+  }
+  render () {
+    const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores} = this.props
     if (!browserSupportsSpeechRecognition) {
       return null
     }
-
-    // const printScore = playerScores[playerScores.length - 1].score ? playerScores[playerScores.length - 1].score : 'score here'
     return (
       <div>
         <button onClick={startListening}>Speak</button>
-        <button onClick={compareText.bind(null, stopListening, transcript)}>Stop/Submit</button>
+        <button onClick={this.compareText.bind(null, stopListening, transcript)}>Stop/Submit</button>
         <br/>
         <input type="text" value={transcript} id="speech-field"/>
         {playerScores.length > 0 && <p>Score: {playerScores[playerScores.length - 1].score}</p>}
-        <input type="button" value="Reset Transcription" onClick={resetTranscript}/>
+        <br/>
+        {this.state.continueIsVisible && <button id="next" className="button is large" onClick={() => this.submit(resetTranscript, stopListening)}>Continue</button>}
       </div>
     )
   }
