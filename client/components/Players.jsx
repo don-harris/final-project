@@ -8,7 +8,13 @@ const icons = [
   '/images/kruger.png',
   '/images/runlolarun.png',
   '/images/space.png',
-  '/images/darthvader.png'
+  '/images/darthvader.png',
+  '/images/leia.png',
+  '/images/morpheus.png',
+  '/images/batman.png',
+  '/images/thebride.png',
+  '/images/jules.png',
+  '/images/rocky.png'
 ]
 
 class Players extends React.Component {
@@ -107,21 +113,9 @@ class Players extends React.Component {
                     </span>
                   </button>
                 </div>
-                <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                  <div className="dropdown-content" name="name">
-                    {icons
-                      .filter(
-                        icon =>
-                          !players.find(player => player.icon === icon)
-                      )
-                      .map(image => (
-                        <a className="dropdown-item" key={image}>
-                          <img
-                            onClick={() => this.selectIcon(image)}
-                            src={image}
-                          />
-                        </a>
-                      ))}
+                <div className="dropdown-menu" id="dropdown-menu" role="menu" >
+                  <div className="dropdown-content" name="name"  >
+                    {icons.filter(icon => !players.find(player => player.icon === icon)).map(image => <a className="dropdown-item" key={image} onClick={() => this.selectIcon(image)} ><img src={image} /></a>)}
                   </div>
                 </div>
               </div>
