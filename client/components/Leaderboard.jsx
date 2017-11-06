@@ -50,9 +50,8 @@ class Leaderboard extends React.Component {
       const aTotal = this.calcTotal(a.rounds)
       const bTotal = this.calcTotal(b.rounds)
       const total = 0 
-      if (aTotal > bTotal) return total - 1
-      if (aTotal < bTotal) return total + 1
-      return total
+      if (aTotal > bTotal) return - 1
+      if (aTotal < bTotal) return 1
     })
     
     return (

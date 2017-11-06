@@ -24,7 +24,11 @@ class Dictaphone extends Component {
     console.log('playerScores points: ', points)
     this.props.dispatch(setPlayerScores(points, this.props.round.currentPlayer))
   }
-
+  submit (resetTranscript, stopListening) {
+    stopListening()
+    resetTranscript()
+    this.props.handleClick()
+  }
   render () {
     const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, randomVid, dispatch, round, playerScores} = this.props
     function compareText () {
@@ -55,7 +59,6 @@ class Dictaphone extends Component {
       return null
     }
 
-    // const printScore = playerScores[playerScores.length - 1].score ? playerScores[playerScores.length - 1].score : 'score here'
     return (
       <div>
         <button onClick={startListening}>Speak</button>
@@ -63,7 +66,8 @@ class Dictaphone extends Component {
         <br/>
         <input type="text" value={transcript} id="speech-field"/>
         {playerScores.length > 0 && <p>Score: {playerScores[playerScores.length - 1].score}</p>}
-        <input type="button" value="Reset Transcription" onClick={resetTranscript}/>
+        <br/>
+        <button id="next" className="button is large" onClick={() => this.submit(resetTranscript, stopListening)}>Continue</button>
       </div>
     )
   }
