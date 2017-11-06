@@ -1,18 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Header from './Header'
 
 const Instructions = props => {
   return <div>
-      <section className="instruction-section">
-        <div className="instruction-container">
-          <h1 className="title is-1"><div className="spoken">Spoken,</div></h1>
-          <h1 className="title is-1">Not Stirred</h1>
-        </div>
-      </section>
+      <Header/>
 
       <section className="instruction-section">
         <div className="instruction-container">
-          <hr />
           <h1 className="title">Actors Guide</h1>
           <br />
           <h2 className="subtitle">
@@ -73,7 +68,7 @@ const Instructions = props => {
       <hr />
 
       <section>
-        <Link to="/" className="button is-large">
+        <Link to="/" className="button is-large is-danger">
           Let's get started!
         </Link>
       </section>

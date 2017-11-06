@@ -2,9 +2,32 @@ body {
   background-color: "blue";
 }
 
-.button-red {
+.button .is-danger {
   color: rgb(220, 20, 70);
-  
+}
+
+.header-section {
+  display: flex-inline;
+  flex-direction: row;
+}
+
+.titlefont {
+  font-size: 48px;
+  font-family: 'Abril Fatface', cursive;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.904);
+}
+
+.titlefont2 {
+  font-size: 48px;
+  font-family: 'Abril Fatface',
+  cursive;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.904);
+}
+
+.playernameinput {
+  margin-bottom: 20px;
 }
 
 .homepageimage {

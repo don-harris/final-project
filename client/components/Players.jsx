@@ -87,9 +87,16 @@ class Players extends React.Component {
               </p>
               <img className="image" style={{ margin: "auto" }} src={pendingPlayer.icon} />
             </div>
-            <field className="field has-icons-right">
-              <input autoComplete="off" className="input" type="text" name="name" placeholder="Add Player Name..." value={pendingPlayer.name} onChange={this.handleChange} />
+
+            <field className="field">
+              <div className="control has-icons-left has-icons-right">
+              <input autoComplete="off" className="input playernameinput" type="text" name="name" placeholder="Add Player Name..." value={pendingPlayer.name} onChange={this.handleChange} />
+              <span className="icon is-small is-left">
+                <i className="fa fa-user" />
+              </span>
+              </div>
             </field>
+
             <div className="control">
               <div className={`dropdown ${this.state.dropdownActive ? "is-active" : ""}`} onMouseEnter={() => this.toggleDropDown(true)} onMouseLeave={() => this.toggleDropDown(false)}>
                 <div className="dropdown-trigger">

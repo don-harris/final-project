@@ -6,10 +6,9 @@ const Header = props => {
     <div>
       <section className="header-section">
         <div className="header-container">
-          <h1 className="title is-1">
-            <div className="spoken">Spoken,</div>
-          </h1>
-          <h1 className="title is-1">Not Stirred</h1>
+          <h1 className="spoken titlefont">
+            Spoken,</h1>
+          <h1 className="titlefont2">Not Stirred</h1>
         </div>
       </section>
       <hr />
