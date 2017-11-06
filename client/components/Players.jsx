@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addAllPlayers} from '../actions/players'
+import Header from './Header'
 const icons = [
   '/images/braveheart.png',
   '/images/hunter.png',
@@ -64,6 +65,7 @@ class Players extends React.Component {
 
   render () {
     const {players, pendingPlayer} = this.state
+
     const PlayerReady = ({player}) => <div className="box column is-6 has-text-centered">
       <p className="title is-3">{player.name || 'Now Enter Your Name'} </p>
       <img className="image" style={{ margin: 'auto' }} src={player.icon} />
@@ -71,11 +73,12 @@ class Players extends React.Component {
 
     return (
       <div>
+        <Header />
         <div className="columns is-multiline">
           {players.map((player, i) => <PlayerReady key={i} player={player} />)}
           <div className="box column is-6 has-text-centered">
             <div>
-              <p className="title is-3">{pendingPlayer.name || 'Now Enter Your Name'} </p>
+              <p className="title is-3">{pendingPlayer.name || 'Join the cast'} </p>
               <img className="image" style={{ margin: 'auto' }} src={pendingPlayer.icon} />
             </div>
             <field className="field has-icons-right">

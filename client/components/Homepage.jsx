@@ -21,11 +21,11 @@ class Homepage extends React.Component {
         </div>
         <div className="sub-buttons">
           <Link to="/aboutus" className="aboutus">
-            <button className="button is large">About Us</button>
+            <button className="button is large">About us</button>
           </Link>
           
           <Link to="/instructions" className="instructions" >
-            <button className="button is large">Instructions</button>
+            <button className="button is large">How to play</button>
           </Link>
         </div>
       </div>

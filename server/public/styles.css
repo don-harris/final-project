@@ -6,6 +6,15 @@ button {
   background-color: "red";
 }
 
+.header-section {
+
+}
+
+.header-title {
+  font-family: 'Abril Fatface', cursive;
+
+}
+
 .homepageimage {
   background-image: url("/images/homepageimage.jpg");
   background-repeat: repeat;
@@ -16,7 +25,8 @@ button {
 .sub-buttons {
    margin-top: 250px;
 }
-.title{
+
+.title {
 font-family: 'Abril Fatface',
 cursive;
 }
