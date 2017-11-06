@@ -11,9 +11,9 @@ exports.seed = function (knex, Promise) {
         {id: 7, vid_url: 'pxPGzj2L3n0', quote: 'And my axe', startTime: 1, quoteStart: 9, quoteEnd: 13, pauseTime: 10, title: 'The Lord of The Rings'},
         {id: 8, vid_url: 'h6sj89xgnl4', quote: 'I am your father', startTime: 91, quoteStart: 103, quoteEnd: 107, pauseTime: 10, title: 'The Lord of The Rings'},
         {id: 9, vid_url: 'vUN7yu7zvz8', quote: 'you\'re a wizard harry', startTime: 91, quoteStart: 103, quoteEnd: 107, pauseTime: 10, title: 'Harry Potter and the Scorcerer\'s Stone'},
-        {id: 10, vid_url: 'EemLsTG5fX8', quote: 'I wrote you every day for a year', startTime: 76, quoteStart: 101, quoteEnd: 104, pauseTime: 10, title: 'The Notebook'},
+        {id: 10, vid_url: 'EemLsTG5fX8', quote: 'I wrote you everyday for a year', startTime: 76, quoteStart: 101, quoteEnd: 104, pauseTime: 10, title: 'The Notebook'},
         {id: 11, vid_url: 'NVPLqbWXdDA', quote: 'leelou dallas multipass', startTime: 50, quoteStart: 59, quoteEnd: 62, pauseTime: 10, title: 'The 5th Element'},
-        {id: 12, vid_url: 'RKysEIVJfBs', quote: 'the name\'s bond james bond', startTime: 67, quoteStart: 80, quoteEnd: 90, pauseTime: 10, title: 'Casino Royale'}
+        {id: 12, vid_url: 'RKysEIVJfBs', quote: 'the names bond james bond', startTime: 67, quoteStart: 80, quoteEnd: 90, pauseTime: 10, title: 'Casino Royale'}
       ])
     })
 }
