@@ -15,17 +15,18 @@ class Homepage extends React.Component {
       <div className="container column is-half">
         <div className="main-title">
           <h1 className="title is-1"><div className="spoken">Spoken,</div> Not Stirred</h1>
+          <br />
           <Link to="/players">
-            <button className="button is large">Get started</button>
+            <button className="button is-large is-danger"><strong>Let's play!</strong></button>
           </Link>
         </div>
         <div className="sub-buttons">
           <Link to="/aboutus" className="aboutus">
-            <button className="button is large">About Us</button>
+            <button className="button is large"><strong>About Us</strong></button>
           </Link>
           
           <Link to="/instructions" className="instructions" >
-            <button className="button is large">Instructions</button>
+            <button className="button"><strong>Instructions</strong></button>
           </Link>
         </div>
       </div>
