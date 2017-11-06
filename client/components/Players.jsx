@@ -104,7 +104,7 @@ class Players extends React.Component {
           </field>
 
           <div className="control">
-            <div className={`dropdown ${this.state.dropdownActive ? 'is-active' : ''}`} onMouseEnter={() => this.toggleDropDown(true)} onMouseLeave={() => this.toggleDropDown(false)}>
+            <div className={`dropdown ${this.state.dropdownActive ? 'is-active' : ''}`} onMouseEnter={() => this.toggleDropDown(true)} onClick={() => this.toggleDropDown(false)}>
               <div className="dropdown-trigger">
                 <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
                   <span>Select Icon</span>

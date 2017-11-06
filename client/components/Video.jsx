@@ -96,7 +96,7 @@ class Video extends React.Component {
             size={100} />}
         </div>
         <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.startClip} />
-        <hr/>
+        <br/>
         {this.state.speakPromptIsVisible && <h2>Please Speak into the microphone</h2>}
       </div>
     )
