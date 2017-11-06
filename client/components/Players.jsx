@@ -95,8 +95,8 @@ class Players extends React.Component {
                   </button>
                 </div>
                 <div className="dropdown-menu" id="dropdown-menu" role="menu" >
-                  <div className="dropdown-content" name="name" >
-                    {icons.filter(icon => !players.find(player => player.icon === icon)).map(image => <a className="dropdown-item" key={image}><img onClick={() => this.selectIcon(image)} src={image} /></a>)}
+                  <div className="dropdown-content" name="name"  >
+                    {icons.filter(icon => !players.find(player => player.icon === icon)).map(image => <a className="dropdown-item" key={image} onClick={() => this.selectIcon(image)} ><img src={image} /></a>)}
                   </div>
                 </div>
               </div>
