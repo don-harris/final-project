@@ -80,5 +80,5 @@ class Video extends React.Component {
     )
   }
 }
- 
+
 export default Video
