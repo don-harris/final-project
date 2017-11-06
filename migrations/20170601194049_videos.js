@@ -7,6 +7,7 @@ exports.up = function (knex, Promise) {
     table.integer('quoteStart')
     table.integer('quoteEnd')
     table.integer('pauseTime')
+    table.string('title')
   })
 }
 
