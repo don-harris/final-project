@@ -7,7 +7,13 @@ const icons = [
   '/images/kruger.png',
   '/images/runlolarun.png',
   '/images/space.png',
-  '/images/darthvader.png'
+  '/images/darthvader.png',
+  '/images/leia.png',
+  '/images/morpheus.png',
+  '/images/batman.png',
+  '/images/thebride.png',
+  '/images/jules.png',
+  '/images/rocky.png'
 ]
 
 class Players extends React.Component {
