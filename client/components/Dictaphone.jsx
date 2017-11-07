@@ -13,7 +13,7 @@ const propTypes = {
 }
 
 class Dictaphone extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       playerHasSubmitted: false,
@@ -23,19 +23,19 @@ class Dictaphone extends Component {
     this.compareText = this.compareText.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.setState({
       playerHasSubmitted: false
     })
   }
 
-  submit(resetTranscript, stopListening) {
+  submit (resetTranscript, stopListening) {
     stopListening()
     resetTranscript()
     this.props.handleClick()
   }
 
-  reworking(points) { // used for minusing points, but not reaching below 0
+  reworking (points) { // used for minusing points, but not reaching below 0
     if (points < 0) {
       let reworkedPoints = 1 // 1 point (because they still go something right)
       return reworkedPoints
@@ -44,48 +44,15 @@ class Dictaphone extends Component {
       return reworkedPoints
     }
   }
-  componentWillReceiveProps({ finalTranscript, randomVid, dispatch, round }) {
+
+  componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round, stopListening, transcript }) {
     if (finalTranscript.length > 0 && !this.state.finished) {
       this.setState({ finished: true })
-      comparing = comparing.bind(this)
-      comparing()
-      console.log({ finalTranscript })
-      function comparing() {
-        const actual = randomVid.quote
-        let points = 0
-        const actualArr = actual.toLowerCase().split(' ')
-        let transArr = finalTranscript.toLowerCase().split(' ')
-        console.log('quote from database = ', actual)
-        console.log('finalTranscript = ' + finalTranscript) // look at final transcript
-        transArr.forEach((char, idx, transcriptArr) => {
-          if (actualArr.find(actualChar => actualChar == char)) points++
-        })
-        if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
-          console.log('Correct, double points!')
-          points = 20 // maybe just keep as 10, without double points
-          console.log('points: ' + points)
-          dispatch(setPlayerScores(points, round.currentPlayer))
-          return points
-        } else if (transArr.length > actualArr.length) {
-          let adjustedPoints = (points - (transArr.length - actualArr.length))
-          let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
-          points = this.reworking(percentagePoints)
-
-          console.log('Ooh, additional words will lose you points')
-          console.log('points: ' + points)
-          dispatch(setPlayerScores(points, round.currentPlayer))
-          return points
-        } else {
-          console.log('Not quite...')
-          points = Math.round((points / actualArr.length) * 10)
-          console.log('points: ' + points)
-          dispatch(setPlayerScores(points, round.currentPlayer))
-          return points
-        }
-      }
+      this.compareText.bind(null, stopListening, transcript, finalTranscript)
     }
   }
-  compareText() {
+
+  compareText () {
     const { finalTranscript, stopListening, randomVid, dispatch, round } = this.props
     this.setState({
       playerHasSubmitted: true
@@ -93,43 +60,38 @@ class Dictaphone extends Component {
     stopListening()
     var points = 0
     var actual = randomVid.quote
-    console.log({ finalTranscript })
-    // setTimeout(comparing.bind(this), 3000)
+    const actualArr = actual.toLowerCase().split(' ')
+    let transArr = finalTranscript.toLowerCase().split(' ')
+    console.log('quote from database = ', actual)
+    console.log('finalTranscript = ' + finalTranscript) // look at final transcript
+    transArr.forEach((char, idx, transcriptArr) => {
+      if (actualArr.find(actualChar => actualChar == char)) points++
+    })
+    if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
+      console.log('Correct, double points!')
+      points = 20 // maybe just keep as 10, without double points
+      console.log('points: ' + points)
+      dispatch(setPlayerScores(points, round.currentPlayer))
+      return points
+    } else if (transArr.length > actualArr.length) {
+      let adjustedPoints = (points - (transArr.length - actualArr.length))
+      let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
+      points = this.reworking(percentagePoints)
 
-    function comparing() {
-      const actualArr = actual.toLowerCase().split(' ')
-      let transArr = finalTranscript.toLowerCase().split(' ')
-      console.log('quote from database = ', actual)
-      console.log('finalTranscript = ' + this.props.transcript) // look at final transcript
-      transArr.forEach((char, idx, transcriptArr) => {
-        if (actualArr.find(actualChar => actualChar == char)) points++
-      })
-      if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
-        console.log('Correct, double points!')
-        points = 20 // maybe just keep as 10, without double points
-        console.log('points: ' + points)
-        dispatch(setPlayerScores(points, round.currentPlayer))
-        return points
-      } else if (transArr.length > actualArr.length) {
-        let adjustedPoints = (points - (transArr.length - actualArr.length))
-        let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
-        points = this.reworking(percentagePoints)
-
-        console.log('Ooh, additional words will lose you points')
-        console.log('points: ' + points)
-        dispatch(setPlayerScores(points, round.currentPlayer))
-        return points
-      } else {
-        console.log('Not quite...')
-        points = Math.round((points / actualArr.length) * 10)
-        console.log('points: ' + points)
-        dispatch(setPlayerScores(points, round.currentPlayer))
-        return points
-      }
+      console.log('Ooh, additional words will lose you points')
+      console.log('points: ' + points)
+      dispatch(setPlayerScores(points, round.currentPlayer))
+      return points
+    } else {
+      console.log('Not quite...')
+      points = Math.round((points / actualArr.length) * 10)
+      console.log('points: ' + points)
+      dispatch(setPlayerScores(points, round.currentPlayer))
+      return points
     }
   }
-  render() {
-    const { transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores } = this.props
+  render () {
+    const { transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores, finalTranscript, randomVid, dispatch, round } = this.props
     if (!browserSupportsSpeechRecognition) {
       return null
     }
@@ -137,7 +99,7 @@ class Dictaphone extends Component {
       <button className="button" onClick={startListening}>
         Speak
       </button>
-      <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
+      <button className="button" onClick={this.componentWillReceiveProps}>
         Stop/Submit
       </button>
       <br />
