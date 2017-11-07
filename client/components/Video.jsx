@@ -46,7 +46,6 @@ class Video extends React.Component {
   }
   pauseClip () {
     this.state.video.pauseVideo()
-    // setTimeout(() => this.restartClip(), this.state.pauseTime * 1000)
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)

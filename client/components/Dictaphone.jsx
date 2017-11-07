@@ -24,6 +24,9 @@ class Dictaphone extends Component {
   componentDidMount () {
     console.log('continue is: ', this.state.continueIsVisible)
     this.setState({continueIsVisible: false})
+  }
+
+  componentDidUpdate () {
     this.props.subscribe(this.compareText)
   }
 
