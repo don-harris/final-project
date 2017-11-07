@@ -18,9 +18,10 @@ class Dictaphone extends Component {
     this.state = {
       playerHasSubmitted: false,
       points: null,
-      finalTranscript: ''
+      finalTranscript: '',
+      finished: false
     }
-    this.compareText = this.compareText.bind(this)
+    this.stopListeningClick = this.stopListeningClick.bind(this)
   }
 
   componentDidMount () {
@@ -46,29 +47,38 @@ class Dictaphone extends Component {
     }
   }
   componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round }) {
-    if (finalTranscript.length > 0) {
+    if (finalTranscript.length && !this.state.finished) {
       console.log('Well: finalTranscript.length > 0')
       console.log('This is that finalTranscript: ', finalTranscript)
-      this.setState({ finalTranscript })
+      this.setState({ finished: true })
+      this.compareFinalTranscript(finalTranscript)
     }
   }
-  compareText () {
-    const {stopListening, randomVid, dispatch, round} = this.props
-    const {finalTranscript} = this.state
+
+  // componentDidReceiveProps () {
+  //   if (this.state.finalTranscript.length) {
+  //     this.compareFinalTranscript()
+  //   }
+  // }
+
+  stopListeningClick () {
     this.setState({
       playerHasSubmitted: true
     })
-    stopListening()
+    this.props.stopListening()
+  }
+
+  compareFinalTranscript (finalTranscript) {
+    const { randomVid, dispatch, round } = this.props
+    // const { finalTranscript } = this.state
     var points = 0
     var actual = randomVid.quote
-    console.log({ finalTranscript })
-
     const actualArr = actual.toLowerCase().split(' ')
     let transArr = finalTranscript.toLowerCase().split(' ')
     console.log('quote from database = ', actual)
     console.log('finalTranscript = ' + finalTranscript) // look at final transcript
     transArr.forEach((char, idx, transcriptArr) => {
-      if (actualArr.find(actualChar => actualChar == char)) points++
+      if (actualArr.find(actualChar => actualChar === char)) points++
     })
     if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
       console.log('Correct, double points!')
@@ -93,6 +103,7 @@ class Dictaphone extends Component {
       return points
     }
   }
+
   render () {
     const { transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores } = this.props
     if (!browserSupportsSpeechRecognition) {
@@ -102,7 +113,7 @@ class Dictaphone extends Component {
       <button className="button" onClick={startListening}>
         Speak
       </button>
-      <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
+      <button className="button" onClick={this.stopListeningClick}>
         Stop/Submit
       </button>
       <br />
