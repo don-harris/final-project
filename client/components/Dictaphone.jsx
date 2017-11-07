@@ -1,8 +1,8 @@
-import React, {PropTypes, Component} from 'react'
+import React, { PropTypes, Component } from 'react'
 import SpeechRecognition from 'react-speech-recognition'
-import {setPlayerScores} from '../actions/playerScores'
+import { setPlayerScores } from '../actions/playerScores'
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 const propTypes = {
   transcript: PropTypes.string,
   finalTranscript: PropTypes.string,
@@ -13,7 +13,7 @@ const propTypes = {
 }
 
 class Dictaphone extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       playerHasSubmitted: false,
@@ -23,19 +23,19 @@ class Dictaphone extends Component {
     this.compareText = this.compareText.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
       playerHasSubmitted: false
     })
   }
 
-  submit (resetTranscript, stopListening) {
+  submit(resetTranscript, stopListening) {
     stopListening()
     resetTranscript()
     this.props.handleClick()
   }
 
-  reworking (points) { // used for minusing points, but not reaching below 0
+  reworking(points) { // used for minusing points, but not reaching below 0
     if (points < 0) {
       let reworkedPoints = 1 // 1 point (because they still go something right)
       return reworkedPoints
@@ -44,13 +44,13 @@ class Dictaphone extends Component {
       return reworkedPoints
     }
   }
-  componentWillReceiveProps ({finalTranscript, randomVid, dispatch, round}) {
+  componentWillReceiveProps({ finalTranscript, randomVid, dispatch, round }) {
     if (finalTranscript.length > 0 && !this.state.finished) {
-      this.setState({finished: true})
+      this.setState({ finished: true })
       comparing = comparing.bind(this)
-      // comparing()
-      console.log({finalTranscript})
-      function comparing () {
+      comparing()
+      console.log({ finalTranscript })
+      function comparing() {
         const actual = randomVid.quote
         let points = 0
         const actualArr = actual.toLowerCase().split(' ')
@@ -85,18 +85,18 @@ class Dictaphone extends Component {
       }
     }
   }
-  compareText () {
-    const {finalTranscript, stopListening, randomVid, dispatch, round} = this.props
+  compareText() {
+    const { finalTranscript, stopListening, randomVid, dispatch, round } = this.props
     this.setState({
       playerHasSubmitted: true
     })
     stopListening()
     var points = 0
     var actual = randomVid.quote
-    console.log({finalTranscript})
+    console.log({ finalTranscript })
     // setTimeout(comparing.bind(this), 3000)
 
-    function comparing () {
+    function comparing() {
       const actualArr = actual.toLowerCase().split(' ')
       let transArr = finalTranscript.toLowerCase().split(' ')
       console.log('quote from database = ', actual)
@@ -128,26 +128,26 @@ class Dictaphone extends Component {
       }
     }
   }
-  render () {
-    const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores} = this.props
+  render() {
+    const { transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores } = this.props
     if (!browserSupportsSpeechRecognition) {
       return null
     }
     return <div>
       <button className="button" onClick={startListening}>
-          Speak
+        Speak
       </button>
       <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
-          Stop/Submit
+        Stop/Submit
       </button>
       <br />
       <input type="text" value={transcript} id="speech-field" />
       {this.state.playerHasSubmitted && playerScores.length > 0 && <p>
-            Score: {playerScores[playerScores.length - 1].score}
+        Score: {playerScores[playerScores.length - 1].score}
       </p>}
       <br />
       {this.state.playerHasSubmitted && <button id="next" className="button is-large is-danger" onClick={() => this.submit(resetTranscript, stopListening)}>
-            Continue
+        Continue
       </button>}
     </div>
   }
