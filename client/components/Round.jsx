@@ -81,7 +81,6 @@ class Round extends React.Component {
             <Dictaphone subscribe={this.subscribe} trigger={this.trigger} randomVid={randomVid} handleClick={this.handleClick}/>
           </div>
         }
-        {/* <input onChange={this.handleChange} type="text" /> */}
       </div>
     )
   }
