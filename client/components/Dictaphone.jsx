@@ -33,6 +33,10 @@ class Dictaphone extends Component {
     stopListening()
     resetTranscript()
     this.props.handleClick()
+    // setting finalTranscript to false for next player
+    this.setState({
+      finished: false
+    })
   }
 
   reworking (points) { // used for minusing points, but not reaching below 0
@@ -44,6 +48,7 @@ class Dictaphone extends Component {
       return reworkedPoints
     }
   }
+
   compareText () {
     const { transcript, finalTranscript, stopListening, randomVid, dispatch, round } = this.props
     this.setState({
