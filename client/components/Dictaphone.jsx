@@ -44,13 +44,13 @@ class Dictaphone extends Component {
       return reworkedPoints
     }
   }
-  componentWillReceiveProps({finalTranscript, randomVid, dispatch, round}) {
+  componentWillReceiveProps ({finalTranscript, randomVid, dispatch, round}) {
     if (finalTranscript.length > 0 && !this.state.finished) {
       this.setState({finished: true})
       comparing = comparing.bind(this)
       // comparing()
       console.log({finalTranscript})
-      function comparing() {
+      function comparing () {
         const actual = randomVid.quote
         let points = 0
         const actualArr = actual.toLowerCase().split(' ')
