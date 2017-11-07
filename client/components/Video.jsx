@@ -111,8 +111,8 @@ class Video extends React.Component {
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
         </div>
         <br/>
-        {this.state.startVisible && <button className="button is-danger" onClick={this.startClip}>Start</button>}
-        {this.state.speakPromptIsVisible && <h2>Please Speak into the microphone</h2>}
+        {this.state.startVisible && <button className="button is-large is-danger" onClick={this.startClip}>Start</button>}
+        {this.state.speakPromptIsVisible && <h2 className="subtitle is-4">Please speak clearly into the microphone</h2>}
         <Dictaphone restartClip={this.restartClip} randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak}/>
       </div>
     )
