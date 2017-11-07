@@ -13,7 +13,6 @@ class HallOfFame extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     this.props.dispatch(getAllWinners())
   }
   render () {
@@ -50,7 +49,6 @@ class HallOfFame extends React.Component {
 }
 
 function mapStateToProps (state){
-    console.log("this is state", state)
   return {
     winners: state.winners
   }

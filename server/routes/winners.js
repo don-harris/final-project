@@ -17,7 +17,6 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   winnerDb.getAllWinners()
     .then(winner => {
-  console.log("i am winner", winner)
       res.json(winner)
     })
 })
