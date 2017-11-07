@@ -16,7 +16,6 @@ class Podium extends React.Component {
       bottom: 0,
       left: 0,
       right: 0,
-    //   backgroundColor: "rgba(0,0,0,0.3)",
       backgroundColor: "rgb(94, 97, 102)",
       padding: 50,
       zIndex: 1
@@ -27,7 +26,7 @@ class Podium extends React.Component {
       backgroundColor: "white",
       borderRadius: '30px',
       maxWidth: '80%',
-      maxHeight: '90%',
+      maxHeight: '60%',
       minHeight: 300,
       margin: "auto",
       padding: '30px',
