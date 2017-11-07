@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
   const winner = req.body
   winnerDb.addWinner(winner)
   .then(winner => {
-    res.status(201).json(winner)
+    res.status(201)
   })
   .catch((err) => {
     res.status(500).send(err.message)
@@ -17,6 +17,7 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   winnerDb.getAllWinners()
     .then(winner => {
+  console.log(winner)
       res.json(winner)
     })
 })

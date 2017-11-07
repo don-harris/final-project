@@ -35,7 +35,7 @@ class Dictaphone extends Component {
 
   reworking (points) { // used for minusing points, but not reaching below 0
     if (points < 0) {
-      let reworkedPoints = 1 // 1 point (because they still go something right)
+      let reworkedPoints = 1 // 1 point (because they still got something right)
       return reworkedPoints
     } else {
       let reworkedPoints = points
