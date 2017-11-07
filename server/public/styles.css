@@ -96,6 +96,10 @@ line-height: 1;
   text-align: center;
 }
 
+.countdown {
+ text-align: center;
+ margin-right: 100px;
+}
 .strong {
   font-weight: bold;
 }
