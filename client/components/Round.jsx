@@ -16,7 +16,7 @@ class Round extends React.Component {
       video: 'funny cat',
       id: 1,
       randomVid: null,
-      disableButton: false
+      disableButton: true
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -25,12 +25,13 @@ class Round extends React.Component {
     this.subscriptions = []
   }
 
-  trigger (arr) {
-    arr.map(fn => fn())
+  trigger () {
+    this.subscriptions.map(fn => fn())
   }
 
   subscribe (func) {
-    this.subscriptions.push(func)
+    const foundFunc = this.subscriptions.find(f => f.name === func.name)
+    !foundFunc ? this.subscriptions.push(func) : console.log('dont sub twice')
   }
 
   componentWillMount () {
@@ -46,7 +47,7 @@ class Round extends React.Component {
   randomiseVideo (nextProps) {
     const props = nextProps || this.props
     if (this.state.randomVid) props.round.videosPlayed.push(this.state.randomVid)
-    const videosRemaining = props.videos.filter(video => !props.round.videosPlayed.find(played => played.id == video.id))
+    const videosRemaining = props.videos.filter(video => !props.round.videosPlayed.find(played => played.id === video.id))
     console.log({videosRemaining})
     this.setState({ randomVid: videosRemaining[Math.floor(Math.random() * videosRemaining.length)], disableButton: true })
     setTimeout(() => this.setState({disableButton: false}), 1000)
@@ -79,7 +80,7 @@ class Round extends React.Component {
         {
           !disableButton && <div>
             {randomVid && <Video subscribe={this.subscribe} randomVid={randomVid} />}
-            <Dictaphone subscribe={this.subscribe} trigger={this.trigger} subs={this.subscriptions} randomVid={randomVid} handleClick={this.handleClick}/>
+            <Dictaphone subscribe={this.subscribe} trigger={this.trigger} randomVid={randomVid} handleClick={this.handleClick}/>
           </div>
         }
         {/* <input onChange={this.handleChange} type="text" /> */}

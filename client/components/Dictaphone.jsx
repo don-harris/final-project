@@ -20,14 +20,11 @@ class Dictaphone extends Component {
     }
     this.compareText = this.compareText.bind(this)
   }
-
+  
   componentDidMount () {
     console.log('continue is: ', this.state.continueIsVisible)
-    this.setState({continueIsVisible: false})
-  }
-
-  componentDidUpdate () {
     this.props.subscribe(this.compareText)
+    this.setState({continueIsVisible: false})
   }
 
   submit (resetTranscript, stopListening) {
@@ -35,6 +32,7 @@ class Dictaphone extends Component {
     resetTranscript()
     this.props.handleClick()
   }
+  
   compareText () {
     const {transcript, stopListening, randomVid, dispatch, round} = this.props
     this.setState({continueIsVisible: true})
@@ -62,7 +60,7 @@ class Dictaphone extends Component {
     }
   }
   render () {
-    const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores, trigger, subs} = this.props
+    const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores, trigger} = this.props
     if (!browserSupportsSpeechRecognition) {
       return null
     }
@@ -70,7 +68,7 @@ class Dictaphone extends Component {
       <button className="button" onClick={startListening}>
           Speak
       </button>
-      <button className="button" onClick={() => trigger(subs)}>
+      <button className="button" onClick={trigger}>
           Stop/Submit
       </button>
       <br />
