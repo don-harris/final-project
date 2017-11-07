@@ -60,13 +60,15 @@ class Round extends React.Component {
     return (
       <div>
         <Header/>
-        {currentPlayer && <img src={currentPlayer.icon}/>}
-        {currentPlayer && <h2>{currentPlayer.name}</h2>}
-        {
-          !disableButton && <div>
-            {randomVid && <Video randomVid={randomVid} handleClick={this.handleClick}/>}
-          </div>
-        }
+        <div className="section curtains">
+          {currentPlayer && <img src={currentPlayer.icon}/>}
+          {currentPlayer && <h2>{currentPlayer.name}</h2>}
+          {
+            !disableButton && <div>
+              {randomVid && <Video randomVid={randomVid} handleClick={this.handleClick}/>}
+            </div>
+          }
+        </div>
       </div>
     )
   }

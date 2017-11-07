@@ -165,3 +165,10 @@ line-height: 1;
 .disableClick {
   pointer-events:none;
 }
+
+.curtains {
+ background-image: url('/images/curtains.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
