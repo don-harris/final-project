@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes, Component } from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {startRound, nextPlayer} from '../actions/round'
@@ -8,6 +8,7 @@ import Video from './Video'
 import Header from './Header'
 import {getVideos} from '../actions/videos'
 import {nextVideo} from '../actions/videoChanger'
+import SpeechRecognition from 'react-speech-recognition'
 
 class Round extends React.Component {
   constructor (props) {
@@ -61,8 +62,7 @@ class Round extends React.Component {
   render () {
     const {currentPlayer} = this.props.round
     const {randomVid, disableButton} = this.state
-    const {currentVideo} = this.props
-    console.log(this.props, this.state.randomVid)
+    console.log(this.props.startListening, this.state.randomVid)
     // console.log('quote from database = ', randomVid.quote)
     return (
       <div>
@@ -71,7 +71,7 @@ class Round extends React.Component {
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
         {
           !disableButton && <div>
-            {randomVid && <Video randomVid={randomVid} />}
+            {randomVid && <Video randomVid={randomVid} startListening={this.props.startListening}/>}
             <Dictaphone randomVid={randomVid} handleClick={this.handleClick}/>
           </div>
         }
@@ -79,6 +79,10 @@ class Round extends React.Component {
       </div>
     )
   }
+}
+
+const options = {
+  autoStart: false
 }
 
 const mapStateToProps = state => {
@@ -93,4 +97,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Round)
+export default connect(mapStateToProps)(SpeechRecognition(options)(Round))

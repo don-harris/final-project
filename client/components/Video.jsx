@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { PropTypes, Component } from 'react'
 import YouTube from 'react-youtube'
 import ReactCountdownClock from 'react-countdown-clock'
+
+const propTypes = {
+  startListening: PropTypes.func
+}
 
 class Video extends React.Component {
   constructor (props) {
@@ -61,9 +65,10 @@ class Video extends React.Component {
   pauseClip () {
     this.hideCountdown()
     this.setState({ speakPromptIsVisible: true })
-    console.log(this.state.countdownIsVisible)
+    console.log('function: ', this.props.startListening)
     this.state.video.pauseVideo()
     setTimeout(() => this.restartClip(), this.state.pauseTime * 1000)
+    this.props.startListening()
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)

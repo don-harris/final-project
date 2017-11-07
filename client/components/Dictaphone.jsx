@@ -5,7 +5,6 @@ import {setPlayerScores} from '../actions/playerScores'
 import {connect} from 'react-redux'
 const propTypes = {
   transcript: PropTypes.string,
-  startListening: PropTypes.func,
   stopListening: PropTypes.func,
   resetTranscript: PropTypes.func,
   browserSupportsSpeechRecognition: PropTypes.bool
@@ -61,14 +60,14 @@ class Dictaphone extends Component {
     }
   }
   render () {
-    const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores} = this.props
+    const {transcript, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores} = this.props
     if (!browserSupportsSpeechRecognition) {
       return null
     }
     return <div>
-      <button className="button" onClick={startListening}>
+      {/* <button className="button" onClick={startListening}>
           Speak
-      </button>
+      </button> */}
       <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
           Stop/Submit
       </button>
