@@ -76,11 +76,15 @@ class Dictaphone extends Component {
     var actual = randomVid.quote
     const actualArr = actual.toLowerCase().split(' ')
     let transArr = transcript.toLowerCase().split(' ')
+    console.log('quote from database = ', actual)
+    console.log('transcript = ' + transcript) // look at final transcript
     transArr.forEach((char, idx, transcriptArr) => {
       if (actualArr.find(actualChar => actualChar === char)) points++
     })
     if (transcript.toLowerCase() === actual.toLowerCase()) {
+      console.log('Correct, double points!')
       points = 20 // maybe just keep as 10, without double points
+      console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       this.checkScore(points)
       return points
@@ -88,11 +92,15 @@ class Dictaphone extends Component {
       let adjustedPoints = (points - (transArr.length - actualArr.length))
       let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
       points = this.reworking(percentagePoints)
+      console.log('Ooh, additional words will lose you points')
+      console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       this.checkScore(points)
       return points
     } else {
+      console.log('Not quite...')
       points = Math.round((points / actualArr.length) * 10)
+      console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       this.checkScore(points)
       return points
