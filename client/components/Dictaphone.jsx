@@ -82,12 +82,14 @@ class Dictaphone extends Component {
     if (transcript.toLowerCase() === actual.toLowerCase()) {
       points = 20 // maybe just keep as 10, without double points
       dispatch(setPlayerScores(points, round.currentPlayer))
+      this.checkScore(points)
       return points
     } else if (transArr.length > actualArr.length) {
       let adjustedPoints = (points - (transArr.length - actualArr.length))
       let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
       points = this.reworking(percentagePoints)
       dispatch(setPlayerScores(points, round.currentPlayer))
+      this.checkScore(points)
       return points
     } else {
       points = Math.round((points / actualArr.length) * 10)
