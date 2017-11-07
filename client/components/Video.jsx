@@ -20,8 +20,8 @@ class Video extends React.Component {
   }
 
   componentWillMount () {
-    const { randomVid } = this.props
-    console.log('test: ', randomVid)
+    const { randomVid, subscribe } = this.props
+    subscribe(this.restartClip)
     this.setState({
       vidurl: randomVid.vid_url,
       startTime: randomVid.startTime,
@@ -32,7 +32,6 @@ class Video extends React.Component {
   }
 
   startClip (event) {
-    console.log('randomVid: ', this.props.randomVid.vid_url)
     this.setState({
       video: event.target
     })
@@ -47,7 +46,7 @@ class Video extends React.Component {
   }
   pauseClip () {
     this.state.video.pauseVideo()
-    setTimeout(() => this.restartClip(), this.state.pauseTime * 1000)
+    // setTimeout(() => this.restartClip(), this.state.pauseTime * 1000)
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)

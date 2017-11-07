@@ -20,18 +20,17 @@ class Round extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.subscribe = this.subscribe.bind(this)
+    this.trigger = this.trigger.bind(this)
+    this.subscriptions = []
   }
 
-  handleSubmit () {
-    this.subscribe()
+  trigger (arr) {
+    arr.map(fn => fn())
   }
 
   subscribe (func) {
-    const arr = []
-    arr.push(func)
-    arr.map(fn => fn())
+    this.subscriptions.push(func)
   }
 
   componentWillMount () {
@@ -46,7 +45,6 @@ class Round extends React.Component {
   }
   randomiseVideo (nextProps) {
     const props = nextProps || this.props
-    console.log('randomising video', props.videos, props.round.videosPlayed)
     if (this.state.randomVid) props.round.videosPlayed.push(this.state.randomVid)
     const videosRemaining = props.videos.filter(video => !props.round.videosPlayed.find(played => played.id == video.id))
     console.log({videosRemaining})
@@ -54,7 +52,7 @@ class Round extends React.Component {
     setTimeout(() => this.setState({disableButton: false}), 1000)
   }
   handleClick () {
-    const {round, dispatch, history, , videos} = this.props
+    const {round, dispatch, history, videos} = this.props
     const currentVideo = this.state.randomVid
     const remainingVideos = videos
     dispatch(nextVideo(currentVideo, remainingVideos))
@@ -72,7 +70,7 @@ class Round extends React.Component {
   render () {
     const {currentPlayer} = this.props.round
     const {randomVid, disableButton} = this.state
-    console.log(this.props, this.state.randomVid)
+    console.log('randomvid', this.state.randomVid)
     return (
       <div>
         <Header/>
@@ -81,7 +79,7 @@ class Round extends React.Component {
         {
           !disableButton && <div>
             {randomVid && <Video subscribe={this.subscribe} randomVid={randomVid} />}
-            <Dictaphone subscribe={this.subscribe} handleSubmit={this.handleSubmit} randomVid={randomVid} handleClick={this.handleClick}/>
+            <Dictaphone subscribe={this.subscribe} trigger={this.trigger} subs={this.subscriptions} randomVid={randomVid} handleClick={this.handleClick}/>
           </div>
         }
         {/* <input onChange={this.handleChange} type="text" /> */}
