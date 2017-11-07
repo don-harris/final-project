@@ -75,9 +75,7 @@ class Video extends React.Component {
   pauseClip () {
     this.hideCountdown()
     this.setState({ speakPromptIsVisible: true })
-    console.log(this.state.countdownIsVisible)
     this.state.video.pauseVideo()
-    setTimeout(() => this.restartClip(), this.state.pauseTime * 1000)
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)
@@ -115,7 +113,7 @@ class Video extends React.Component {
         <br/>
         {this.state.startVisible && <button className="button is-danger" onClick={this.startClip}>Start</button>}
         {this.state.speakPromptIsVisible && <h2>Please Speak into the microphone</h2>}
-        <Dictaphone randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak}/>
+        <Dictaphone restartClip={this.restartClip} randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak}/>
       </div>
     )
   }

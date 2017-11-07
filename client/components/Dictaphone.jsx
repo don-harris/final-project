@@ -90,6 +90,7 @@ class Dictaphone extends Component {
   compareText () {
     const {transcript, stopListening, randomVid, dispatch, round} = this.props
     this.stopSubmit()
+    this.props.restartClip()
     stopListening()
     var points = 0
     var actual = randomVid.quote
