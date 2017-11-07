@@ -130,10 +130,10 @@ class Dictaphone extends Component {
     if (!browserSupportsSpeechRecognition) {
       return null
     }
+
     return <div>
-      {!this.props.startVisible && this.state.speakVisible && <button className="button" onClick={this.startSpeak}>
-          Speak
-      </button>}
+      {!this.props.startVisible && this.state.speakVisible && !this.props.playerCanSpeak && <button className="button" disabled>Speak</button>}
+      {this.props.playerCanSpeak && this.state.speakVisible && <button className="button is-success" onClick={this.startSpeak}>Speak</button>}
       {this.state.submitVisible && <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
           Stop/Submit
       </button>}

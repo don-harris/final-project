@@ -8,6 +8,7 @@ class Video extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      playerCanSpeak: false,
       countdownIsVisible: false,
       video: null,
       vidurl: '',
@@ -31,6 +32,7 @@ class Video extends React.Component {
     const { randomVid } = this.props
     console.log('test: ', randomVid)
     this.setState({
+      playerCanSpeak: false,
       startVisible: true,
       speakPromptIsVisible: false,
       countdownIsVisible: false,
@@ -60,7 +62,7 @@ class Video extends React.Component {
   }
 
   hideCountdown () {
-    this.setState({countdownIsVisible: false})
+    this.setState({countdownIsVisible: false, playerCanSpeak: true})
   }
   hideSpeakPrompt () {
     this.setState({speakPromptIsVisible: false})
@@ -111,9 +113,9 @@ class Video extends React.Component {
           <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
         </div>
         <br/>
-        {this.state.startVisible && <button className="button is-primary" onClick={this.startClip}>Start</button>}
+        {this.state.startVisible && <button className="button is-danger" onClick={this.startClip}>Start</button>}
         {this.state.speakPromptIsVisible && <h2>Please Speak into the microphone</h2>}
-        <Dictaphone randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} />
+        <Dictaphone randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak}/>
       </div>
     )
   }
