@@ -5,6 +5,7 @@ import {setPlayerScores} from '../actions/playerScores'
 import {connect} from 'react-redux'
 const propTypes = {
   transcript: PropTypes.string,
+  finalTranscript: PropTypes.string,
   startListening: PropTypes.func,
   stopListening: PropTypes.func,
   resetTranscript: PropTypes.func,
@@ -16,7 +17,8 @@ class Dictaphone extends Component {
     super(props)
     this.state = {
       playerHasSubmitted: false,
-      points: null
+      points: null,
+      finished: false
     }
     this.compareText = this.compareText.bind(this)
   }
@@ -42,43 +44,88 @@ class Dictaphone extends Component {
       return reworkedPoints
     }
   }
+  componentWillReceiveProps({finalTranscript, randomVid, dispatch, round}) {
+    if (finalTranscript.length > 0 && !this.state.finished) {
+      this.setState({finished: true})
+      comparing = comparing.bind(this)
+      // comparing()
+      console.log({finalTranscript})
+      function comparing() {
+        const actual = randomVid.quote
+        let points = 0
+        const actualArr = actual.toLowerCase().split(' ')
+        let transArr = finalTranscript.toLowerCase().split(' ')
+        console.log('quote from database = ', actual)
+        console.log('finalTranscript = ' + finalTranscript) // look at final transcript
+        transArr.forEach((char, idx, transcriptArr) => {
+          if (actualArr.find(actualChar => actualChar == char)) points++
+        })
+        if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
+          console.log('Correct, double points!')
+          points = 20 // maybe just keep as 10, without double points
+          console.log('points: ' + points)
+          dispatch(setPlayerScores(points, round.currentPlayer))
+          return points
+        } else if (transArr.length > actualArr.length) {
+          let adjustedPoints = (points - (transArr.length - actualArr.length))
+          let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
+          points = this.reworking(percentagePoints)
 
+          console.log('Ooh, additional words will lose you points')
+          console.log('points: ' + points)
+          dispatch(setPlayerScores(points, round.currentPlayer))
+          return points
+        } else {
+          console.log('Not quite...')
+          points = Math.round((points / actualArr.length) * 10)
+          console.log('points: ' + points)
+          dispatch(setPlayerScores(points, round.currentPlayer))
+          return points
+        }
+      }
+    }
+  }
   compareText () {
-    const {transcript, stopListening, randomVid, dispatch, round} = this.props
+    const {finalTranscript, stopListening, randomVid, dispatch, round} = this.props
     this.setState({
       playerHasSubmitted: true
     })
     stopListening()
     var points = 0
     var actual = randomVid.quote
-    const actualArr = actual.toLowerCase().split(' ')
-    let transArr = transcript.toLowerCase().split(' ')
-    console.log('quote from database = ', actual)
-    console.log('transcript = ' + transcript) // look at final transcript
-    transArr.forEach((char, idx, transcriptArr) => {
-      if (actualArr.find(actualChar => actualChar == char)) points++
-    })
-    if (transcript.toLowerCase() === actual.toLowerCase()) {
-      console.log('Correct, double points!')
-      points = 20 // maybe just keep as 10, without double points
-      console.log('points: ' + points)
-      dispatch(setPlayerScores(points, round.currentPlayer))
-      return points
-    } else if (transArr.length > actualArr.length) {
-      let adjustedPoints = (points - (transArr.length - actualArr.length))
-      let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
-      points = this.reworking(percentagePoints)
+    console.log({finalTranscript})
+    // setTimeout(comparing.bind(this), 3000)
 
-      console.log('Ooh, additional words will lose you points')
-      console.log('points: ' + points)
-      dispatch(setPlayerScores(points, round.currentPlayer))
-      return points
-    } else {
-      console.log('Not quite...')
-      points = Math.round((points / actualArr.length) * 10)
-      console.log('points: ' + points)
-      dispatch(setPlayerScores(points, round.currentPlayer))
-      return points
+    function comparing () {
+      const actualArr = actual.toLowerCase().split(' ')
+      let transArr = finalTranscript.toLowerCase().split(' ')
+      console.log('quote from database = ', actual)
+      console.log('finalTranscript = ' + this.props.transcript) // look at final transcript
+      transArr.forEach((char, idx, transcriptArr) => {
+        if (actualArr.find(actualChar => actualChar == char)) points++
+      })
+      if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
+        console.log('Correct, double points!')
+        points = 20 // maybe just keep as 10, without double points
+        console.log('points: ' + points)
+        dispatch(setPlayerScores(points, round.currentPlayer))
+        return points
+      } else if (transArr.length > actualArr.length) {
+        let adjustedPoints = (points - (transArr.length - actualArr.length))
+        let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
+        points = this.reworking(percentagePoints)
+
+        console.log('Ooh, additional words will lose you points')
+        console.log('points: ' + points)
+        dispatch(setPlayerScores(points, round.currentPlayer))
+        return points
+      } else {
+        console.log('Not quite...')
+        points = Math.round((points / actualArr.length) * 10)
+        console.log('points: ' + points)
+        dispatch(setPlayerScores(points, round.currentPlayer))
+        return points
+      }
     }
   }
   render () {
