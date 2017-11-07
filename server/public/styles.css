@@ -26,6 +26,13 @@ body {
   color: rgba(0, 0, 0, 0.904);
 }
 
+.titlefont3 {
+  font-size: 48px;
+  font-family: 'Abril Fatface', cursive;
+  font-weight: bold;
+  color: rgb(220, 20, 70);
+}
+
 .playernameinput {
   margin-bottom: 20px;
 }
@@ -91,4 +98,34 @@ line-height: 1;
 
 .strong {
   font-weight: bold;
+}
+
+/* Modal stylings */
+
+.modal {
+  color: white;
+  padding: 30px;
+}
+
+#podium0,
+#podium1,
+#podium2 {
+  width: 150px;
+  background: red;
+  display: flex-inline;
+}
+
+#podium0 {
+  /* gold */
+  height: 250px;
+}
+
+#podium1 {
+  /* silver */
+  height: 200px;
+}
+
+#podium2 {
+  /* bronze */
+  height: 150px;
 }

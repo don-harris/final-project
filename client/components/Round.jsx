@@ -42,12 +42,12 @@ class Round extends React.Component {
     setTimeout(() => this.setState({disableButton: false}), 1000)
   }
   handleClick () {
-    const {round, dispatch, history, playerScores, videos} = this.props
+    const {game, round, dispatch, history, playerScores, videos} = this.props
     const currentVideo = this.state.randomVid
     const remainingVideos = videos
     dispatch(nextVideo(currentVideo, remainingVideos))
     dispatch(nextPlayer(this.state, round.currentPlayer, round.remainingPlayers, round.roundNumber))
-    round.remainingPlayers.length === 0 ? history.push('/leaderboard') : this.randomiseVideo()
+    round.remainingPlayers.length === 0 ? history.push("/leaderboard") : this.randomiseVideo();
     // dispatch(playerScores(this.state.score, round.currentPlayer))
   }
 
@@ -62,7 +62,7 @@ class Round extends React.Component {
     const {currentPlayer} = this.props.round
     const {randomVid, disableButton} = this.state
     const {currentVideo} = this.props
-    console.log(this.props, this.state.randomVid)
+    // console.log(this.props, this.state.randomVid)
     // console.log('quote from database = ', randomVid.quote)
     return (
       <div>
