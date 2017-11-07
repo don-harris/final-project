@@ -107,7 +107,9 @@ class Video extends React.Component {
             color="#DC143C"
             size={100} />}
         </div>
-        <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
+        <div className="disableClick">
+          <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
+        </div>
         <br/>
         {this.state.startVisible && <button className="button is-primary" onClick={this.startClip}>Start</button>}
         {this.state.speakPromptIsVisible && <h2>Please Speak into the microphone</h2>}
