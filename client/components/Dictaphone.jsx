@@ -44,14 +44,47 @@ class Dictaphone extends Component {
       return reworkedPoints
     }
   }
-
-  componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round, stopListening, transcript }) {
+  componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round }) {
     if (finalTranscript.length > 0 && !this.state.finished) {
       this.setState({ finished: true })
-      this.compareText.bind(null, stopListening, transcript, finalTranscript)
+      comparing = comparing.bind(this)
+      // comparing()
+      console.log({ finalTranscript })
+      function comparing () {
+        const actual = randomVid.quote
+        let points = 0
+        const actualArr = actual.toLowerCase().split(' ')
+        let transArr = finalTranscript.toLowerCase().split(' ')
+        console.log('quote from database = ', actual)
+        console.log('finalTranscript = ' + finalTranscript) // look at final transcript
+        transArr.forEach((char, idx, transcriptArr) => {
+          if (actualArr.find(actualChar => actualChar == char)) points++
+        })
+        if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
+          console.log('Correct, double points!')
+          points = 20 // maybe just keep as 10, without double points
+          console.log('points: ' + points)
+          dispatch(setPlayerScores(points, round.currentPlayer))
+          return points
+        } else if (transArr.length > actualArr.length) {
+          let adjustedPoints = (points - (transArr.length - actualArr.length))
+          let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
+          points = this.reworking(percentagePoints)
+
+          console.log('Ooh, additional words will lose you points')
+          console.log('points: ' + points)
+          dispatch(setPlayerScores(points, round.currentPlayer))
+          return points
+        } else {
+          console.log('Not quite...')
+          points = Math.round((points / actualArr.length) * 10)
+          console.log('points: ' + points)
+          dispatch(setPlayerScores(points, round.currentPlayer))
+          return points
+        }
+      }
     }
   }
-
   compareText () {
     const { finalTranscript, stopListening, randomVid, dispatch, round } = this.props
     this.setState({
@@ -60,38 +93,43 @@ class Dictaphone extends Component {
     stopListening()
     var points = 0
     var actual = randomVid.quote
-    const actualArr = actual.toLowerCase().split(' ')
-    let transArr = finalTranscript.toLowerCase().split(' ')
-    console.log('quote from database = ', actual)
-    console.log('finalTranscript = ' + finalTranscript) // look at final transcript
-    transArr.forEach((char, idx, transcriptArr) => {
-      if (actualArr.find(actualChar => actualChar == char)) points++
-    })
-    if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
-      console.log('Correct, double points!')
-      points = 20 // maybe just keep as 10, without double points
-      console.log('points: ' + points)
-      dispatch(setPlayerScores(points, round.currentPlayer))
-      return points
-    } else if (transArr.length > actualArr.length) {
-      let adjustedPoints = (points - (transArr.length - actualArr.length))
-      let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
-      points = this.reworking(percentagePoints)
+    console.log({ finalTranscript })
+    // setTimeout(comparing.bind(this), 3000)
 
-      console.log('Ooh, additional words will lose you points')
-      console.log('points: ' + points)
-      dispatch(setPlayerScores(points, round.currentPlayer))
-      return points
-    } else {
-      console.log('Not quite...')
-      points = Math.round((points / actualArr.length) * 10)
-      console.log('points: ' + points)
-      dispatch(setPlayerScores(points, round.currentPlayer))
-      return points
+    function comparing () {
+      const actualArr = actual.toLowerCase().split(' ')
+      let transArr = finalTranscript.toLowerCase().split(' ')
+      console.log('quote from database = ', actual)
+      console.log('finalTranscript = ' + this.props.transcript) // look at final transcript
+      transArr.forEach((char, idx, transcriptArr) => {
+        if (actualArr.find(actualChar => actualChar == char)) points++
+      })
+      if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
+        console.log('Correct, double points!')
+        points = 20 // maybe just keep as 10, without double points
+        console.log('points: ' + points)
+        dispatch(setPlayerScores(points, round.currentPlayer))
+        return points
+      } else if (transArr.length > actualArr.length) {
+        let adjustedPoints = (points - (transArr.length - actualArr.length))
+        let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
+        points = this.reworking(percentagePoints)
+
+        console.log('Ooh, additional words will lose you points')
+        console.log('points: ' + points)
+        dispatch(setPlayerScores(points, round.currentPlayer))
+        return points
+      } else {
+        console.log('Not quite...')
+        points = Math.round((points / actualArr.length) * 10)
+        console.log('points: ' + points)
+        dispatch(setPlayerScores(points, round.currentPlayer))
+        return points
+      }
     }
   }
   render () {
-    const { transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores, finalTranscript, randomVid, dispatch, round } = this.props
+    const { transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores } = this.props
     if (!browserSupportsSpeechRecognition) {
       return null
     }
@@ -99,7 +137,7 @@ class Dictaphone extends Component {
       <button className="button" onClick={startListening}>
         Speak
       </button>
-      <button className="button" onClick={this.componentWillReceiveProps}>
+      <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
         Stop/Submit
       </button>
       <br />
