@@ -22,7 +22,6 @@ class Dictaphone extends Component {
   }
 
   componentDidMount () {
-    console.log('continue is: ', this.state.continueIsVisible)
     this.setState({continueIsVisible: false})
   }
 
@@ -42,21 +41,15 @@ class Dictaphone extends Component {
     var points = 0
     var actual = randomVid.quote
     const actualArr = actual.toLowerCase().split(' ')
-    console.log('quote from database = ', actual)
-    console.log('transcript = ' + transcript) // look at final transcript
     transcript.toLowerCase().split(' ').forEach((char, idx, transcriptArr) => {
       if (actualArr.find(actualChar => actualChar == char)) points++
     })
     if (transcript.toLowerCase() === actual.toLowerCase()) {
-      console.log('Correct, double points!')
       points = 20 // maybe just keep as 10, without double points
-      console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       return points
     } else {
-      console.log('Not quite...')
       points = Math.round((points / actualArr.length) * 10)
-      console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       return points
     }
