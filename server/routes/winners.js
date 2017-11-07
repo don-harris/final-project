@@ -5,9 +5,9 @@ const winnerDb = require('../db/winners')
 
 router.post('/', (req, res) => {
   const winner = req.body
-  winnerDb.addWinner(winners)
+  winnerDb.addWinner(winner)
   .then(winner => {
-    res.status(201).json(winners)
+    res.status(201).json(winner)
   })
   .catch((err) => {
     res.status(500).send(err.message)
