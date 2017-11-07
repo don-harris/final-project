@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import YouTube from 'react-youtube'
 import ReactCountdownClock from 'react-countdown-clock'
+import SpeechRecognition from 'react-speech-recognition'
 
 const propTypes = {
   startListening: PropTypes.func
@@ -50,7 +51,6 @@ class Video extends React.Component {
     event.target.playVideo()
     setTimeout(() => this.muteClip(), (this.state.quoteStart - this.state.startTime) * 1000)
   }
-
   hideCountdown () {
     this.setState({countdownIsVisible: false})
   }
@@ -69,6 +69,9 @@ class Video extends React.Component {
     this.state.video.pauseVideo()
     setTimeout(() => this.restartClip(), this.state.pauseTime * 1000)
     this.props.startListening()
+  }
+  sendTranscript () {
+    this.props.callBackTranscript(this.props.transcript)
   }
   restartClip () {
     this.state.video.seekTo(this.state.quoteStart)
@@ -108,6 +111,10 @@ class Video extends React.Component {
   }
 }
 
-export default Video
+const options = {
+  autoStart: false
+}
+
+export default (SpeechRecognition(options)(Video))
 
 // < CountdownTimer endDate= { moment().startOf('second').fromNow() } />

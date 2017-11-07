@@ -18,10 +18,14 @@ class Round extends React.Component {
       video: 'funny cat',
       id: 1,
       randomVid: null,
-      disableButton: false
+      disableButton: false,
+      transcript: null
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
+  }
+  myCallback (transcript) {
+    this.setState({transcript: transcript})
   }
   componentWillMount () {
     const currentPlayer = this.props.players[0]
@@ -71,8 +75,8 @@ class Round extends React.Component {
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
         {
           !disableButton && <div>
-            {randomVid && <Video randomVid={randomVid} startListening={this.props.startListening}/>}
-            <Dictaphone randomVid={randomVid} handleClick={this.handleClick}/>
+            {randomVid && <Video randomVid={randomVid} startListening={this.props.startListening} callBackTranscript={this.myCallback}/>}
+            <Dictaphone randomVid={randomVid} handleClick={this.handleClick} transcript={this.state.transcript}/>
           </div>
         }
         {/* <input onChange={this.handleChange} type="text" /> */}
