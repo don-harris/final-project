@@ -32,6 +32,17 @@ class Dictaphone extends Component {
     resetTranscript()
     this.props.handleClick()
   }
+
+  reworking (points) { // used for minusing points, but not reaching below 0
+    if (points < 0) {
+      let reworkedPoints = 1 // 1 point (because they still go something right)
+      return reworkedPoints
+    } else {
+      let reworkedPoints = points
+      return reworkedPoints
+    }
+  }
+
   compareText () {
     const {transcript, stopListening, randomVid, dispatch, round} = this.props
     this.setState({
@@ -41,14 +52,24 @@ class Dictaphone extends Component {
     var points = 0
     var actual = randomVid.quote
     const actualArr = actual.toLowerCase().split(' ')
+    let transArr = transcript.toLowerCase().split(' ')
     console.log('quote from database = ', actual)
     console.log('transcript = ' + transcript) // look at final transcript
-    transcript.toLowerCase().split(' ').forEach((char, idx, transcriptArr) => {
+    transArr.forEach((char, idx, transcriptArr) => {
       if (actualArr.find(actualChar => actualChar == char)) points++
     })
     if (transcript.toLowerCase() === actual.toLowerCase()) {
       console.log('Correct, double points!')
       points = 20 // maybe just keep as 10, without double points
+      console.log('points: ' + points)
+      dispatch(setPlayerScores(points, round.currentPlayer))
+      return points
+    } else if (transArr.length > actualArr.length) {
+      let adjustedPoints = (points - (transArr.length - actualArr.length))
+      let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
+      points = this.reworking(percentagePoints)
+
+      console.log('Ooh, additional words will lose you points')
       console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       return points
