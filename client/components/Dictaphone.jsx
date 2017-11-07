@@ -21,18 +21,42 @@ class Dictaphone extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      scoreVisible: false,
-      playerHasSubmitted: false,
+      speakVisible: true,
+      submitVisible: false,
+      continueVisible: false,
+      soundPlaying: false,
       points: null,
       response: {}
     }
     this.compareText = this.compareText.bind(this)
-    this.playerSubmit = this.playerSubmit.bind(this)
     this.checkScore = this.checkScore.bind(this)
+    this.startSpeak = this.startSpeak.bind(this)
+    this.stopSubmit = this.stopSubmit.bind(this)
+    this.playSound = this.playSound.bind(this)
   }
 
   componentDidMount () {
-    this.setState({playerHasSubmitted: false})
+    this.setState({
+      submitVisible: false,
+      continueVisible: false,
+      soundPlaying: false,
+      speakVisible: true
+    })
+  }
+
+  startSpeak () {
+    const {startListening} = this.props
+    startListening()
+    this.setState({speakVisible: false, submitVisible: true})
+  }
+
+  stopSubmit () {
+    this.setState({submitVisible: false, continueVisible: true})
+    setTimeout(this.playSound, 3500)
+  }
+
+  playSound () {
+    this.setState({soundPlaying: true})
   }
 
   submit (resetTranscript, stopListening) {
@@ -51,10 +75,6 @@ class Dictaphone extends Component {
     }
   }
 
-  playerSubmit () {
-    this.setState({playerHasSubmitted: true})
-  }
-
   checkScore (points) {
     if (points === 20) {
       this.setState({response: perfectScore})
@@ -69,8 +89,7 @@ class Dictaphone extends Component {
 
   compareText () {
     const {transcript, stopListening, randomVid, dispatch, round} = this.props
-    setTimeout(() => this.playerSubmit(), 3000)
-    this.setState({scoreVisible: true})
+    this.stopSubmit()
     stopListening()
     var points = 0
     var actual = randomVid.quote
@@ -107,27 +126,27 @@ class Dictaphone extends Component {
     }
   }
   render () {
-    const {transcript, startListening, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores} = this.props
+    const {transcript, stopListening, resetTranscript, browserSupportsSpeechRecognition, playerScores} = this.props
     if (!browserSupportsSpeechRecognition) {
       return null
     }
     return <div>
-      <button className="button" onClick={startListening}>
+      {!this.props.startVisible && this.state.speakVisible && <button className="button" onClick={this.startSpeak}>
           Speak
-      </button>
-      {!this.state.playerHasSubmitted && <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
+      </button>}
+      {this.state.submitVisible && <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
           Stop/Submit
       </button>}
       <br />
       <input type="text" value={transcript} id="speech-field" />
-      {this.state.scoreVisible && playerScores.length > 0 && <p>
+      {this.state.continueVisible && playerScores.length > 0 && <p>
             Score: {playerScores[playerScores.length - 1].score}
       </p>}
       <br />
-      {this.state.playerHasSubmitted && <button id="next" className="button is-large is-danger" onClick={() => this.submit(resetTranscript, stopListening)}>
+      {this.state.continueVisible && <button id="next" className="button is-large is-danger" onClick={() => this.submit(resetTranscript, stopListening)}>
             Continue
       </button>}
-      {this.state.playerHasSubmitted && <Sound url={this.state.response.url} playStatus={Sound.status.PLAYING} playFromPosition={this.state.response.start}/>}
+      {this.state.soundPlaying && <Sound url={this.state.response.url} playStatus={Sound.status.PLAYING} playFromPosition={this.state.response.start}/>}
     </div>
   }
 }

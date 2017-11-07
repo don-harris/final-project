@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {startRound, nextPlayer} from '../actions/round'
-import Dictaphone from './Dictaphone'
 import Video from './Video'
 import Header from './Header'
 import {getVideos} from '../actions/videos'
@@ -20,18 +19,6 @@ class Round extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.subscribe = this.subscribe.bind(this)
-    this.trigger = this.trigger.bind(this)
-    this.subscriptions = []
-  }
-
-  trigger () {
-    this.subscriptions.map(fn => fn())
-  }
-
-  subscribe (func) {
-    const foundFunc = this.subscriptions.find(f => f.name === func.name)
-    !foundFunc ? this.subscriptions.push(func) : console.log('dont sub twice')
   }
 
   componentWillMount () {
@@ -77,8 +64,7 @@ class Round extends React.Component {
         {currentPlayer && <h2>{currentPlayer.name}</h2>}
         {
           !disableButton && <div>
-            {randomVid && <Video subscribe={this.subscribe} randomVid={randomVid} />}
-            <Dictaphone subscribe={this.subscribe} trigger={this.trigger} randomVid={randomVid} handleClick={this.handleClick}/>
+            {randomVid && <Video randomVid={randomVid} handleClick={this.handleClick}/>}
           </div>
         }
       </div>

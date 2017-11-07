@@ -2,6 +2,8 @@ import React from 'react'
 import YouTube from 'react-youtube'
 import ReactCountdownClock from 'react-countdown-clock'
 
+import Dictaphone from './Dictaphone'
+
 class Video extends React.Component {
   constructor (props) {
     super(props)
@@ -21,12 +23,14 @@ class Video extends React.Component {
     this.restartClip = this.restartClip.bind(this)
     this.endVideo = this.endVideo.bind(this)
     this.hideCountdown = this.hideCountdown.bind(this)
+    this.hideStart = this.hideStart.bind(this)
   }
 
   componentWillMount () {
     const { randomVid } = this.props
     console.log('test: ', randomVid)
     this.setState({
+      startVisible: true,
       speakPromptIsVisible: false,
       countdownIsVisible: false,
       vidurl: randomVid.vid_url,
@@ -45,6 +49,9 @@ class Video extends React.Component {
     event.target.seekTo(this.state.startTime)
     event.target.playVideo()
     setTimeout(() => this.muteClip(), (this.state.quoteStart - this.state.startTime) * 1000)
+  }
+  hideStart () {
+    this.setState({startVisible: false})
   }
 
   hideCountdown () {
@@ -97,7 +104,9 @@ class Video extends React.Component {
         </div>
         <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.startClip} />
         <br/>
+        {this.state.startVisible && <button className="button is-primary" onClick={this.hideStart}>Start</button>}
         {this.state.speakPromptIsVisible && <h2>Please Speak into the microphone</h2>}
+        <Dictaphone randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} />
       </div>
     )
   }
