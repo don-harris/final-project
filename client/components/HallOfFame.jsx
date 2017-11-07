@@ -31,7 +31,6 @@ class HallOfFame extends React.Component {
               </thead>
               <tbody className="tbody">
                 {this.props.winners.map((winner) => {
-                console.log(props.winners)
                   return <tr className="tr" key={winner.name}>
                     <th className="th has-text-centered">{winner.name} </th>
                     <th className="th has-text-centered">

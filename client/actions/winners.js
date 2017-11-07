@@ -2,9 +2,11 @@ import request from 'superagent'
 
 import {getWinners} from '../client-api'
 
+export const RECEIVE_WINNERS = 'RECEIVE_WINNERS'
+
 export const receiveWinners = (winners) => {
   return {
-    type: 'RECEIVE_WINNERS',
+    type: RECEIVE_WINNERS,
     winners
   }
 }
