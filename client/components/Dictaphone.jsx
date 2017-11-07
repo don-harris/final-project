@@ -105,9 +105,9 @@ class Dictaphone extends Component {
       <button className="button" onClick={startListening}>
           Speak
       </button>
-      <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
+      {!this.state.playerHasSubmitted && <button className="button" onClick={this.compareText.bind(null, stopListening, transcript)}>
           Stop/Submit
-      </button>
+      </button>}
       <br />
       <input type="text" value={transcript} id="speech-field" />
       {this.state.scoreVisible && playerScores.length > 0 && <p>
