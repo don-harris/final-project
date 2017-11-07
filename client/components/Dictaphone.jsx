@@ -47,6 +47,8 @@ class Dictaphone extends Component {
   }
   componentWillReceiveProps ({ finalTranscript, randomVid, dispatch, round }) {
     if (finalTranscript.length > 0) {
+      console.log('Well: finalTranscript.length > 0')
+      console.log('This is that finalTranscript: ', finalTranscript)
       this.setState({ finalTranscript })
     }
   }
@@ -64,7 +66,7 @@ class Dictaphone extends Component {
     const actualArr = actual.toLowerCase().split(' ')
     let transArr = finalTranscript.toLowerCase().split(' ')
     console.log('quote from database = ', actual)
-    console.log('finalTranscript = ' + this.props.finalTranscript) // look at final transcript
+    console.log('finalTranscript = ' + finalTranscript) // look at final transcript
     transArr.forEach((char, idx, transcriptArr) => {
       if (actualArr.find(actualChar => actualChar == char)) points++
     })
