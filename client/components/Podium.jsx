@@ -16,31 +16,31 @@ class Podium extends React.Component {
       bottom: 0,
       left: 0,
       right: 0,
-      backgroundColor: "rgba(0,0,0,0.3)",
+    //   backgroundColor: "rgba(0,0,0,0.3)",
+      backgroundColor: "rgb(94, 97, 102)",
       padding: 50,
       zIndex: 1
     };
 
     // The modal "window"
     const modalStyle = {
-      backgroundColor: "black",
+      backgroundColor: "white",
       borderRadius: '30px',
       maxWidth: '80%',
+      maxHeight: '90%',
       minHeight: 300,
-      margin: "0 auto",
-      padding: 30,
+      margin: "auto",
+      padding: '30px',
       display: 'block'
     };
 
-    return (
-      <div className="backdrop" style={backdropStyle}>
+    return <div className="backdrop" style={backdropStyle}>
         <div className="modal" style={modalStyle}>
-          {this.props.children}
+        {this.props.children}
         </div>
       </div>
-    );
   }
-}
+};
 
 Podium.propTypes = {
   onClose: PropTypes.func.isRequired,

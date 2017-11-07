@@ -107,25 +107,53 @@ line-height: 1;
   padding: 30px;
 }
 
-#podium0,
-#podium1,
-#podium2 {
-  width: 150px;
-  background: red;
-  display: flex-inline;
+.podiumbox {
+  max-height: 300px;
+  width: 100%;
+  margin: auto;
 }
 
-#podium0 {
-  /* gold */
-  height: 250px;
+.iconimg {
+  margin-bottom: -14px;
 }
 
-#podium1 {
-  /* silver */
-  height: 200px;
+.podiumimg {
+  margin: auto;
+  width: 100%;
 }
 
-#podium2 {
-  /* bronze */
-  height: 150px;
+.podiumimgcentre {
+  margin: auto;
+  width: 100%;
+}
+
+.podiumimgleft {
+  margin-right: -11px;
+  width: 100%;
+
+}
+
+.podiumimgright {
+  width: 100%;
+  position: relative;
+  bottom: 0.5px;
+}
+
+.flexbox-container {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  justify-items: flex-end;
+  align-items: flex-end;
+
+}
+
+.flexbox-container>div {
+  width: 33.3%;
+  padding: 0px;
+  flex-direction: column-reverse;
+}
+
+.flexbox-container>div:first-child {
+  margin: 0px;
 }

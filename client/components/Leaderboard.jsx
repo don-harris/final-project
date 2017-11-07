@@ -68,6 +68,7 @@ class Leaderboard extends React.Component {
       if (aTotal > bTotal) return -1;
       if (aTotal < bTotal) return 1;
     });
+    console.log('This is sorted players',this.props.players)
 
     return <div className="container">
         <Header />
@@ -116,110 +117,47 @@ class Leaderboard extends React.Component {
         </button>
 
         <Podium show={this.state.isOpen} onClose={this.toggleModal}>
+          {console.log("This is podium players: ", this.props.players)}
           <div className="">
             <div>
-              <h1 className="titlefont3 is-1">And the Oscar goes to...</h1>
+              <h1 className="titlefont3 is-1 has-text-centered">
+                And the Oscar goes to...
+              </h1>
               <hr />
             </div>
 
-            <div className="podiumplayers columns">
-              {/* Column #1 - second place */}
-              <div className="column">
-                <div className="card">
-                  <div className="card-image">
-                    <figure className="image is-4by3">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
-                    </figure>
-                  </div>
-                  <div className="card-content">
-                    <div className="media">
-                      <div className="media-content">
-                        <figure className="image is-128x128">
-                          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-                        </figure>
-                      </div>
-                      <div className="media-content">
-                        <p className="title is-4">John Smith</p>
-                        <p className="subtitle is-6">@johnsmith</p>
-                      </div>
-                    </div>
-
-                    {/* <div className="content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                      <a href="#">#css</a> <a href="#">#responsive</a>
-                      <br />
-                    </div> */}
-                  </div>
-                </div>
+            <div className="flexbox-container">
+              <div className="">
+                <h1 className="title is-2 has-text-centered">
+                  {this.props.players.length > 1
+                    ? this.props.players[1].name
+                    : ""}
+                </h1>
+                <img className="iconimg" src={this.props.players.length > 1 ? this.props.players[1].icon : ""} alt="Placeholder image" />
+                <img className="podiumimgleft" src="/images/01-left.png" />
+              </div>;
+              <div className="">
+                <h1 className="title is-2 has-text-centered">
+                  {this.props.players.length > 0
+                    ? this.props.players[0].name
+                    : ""}
+                </h1>
+                <img className="iconimg" src={this.props.players.length > 0 ? this.props.players[0].icon : ""} alt="Placeholder image" />
+                <img className="podiumimgcentre" src="/images/02-middle.png" />
               </div>
-
-              {/* Column #2 - first place */}
-              <div className="column">
-                <div className="card">
-                  <div className="card-image">
-                    <figure className="image is-4by3">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
-                    </figure>
-                  </div>
-                  <div className="card-content">
-                    <div className="media">
-                      <div className="media-left">
-                        <figure className="image is-128x128">
-                          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-                        </figure>
-                      </div>
-                      <div className="media-content">
-                        <p className="title is-4">John Smith</p>
-                        <p className="subtitle is-6">@johnsmith</p>
-                      </div>
-                    </div>
-
-                    {/* <div className="content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                      <a href="#">#css</a> <a href="#">#responsive</a>
-                      <br />
-                    </div> */}
-                  </div>
-                </div>
+              <div className="">
+                <h1 className="title is-2 has-text-centered">
+                  {this.props.players.length > 2
+                    ? this.props.players[2].name
+                    : ""}
+                </h1>
+                <img className="iconimg" src={this.props.players.length > 2 ? this.props.players[2].icon : ""} alt="Placeholder image" />
+                <img className="podiumimgright" src="/images/03-right.png" />
               </div>
-
-              {/* Column #3 - third place */}
-              <div className="column">
-                <div className="card">
-                  <div className="card-image">
-                    <figure className="image is-4by3">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
-                    </figure>
-                  </div>
-                  <div className="card-content">
-                    <div className="media">
-                      <div className="media-left">
-                        <figure className="image is-128x128">
-                          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
-                        </figure>
-                      </div>
-                      <div className="media-content">
-                        <p className="title is-4">John Smith</p>
-                        <p className="subtitle is-6">@johnsmith</p>
-                      </div>
-                    </div>
-
-                    {/* <div className="content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                      <a href="#">#css</a> <a href="#">#responsive</a>
-                      <br />
-                    </div> */}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="podiumbox">
-              <image src="../../server/public/images/11.jpg" />
             </div>
 
             <hr />
-            <button className="button is-centered is-danger" onClick={this.handleModalButton}>
+            <button className="button is-centered is-danger is-large" onClick={this.handleModalButton}>
               Play it again Sam...
             </button>
           </div>
