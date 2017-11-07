@@ -15,18 +15,16 @@ class Dictaphone extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      continueIsVisible: false,
+      playerHasSubmitted: false,
       points: null
     }
     this.compareText = this.compareText.bind(this)
   }
 
   componentDidMount () {
-    this.setState({continueIsVisible: false})
-  }
-
-  componentDidUpdate () {
-    this.props.subscribe(this.compareText)
+    this.setState({
+      playerHasSubmitted: false
+    })
   }
 
   submit (resetTranscript, stopListening) {
@@ -34,9 +32,22 @@ class Dictaphone extends Component {
     resetTranscript()
     this.props.handleClick()
   }
+
+  reworking (points) { // used for minusing points, but not reaching below 0
+    if (points < 0) {
+      let reworkedPoints = 1 // 1 point (because they still go something right)
+      return reworkedPoints
+    } else {
+      let reworkedPoints = points
+      return reworkedPoints
+    }
+  }
+
   compareText () {
     const {transcript, stopListening, randomVid, dispatch, round} = this.props
-    this.setState({continueIsVisible: true})
+    this.setState({
+      playerHasSubmitted: true
+    })
     stopListening()
     var points = 0
     var actual = randomVid.quote
@@ -46,6 +57,12 @@ class Dictaphone extends Component {
     })
     if (transcript.toLowerCase() === actual.toLowerCase()) {
       points = 20 // maybe just keep as 10, without double points
+      dispatch(setPlayerScores(points, round.currentPlayer))
+      return points
+    } else if (transArr.length > actualArr.length) {
+      let adjustedPoints = (points - (transArr.length - actualArr.length))
+      let percentagePoints = Math.round((adjustedPoints / actualArr.length) * 10)
+      points = this.reworking(percentagePoints)
       dispatch(setPlayerScores(points, round.currentPlayer))
       return points
     } else {
@@ -68,11 +85,11 @@ class Dictaphone extends Component {
       </button>
       <br />
       <input type="text" value={transcript} id="speech-field" />
-      {playerScores.length > 0 && <p>
+      {this.state.playerHasSubmitted && playerScores.length > 0 && <p>
             Score: {playerScores[playerScores.length - 1].score}
       </p>}
       <br />
-      {this.state.continueIsVisible && <button id="next" className="button is-large is-danger" onClick={() => this.submit(resetTranscript, stopListening)}>
+      {this.state.playerHasSubmitted && <button id="next" className="button is-large is-danger" onClick={() => this.submit(resetTranscript, stopListening)}>
             Continue
       </button>}
     </div>
