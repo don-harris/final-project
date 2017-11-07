@@ -2,63 +2,79 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Header from "./Header";
+import Podium from "./Podium"
 
 import { endRound, resetGame } from '../actions/round'
 
 class Leaderboard extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.endGame = this.endGame.bind(this)
-    this.calcTotal = this.calcTotal.bind(this)
+      isOpen: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleModalButton = this.handleModalButton.bind(this);
+    this.endGame = this.endGame.bind(this);
+    this.calcTotal = this.calcTotal.bind(this);
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
-  componentDidMount () {
-    const { dispatch, round } = this.props
-    dispatch(endRound(round))
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
+
+  componentDidMount() {
+    const { dispatch, round } = this.props;
+    dispatch(endRound(round));
   }
 
-  handleClick () {
-    const { game, history } = this.props
-    game.length < 3 ? history.push('/round') : this.endGame()
+  handleClick() {
+    const { game, history } = this.props;
+    game.length < 3 ? history.push("/round") : this.endGame();
   }
 
-  endGame () {
+  endGame() {
+    this.toggleModal()
+  }
+
+  handleModalButton () {
     const { dispatch, history } = this.props
     dispatch(resetGame())
-    history.push('/')
+    history.push("/")
   }
 
-  calcTotal (rounds) {
-    console.log('This is rounds.length',rounds.length)
+  calcTotal(rounds) {
+    console.log("This is rounds.length", rounds.length);
     // const total = rounds.reduce((accumulator, ) => {
     //   accumulator + currentValue;
     // });
-    if(rounds.length === 3) {
-      return rounds[0] + rounds[1] + rounds[2]
+    if (rounds.length === 3) {
+      return rounds[0] + rounds[1] + rounds[2];
     } else if (rounds.length === 2) {
-      return rounds[0] + rounds[1]
+      return rounds[0] + rounds[1];
     } else {
       return rounds[0];
     }
     console.log(total);
   }
 
+  render() {
+    this.props.players.sort((a, b) => {
+      const aTotal = this.calcTotal(a.rounds);
+      const bTotal = this.calcTotal(b.rounds);
+      const total = 0;
+      if (aTotal > bTotal) return -1;
+      if (aTotal < bTotal) return 1;
+    });
+    console.log('This is sorted players',this.props.players)
 
-  render () {
-    this.props.players.sort((a,b) => {
-      const aTotal = this.calcTotal(a.rounds)
-      const bTotal = this.calcTotal(b.rounds)
-      const total = 0 
-      if (aTotal > bTotal) return - 1
-      if (aTotal < bTotal) return 1
-    })
-    
     return <div className="container">
         <Header />
-        <h1 className="leadertitle title is-1">And the nominations are...</h1>
+        <h1 className="leadertitle title is-1">
+          And the nominations are...
+        </h1>
         <table className="table is-bordered is-fullwidth is-striped">
           <thead className="thead">
             <tr className="tr">
@@ -99,6 +115,53 @@ class Leaderboard extends React.Component {
         <button className="button is-large is-danger" onClick={this.handleClick}>
           <strong>Continue</strong>
         </button>
+
+        <Podium show={this.state.isOpen} onClose={this.toggleModal}>
+          {console.log("This is podium players: ", this.props.players)}
+          <div className="">
+            <div>
+              <h1 className="titlefont3 is-1 has-text-centered">
+                And the Oscar goes to...
+              </h1>
+              <hr />
+            </div>
+
+            <div className="flexbox-container">
+              <div className="">
+                <h1 className="title is-2 has-text-centered">
+                  {this.props.players.length > 1
+                    ? this.props.players[1].name
+                    : ""}
+                </h1>
+                <img className="iconimg" src={this.props.players.length > 1 ? this.props.players[1].icon : ""} alt="Placeholder image" />
+                <img className="podiumimgleft" src="/images/01-left.png" />
+              </div>;
+              <div className="">
+                <h1 className="title is-2 has-text-centered">
+                  {this.props.players.length > 0
+                    ? this.props.players[0].name
+                    : ""}
+                </h1>
+                <img className="iconimg" src={this.props.players.length > 0 ? this.props.players[0].icon : ""} alt="Placeholder image" />
+                <img className="podiumimgcentre" src="/images/02-middle.png" />
+              </div>
+              <div className="">
+                <h1 className="title is-2 has-text-centered">
+                  {this.props.players.length > 2
+                    ? this.props.players[2].name
+                    : ""}
+                </h1>
+                <img className="iconimg" src={this.props.players.length > 2 ? this.props.players[2].icon : ""} alt="Placeholder image" />
+                <img className="podiumimgright" src="/images/03-right.png" />
+              </div>
+            </div>
+
+            <hr />
+            <button className="button is-centered is-danger is-large" onClick={this.handleModalButton}>
+              Play it again Sam...
+            </button>
+          </div>
+        </Podium>
       </div>;
   }
 }

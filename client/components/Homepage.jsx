@@ -22,7 +22,7 @@ class Homepage extends React.Component {
         </div>
         <div className="sub-buttons">
           <Link to="/aboutus" className="aboutus">
-            <button className="button is large"><strong>About Us</strong></button>
+            <button className="button"><strong>About Us</strong></button>
           </Link>
           
           <Link to="/instructions" className="instructions" >

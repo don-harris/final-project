@@ -26,6 +26,13 @@ body {
   color: rgba(0, 0, 0, 0.904);
 }
 
+.titlefont3 {
+  font-size: 48px;
+  font-family: 'Abril Fatface', cursive;
+  font-weight: bold;
+  color: rgb(220, 20, 70);
+}
+
 .playernameinput {
   margin-bottom: 20px;
 }
@@ -95,4 +102,66 @@ line-height: 1;
 }
 .strong {
   font-weight: bold;
+}
+
+/* Modal stylings */
+
+.modal {
+  color: white;
+  padding: 30px;
+}
+
+.podiumbox {
+  max-height: 300px;
+  width: 100%;
+  margin: auto;
+}
+
+.iconimg {
+  margin-bottom: -12px;
+}
+
+.podiumimg {
+  margin: auto;
+  width: 100%;
+}
+
+.podiumimgcentre {
+  margin: auto;
+  width: 100%;
+}
+
+.podiumimgleft {
+  margin-right: -11px;
+  width: 100%;
+
+}
+
+.podiumimgright {
+  width: 100%;
+  position: relative;
+  bottom: 0.5px;
+}
+
+.flexbox-container {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  justify-items: flex-end;
+  align-items: flex-end;
+
+}
+
+.flexbox-container>div {
+  width: 33.3%;
+  padding: 0px;
+  flex-direction: column-reverse;
+}
+
+.flexbox-container>div:first-child {
+  margin: 0px;
+}
+
+.disableClick {
+  pointer-events:none;
 }
