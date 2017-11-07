@@ -8,6 +8,7 @@ class Video extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      playerCanSpeak: false,
       countdownIsVisible: false,
       video: null,
       vidurl: '',
@@ -17,6 +18,7 @@ class Video extends React.Component {
       pauseTime: 0,
       timeLeft: 3
     }
+    this.saveVideo = this.saveVideo.bind(this)
     this.startClip = this.startClip.bind(this)
     this.muteClip = this.muteClip.bind(this)
     this.pauseClip = this.pauseClip.bind(this)
@@ -30,6 +32,7 @@ class Video extends React.Component {
     const { randomVid } = this.props
     console.log('test: ', randomVid)
     this.setState({
+      playerCanSpeak: false,
       startVisible: true,
       speakPromptIsVisible: false,
       countdownIsVisible: false,
@@ -41,21 +44,25 @@ class Video extends React.Component {
     })
   }
 
-  startClip (event) {
-    console.log('randomVid: ', this.props.randomVid.vid_url)
+  saveVideo (e) {
     this.setState({
-      video: event.target
+      video: e.target
     })
-    event.target.seekTo(this.state.startTime)
-    event.target.playVideo()
-    setTimeout(() => this.muteClip(), (this.state.quoteStart - this.state.startTime) * 1000)
+  }
+
+  startClip () {
+    this.hideStart()
+    const {video, quoteStart, startTime} = this.state
+    video.seekTo(startTime)
+    video.playVideo()
+    setTimeout(() => this.muteClip(), (quoteStart - startTime) * 1000)
   }
   hideStart () {
     this.setState({startVisible: false})
   }
 
   hideCountdown () {
-    this.setState({countdownIsVisible: false})
+    this.setState({countdownIsVisible: false, playerCanSpeak: true})
   }
   hideSpeakPrompt () {
     this.setState({speakPromptIsVisible: false})
@@ -102,11 +109,13 @@ class Video extends React.Component {
             color="#DC143C"
             size={100} />}
         </div>
-        <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.startClip} />
+        <div className="disableClick">
+          <YouTube videoId={this.state.vidurl} opts={opts} onReady={this.saveVideo} />
+        </div>
         <br/>
-        {this.state.startVisible && <button className="button is-primary" onClick={this.hideStart}>Start</button>}
+        {this.state.startVisible && <button className="button is-danger" onClick={this.startClip}>Start</button>}
         {this.state.speakPromptIsVisible && <h2>Please Speak into the microphone</h2>}
-        <Dictaphone randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} />
+        <Dictaphone randomVid={this.props.randomVid} handleClick={this.props.handleClick} startVisible={this.state.startVisible} playerCanSpeak={this.state.playerCanSpeak}/>
       </div>
     )
   }

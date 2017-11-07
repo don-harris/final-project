@@ -161,3 +161,7 @@ line-height: 1;
 .flexbox-container>div:first-child {
   margin: 0px;
 }
+
+.disableClick {
+  pointer-events:none;
+}
