@@ -60,7 +60,6 @@ class Video extends React.Component {
   pauseClip () {
     this.hideCountdown()
     this.setState({ speakPromptIsVisible: true })
-    console.log(this.state.countdownIsVisible)
     this.state.video.pauseVideo()
   }
   restartClip () {
