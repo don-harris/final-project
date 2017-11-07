@@ -20,11 +20,14 @@ class Dictaphone extends Component {
     }
     this.compareText = this.compareText.bind(this)
   }
-  
+
   componentDidMount () {
     console.log('continue is: ', this.state.continueIsVisible)
-    this.props.subscribe(this.compareText)
     this.setState({continueIsVisible: false})
+  }
+
+  componentDidUpdate () {
+    this.props.subscribe(this.compareText)
   }
 
   submit (resetTranscript, stopListening) {
@@ -32,7 +35,6 @@ class Dictaphone extends Component {
     resetTranscript()
     this.props.handleClick()
   }
-  
   compareText () {
     const {transcript, stopListening, randomVid, dispatch, round} = this.props
     this.setState({continueIsVisible: true})
