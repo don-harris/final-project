@@ -13,7 +13,7 @@ const Header = props => {
       </section>
       <hr />
     </div>
-  );
-};
+  )
+}
 
 export default Header;
