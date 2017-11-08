@@ -90,6 +90,7 @@ class Dictaphone extends Component {
   stopListeningClick () {
     this.stopSubmit()
     this.props.stopListening()
+    this.props.restartClip()
   }
 
   checkScore(points) {
@@ -148,9 +149,9 @@ class Dictaphone extends Component {
     }
 
     return <div>
-      {!this.props.startVisible && this.state.speakVisible && !this.props.playerCanSpeak && <button className="button" disabled>Speak</button>}
+      {!this.props.startVisible && this.state.speakVisible && !this.props.playerCanSpeak && <button className="button is-large" disabled>Cameras are rolling ! Get ready !</button>}
       {this.props.playerCanSpeak && this.state.speakVisible && <button className="button is-success" onClick={this.startSpeak}>Speak</button>}
-      {this.state.submitVisible && <button className="button" onClick={this.stopListeningClick}>
+      {this.state.submitVisible && <button className="button is-large is-danger" onClick={this.stopListeningClick}>
           Stop/Submit
       </button>}
       <br />
