@@ -165,3 +165,32 @@ line-height: 1;
 .disableClick {
   pointer-events:none;
 }
+
+/* .curtains {
+ background-image: url('/images/curtains.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+} */
+
+.curtain-left{
+  /* float: left; */
+  position: fixed;
+  left: 0;
+  overflow: hidden;
+  height: 100vh;
+}
+.curtain-right{
+  /* float: right; */
+  right: 0;
+  position: fixed;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.speech-box {
+  max-width: 55vw;
+  margin-top: 0;
+  /* position: absolute; */
+}

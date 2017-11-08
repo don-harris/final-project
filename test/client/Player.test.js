@@ -8,13 +8,11 @@ import store from '../../client/store'
 import Players from '../../client/components/Players'
 import './setup-dom'
 
-Players.prototype.componentDidMount = () => { }
-
-test('Title renders on players', () => {
+test('Player page renders', () => {
   const wrapper = mount(<Provider store={store}>
     <Router>
       <Players />
     </Router>
   </Provider>)
-  expect(wrapper.find('p').text()).toBe('Now Enter Your Name ')
+  expect(wrapper.find('.box .title').text()).toBe('Join the cast')
 })

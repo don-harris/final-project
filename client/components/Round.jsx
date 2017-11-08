@@ -58,15 +58,22 @@ class Round extends React.Component {
     const {currentPlayer} = this.props.round
     const {randomVid, disableButton} = this.state
     return (
-      <div>
-        <Header/>
-        {currentPlayer && <img src={currentPlayer.icon}/>}
-        {currentPlayer && <h2>{currentPlayer.name}</h2>}
-        {
-          !disableButton && <div>
-            {randomVid && <Video randomVid={randomVid} handleClick={this.handleClick}/>}
-          </div>
-        }
+      <div className="curtains">
+        <img src="/images/curtains-left.png" className="curtain-left"/>
+        <img src="/images/curtains-right.png" className="curtain-right"/>
+        <div>
+          <Header/>
+          <br/>
+          <br/>
+          {currentPlayer && <img src={currentPlayer.icon}/>}
+          <br/>
+          Starring: {currentPlayer && <h2 className="title">{currentPlayer.name}</h2>}
+          {
+            !disableButton && <div>
+              {randomVid && <Video randomVid={randomVid} handleClick={this.handleClick}/>}
+            </div>
+          }
+        </div>
       </div>
     )
   }

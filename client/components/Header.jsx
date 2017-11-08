@@ -11,7 +11,6 @@ const Header = props => {
           <h1 className="titlefont2">Not Stirred</h1>
         </div>
       </section>
-      <hr />
     </div>
   )
 }
