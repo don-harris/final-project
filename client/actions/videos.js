@@ -1,8 +1,10 @@
 import request from 'superagent'
 
+export const RECEIVE_VIDEOS = 'RECEIVE_VIDEOS'
+
 export const receiveVideos = (videos) => {
   return {
-    type: 'RECEIVE_VIDEOS',
+    type: RECEIVE_VIDEOS,
     videos
   }
 }
