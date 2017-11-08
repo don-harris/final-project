@@ -24,11 +24,17 @@
       "stage-0"
     ]
   },
+  "jest": {
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
+  },
   "author": "EDA",
   "license": "ISC",
   "devDependencies": {
     "enzyme": "^2.8.2",
     "jest": "^21.2.1",
+    "jest-localstorage-mock": "^2.0.1",
     "nodemon": "^1.11.0",
     "sqlite3": "^3.1.8",
     "supertest": "^3.0.0"

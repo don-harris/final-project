@@ -17,7 +17,7 @@ afterEach(() => env.cleanup(testDb))
 test('read videos db', () => {
   return videosDb.getVideos(testDb)
     .then(videos => {
-      expect(videos.length).toBe(6)
+      expect(videos.length).toBe(18)
       expect(videos[0].hasOwnProperty('vid_url')).toBeTruthy()
     })
 })

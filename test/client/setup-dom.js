@@ -2,6 +2,8 @@ require('babel-register')
 
 const { JSDOM } = require('jsdom')
 
+const storage = {}
+
 const dom = new JSDOM('<body></body>')
 
 global.window = dom.window
