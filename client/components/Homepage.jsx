@@ -1,5 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+
 
 class Homepage extends React.Component {
   constructor (props) {
@@ -9,7 +12,6 @@ class Homepage extends React.Component {
   }
 
   render () {
-
     return <div className="columns">
       <div className="homepageimage column is-two-fifths" ></div>
       <div className="container column is-half">
@@ -20,19 +22,22 @@ class Homepage extends React.Component {
             <button className="button is-large is-danger"><strong>Let's play!</strong></button>
           </Link>
         </div>
-        <div className="sub-buttons">
-          <Link to="/aboutus" className="aboutus">
-            <button className="button"><strong>About Us</strong></button>
-          </Link>
-          
-          <Link to="/instructions" className="instructions" >
-            <button className="button"><strong>Instructions</strong></button>
-          </Link>
+          <div className="sub-buttons">
+              <Link to="/aboutus" className="aboutus">
+                <button className="button is-large"><strong>About Us</strong></button>
+              </Link>
+              <Link to="/instructions" className="instructions">
+                <button className="button is-large"><strong>Instructions</strong></button>
+             </Link>
+             <Link to="/winners">
+              <button className="button is-large"><strong>Hall of Fame</strong></button>
+            </Link>
         </div>
       </div>
     </div>
   }
 }
+
 
 export default Homepage
 
