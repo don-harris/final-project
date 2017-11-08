@@ -171,4 +171,9 @@ line-height: 1;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    height: 100vh;
+}
+
+.speech-box {
+  max-width: 72vw;
 }

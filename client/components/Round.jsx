@@ -64,7 +64,8 @@ class Round extends React.Component {
           <br/>
           <br/>
           {currentPlayer && <img src={currentPlayer.icon}/>}
-          {currentPlayer && <h2>{currentPlayer.name}</h2>}
+          <br/>
+          Starring: {currentPlayer && <h2 className="title">{currentPlayer.name}</h2>}
           {
             !disableButton && <div>
               {randomVid && <Video randomVid={randomVid} handleClick={this.handleClick}/>}

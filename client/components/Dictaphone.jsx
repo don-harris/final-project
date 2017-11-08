@@ -139,7 +139,7 @@ class Dictaphone extends Component {
           Stop/Submit
       </button>}
       <br />
-      <input type="text" value={transcript} id="speech-field" />
+      <input type="text" value={transcript} id="speech-field" className="speech-box"/>
       {this.state.continueVisible && playerScores.length > 0 && <p>
             Score: {playerScores[playerScores.length - 1].score}
       </p>}
