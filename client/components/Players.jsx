@@ -90,7 +90,7 @@ class Players extends React.Component {
         <div className="box column is-6 has-text-centered">
           <div>
             <p className="title is-3">
-              {pendingPlayer.name || 'Join the cast'}{' '}
+              {pendingPlayer.name || 'Join the cast'}
             </p>
             <img className="image" style={{ margin: 'auto' }} src={pendingPlayer.icon} />
           </div>

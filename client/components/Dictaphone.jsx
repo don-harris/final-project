@@ -14,8 +14,9 @@ const propTypes = {
 }
 
 const perfectScore = {url: '/sounds/applausesound.mp3', start: 1}
-const above50 = {url: '/sounds/Applause.mp3', start: 0}
-const below50 = {url: '/sounds/WrongBuzzer.mp3', start: 0}
+const seven9 = {url: '/sounds/cheer.mp3', start: 0}
+const four6 = { url: '/sounds/applus.mp3', start: 4 }
+const one3 = {url: '/sounds/WrongBuzzer.mp3', start: 0}
 const flunked = {url: '/sounds/FailHorn.mp3', start: 0}
 
 class Dictaphone extends Component {
@@ -93,15 +94,17 @@ class Dictaphone extends Component {
     this.props.restartClip()
   }
 
-  checkScore(points) {
+  checkScore (points) {
     if (points === 20) {
       this.setState({ response: perfectScore })
     } else if (points === 0) {
       this.setState({ response: flunked })
-    } else if (points > 5) {
-      this.setState({ response: above50 })
+    } else if (points > 6) {
+      this.setState({ response: seven9 })
+    } else if (points > 3) {
+      this.setState({ response: four6 })
     } else {
-      this.setState({ response: below50 })
+      this.setState({ response: one3 })
     }
   }
 
