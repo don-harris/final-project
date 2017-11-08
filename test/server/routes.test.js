@@ -14,7 +14,7 @@ test('GET /round', () => {
     .get('/api/v1/videos')
     .expect(200)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       expect(res.body.length).toBe(2)
     })
     .catch(err => {
