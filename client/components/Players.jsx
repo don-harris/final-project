@@ -81,6 +81,7 @@ class Players extends React.Component {
 
     return <div>
       <Header />
+      <hr />
       <br />
       <div className="columns is-multiline">
         {players.map((player, i) => (

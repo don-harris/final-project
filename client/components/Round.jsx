@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {startRound, nextPlayer} from '../actions/round'
-import Dictaphone from './Dictaphone'
 import Video from './Video'
 import Header from './Header'
 import {getVideos} from '../actions/videos'
@@ -20,18 +19,6 @@ class Round extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.subscribe = this.subscribe.bind(this)
-    this.trigger = this.trigger.bind(this)
-    this.subscriptions = []
-  }
-
-  trigger () {
-    this.subscriptions.map(fn => fn())
-  }
-
-  subscribe (func) {
-    const foundFunc = this.subscriptions.find(f => f.name === func.name)
-    !foundFunc ? this.subscriptions.push(func) : console.log('dont sub twice')
   }
 
   componentWillMount () {
@@ -71,16 +58,22 @@ class Round extends React.Component {
     const {currentPlayer} = this.props.round
     const {randomVid, disableButton} = this.state
     return (
-      <div>
-        <Header/>
-        {currentPlayer && <img src={currentPlayer.icon}/>}
-        {currentPlayer && <h2>{currentPlayer.name}</h2>}
-        {
-          !disableButton && <div>
-            {randomVid && <Video subscribe={this.subscribe} randomVid={randomVid} />}
-            <Dictaphone subscribe={this.subscribe} trigger={this.trigger} randomVid={randomVid} handleClick={this.handleClick}/>
-          </div>
-        }
+      <div className="curtains">
+        <img src="/images/curtains-left.png" className="curtain-left"/>
+        <img src="/images/curtains-right.png" className="curtain-right"/>
+        <div>
+          <Header/>
+          <br/>
+          <br/>
+          {currentPlayer && <img src={currentPlayer.icon}/>}
+          <br/>
+          Starring: {currentPlayer && <h2 className="title">{currentPlayer.name}</h2>}
+          {
+            !disableButton && <div>
+              {randomVid && <Video randomVid={randomVid} handleClick={this.handleClick}/>}
+            </div>
+          }
+        </div>
       </div>
     )
   }
