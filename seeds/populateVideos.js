@@ -5,7 +5,7 @@ exports.seed = function (knex, Promise) {
         {id: 1, vid_url: 'gId6nrMDmUU', quote: 'I love lamp', startTime: 0, quoteStart: 14, quoteEnd: 16, pauseTime: 10, title: 'Anchorman'},
         {id: 2, vid_url: 'VWb1z6ZwUoY', quote: 'We came we saw we kicked it\'s ass', startTime: 43, quoteStart: 76, quoteEnd: 79, pauseTime: 10, title: 'Ghostbusters'},
         {id: 3, vid_url: 'Coemj2qdWMw', quote: 'Happy people just don\'t shoot their husbands', startTime: 63, quoteStart: 78, quoteEnd: 80, pauseTime: 10, title: 'Legally Blonde'},
-        {id: 4, vid_url: 'pEOVNmSR7_c', quote: 'Yippee ki-yay mother f*****', startTime: 81, quoteStart: 109, quoteEnd: 112, pauseTime: 10, title: 'Die Hard'},
+        {id: 4, vid_url: 'luBk4VrMHNI', quote: 'become a pop star and they give you them for free', startTime: 12, quoteStart: 22, quoteEnd: 25, pauseTime: 10, title: 'Love Actually'},
         {id: 5, vid_url: '1YGfrGKK9Mo', quote: 'I\'m flying Jack', startTime: 24, quoteStart: 40, quoteEnd: 43, pauseTime: 10, title: 'Titanic'},
         {id: 6, vid_url: 'TU7CDejp6Lw', quote: 'Get to the chopper', startTime: 103, quoteStart: 129, quoteEnd: 132, pauseTime: 10, title: 'Predator'},
         {id: 7, vid_url: 'pxPGzj2L3n0', quote: 'And my axe', startTime: 0, quoteStart: 9, quoteEnd: 12, pauseTime: 10, title: 'The Lord of The Rings'},
@@ -18,8 +18,7 @@ exports.seed = function (knex, Promise) {
         {id: 14, vid_url: 'vL-KQij0I8I', quote: 'from a pile of stuff', startTime: 97, quoteStart: 108, quoteEnd: 111, pauseTime: 10, title: 'The Devil Wears Prada'},
         {id: 15, vid_url: 'oKxsW8DKJQQ', quote: 'you\'re going to need a bigger boat', startTime: 57, quoteStart: 75, quoteEnd: 78, pauseTime: 10, title: 'Jaws'},
         {id: 16, vid_url: '9FnO3igOkOk', quote: 'you can\'t handle the truth', startTime: 33, quoteStart: 44, quoteEnd: 47, pauseTime: 10, title: 'A Few Good Men'},
-        {id: 17, vid_url: 'YbBiXPVKuTA', quote: 'are you not entertained', startTime: 71, quoteStart: 85, quoteEnd: 87, pauseTime: 10, title: 'Gladiator'},
-        {id: 18, vid_url: 'luBk4VrMHNI', quote: 'become a pop star and they give you them for free', startTime: 12, quoteStart: 22, quoteEnd: 25, pauseTime: 10, title: 'Love Actually'}
+        {id: 17, vid_url: 'YbBiXPVKuTA', quote: 'are you not entertained', startTime: 71, quoteStart: 85, quoteEnd: 87, pauseTime: 10, title: 'Gladiator'}
       ])
     })
 }
