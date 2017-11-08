@@ -13,7 +13,7 @@ const propTypes = {
   browserSupportsSpeechRecognition: PropTypes.bool
 }
 
-const perfectScore = {url: '/sounds/applausesound.mp3', start: 0}
+const perfectScore = {url: '/sounds/applausesound.mp3', start: 1}
 const above50 = {url: '/sounds/Applause.mp3', start: 0}
 const below50 = {url: '/sounds/WrongBuzzer.mp3', start: 0}
 const flunked = {url: '/sounds/FailHorn.mp3', start: 0}
@@ -55,7 +55,7 @@ class Dictaphone extends Component {
 
   stopSubmit () {
     this.setState({submitVisible: false, continueVisible: true})
-    setTimeout(this.playSound, 3500)
+    setTimeout(this.playSound, 3000)
   }
 
   playSound () {
@@ -71,7 +71,7 @@ class Dictaphone extends Component {
 
   reworking (points) { // used for minusing points, but not reaching below 0
     if (points < 0) {
-      let reworkedPoints = 1 // 1 point (because they still go something right)
+      let reworkedPoints = 1 // 1 point (because they still got something right)
       return reworkedPoints
     } else {
       let reworkedPoints = points

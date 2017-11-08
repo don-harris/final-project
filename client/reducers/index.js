@@ -6,6 +6,7 @@ import videos from './videos'
 import currentPlayer from './currentplayer'
 import playerScores from './playerScores'
 import game from './game'
+import winners from './winners'
 
 export default combineReducers({
   players,
@@ -13,5 +14,6 @@ export default combineReducers({
   videos,
   currentPlayer,
   playerScores,
-  game
+  game,
+  winners
 })

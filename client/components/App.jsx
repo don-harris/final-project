@@ -6,6 +6,7 @@ import Players from './Players'
 import Homepage from './Homepage'
 import Round from './Round'
 import Leaderboard from './Leaderboard'
+import HallOfFame from './HallOfFame'
 
 const App = () => (
   <Router>
@@ -13,6 +14,7 @@ const App = () => (
       <Route exact path="/" component={Homepage} />
       <Route path="/aboutus" component={AboutUs} />
       <Route path="/instructions" component={Instructions} />
+      <Route path="/winners" component={HallOfFame} />
       <Route path="/players" component={Players} />
       <Route path="/round" component={Round} />
       <Route path="/leaderboard" component={Leaderboard} />
