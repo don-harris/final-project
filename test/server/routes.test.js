@@ -11,9 +11,10 @@ const server = require('../../server/server')
 
 test('GET /round', () => {
   return request(server)
-    .get('/api/v1/round')
+    .get('/api/v1/videos')
     .expect(200)
     .then(res => {
+      console.log(res)
       expect(res.body.length).toBe(2)
     })
     .catch(err => {
