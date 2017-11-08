@@ -58,8 +58,10 @@ class Round extends React.Component {
     const {currentPlayer} = this.props.round
     const {randomVid, disableButton} = this.state
     return (
-      <div>
-        <div className="section curtains">
+      <div className="curtains">
+        <img src="/images/curtains-left.png" className="curtain-left"/>
+        <img src="/images/curtains-right.png" className="curtain-right"/>
+        <div>
           <Header/>
           <br/>
           <br/>
