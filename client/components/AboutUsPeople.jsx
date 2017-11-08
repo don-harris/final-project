@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AboutUsPeople = props => {
-  const {name, githubUserName, imageSrc, email} = props
+  const {name, githubUserName, imageSrc, email, aboutMe} = props
 
 return (
   <div className="team-info">
@@ -16,7 +16,7 @@ return (
             <p>
               <strong>{name}</strong> <small>{email}</small>
               <br />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+              {aboutMe}
             </p>
           </div>
           <nav className="level is-mobile">
