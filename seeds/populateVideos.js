@@ -17,8 +17,7 @@ exports.seed = function (knex, Promise) {
         {id: 13, vid_url: 'AyrP-pwDayE', quote: 'you had me at hello', startTime: 75, quoteStart: 91, quoteEnd: 94, pauseTime: 10, title: 'Jerry Maguire'},
         {id: 14, vid_url: 'vL-KQij0I8I', quote: 'from a pile of stuff', startTime: 97, quoteStart: 108, quoteEnd: 111, pauseTime: 10, title: 'The Devil Wears Prada'},
         {id: 15, vid_url: 'oKxsW8DKJQQ', quote: 'you\'re going to need a bigger boat', startTime: 57, quoteStart: 75, quoteEnd: 78, pauseTime: 10, title: 'Jaws'},
-        {id: 16, vid_url: '9FnO3igOkOk', quote: 'you can\'t handle the truth', startTime: 33, quoteStart: 44, quoteEnd: 47, pauseTime: 10, title: 'A Few Good Men'},
-        {id: 17, vid_url: 'YbBiXPVKuTA', quote: 'are you not entertained', startTime: 71, quoteStart: 85, quoteEnd: 87, pauseTime: 10, title: 'Gladiator'}
+        {id: 16, vid_url: '9FnO3igOkOk', quote: 'you can\'t handle the truth', startTime: 33, quoteStart: 44, quoteEnd: 47, pauseTime: 10, title: 'A Few Good Men'}
       ])
     })
 }
