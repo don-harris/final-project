@@ -34,7 +34,7 @@ module.exports ={
       email: "strettcall@yahoo.com",
       githubUserName: "callan-stretton",
       imageSrc: "cal.png",
-      aboutMe:" I was the git master and not one piece of broken code got passed me."
+      aboutMe:"I love movies and I also love coding, so this project was really fun! Ever since doing a talk on Speech to Text I've been interested in the technology and I was excited to bring it in and use it for a game. Being the Git Master was quite cool as I could see all the incoming changes. Hope you enjoy the game!"
     }
 
   ]
