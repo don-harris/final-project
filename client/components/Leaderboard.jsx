@@ -72,6 +72,7 @@ class Leaderboard extends React.Component {
 
     return <div className="container">
         <Header />
+        <hr />
         <h1 className="leadertitle title is-1">
           And the nominations are...
         </h1>
