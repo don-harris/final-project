@@ -10,3 +10,10 @@ test('players reducer works', () => {
     console.log('This is newState', newState)
     expect(newState.length).toBe(4)
 })
+
+test("players reducer ignores unknown action types", () => {
+  const initialState = [];
+  const action = { type: "UNKNOWN_ACTION_TYPE", round: [{}] };
+  const newState = reducer(initialState, action);
+  expect(newState).toBe(initialState);
+});

@@ -7,6 +7,12 @@ test('game reducer works', () => {
         round: [{}]
     }
     const newState = reducer(initialState,action)
-    console.log('This is newState', newState)
     expect(newState.length).toBe(1)
+})
+
+test('game reducer ignores unknown action types', () => {
+    const initialState = [];
+    const action = { type: "UNKNOWN_ACTION_TYPE", round: [{}] };
+    const newState = reducer(initialState, action);
+    expect(newState).toBe(initialState);
 })
