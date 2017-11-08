@@ -10,6 +10,7 @@ import Instructions from "../../client/components/Instructions";
 import Header from "../../client/components/Header";
 import Leaderboard from "../../client/components/Leaderboard";
 import HallOfFame from "../../client/components/HallOfFame";
+import Dictaphone from "../../client/components/Dictaphone";
 
 test('Title renders on homepage', () => {
   const wrapper = shallow(<Homepage />)
