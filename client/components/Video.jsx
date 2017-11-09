@@ -90,8 +90,8 @@ class Video extends React.Component {
 
   render () {
     const opts = {
-      height: '390',
-      width: '640',
+      height: '720',
+      width: '1280',
       playerVars: {
         rel: 0,
         controls: 0,
