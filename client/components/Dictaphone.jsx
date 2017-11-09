@@ -121,7 +121,7 @@ class Dictaphone extends Component {
     })
     if (finalTranscript.toLowerCase() === actual.toLowerCase()) {
       console.log('Correct, double points!')
-      points = 20 // maybe just keep as 10, without double points
+      points = 20 
       console.log('points: ' + points)
       dispatch(setPlayerScores(points, round.currentPlayer))
       this.checkScore(points)
