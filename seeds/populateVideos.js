@@ -20,7 +20,9 @@ exports.seed = function (knex, Promise) {
         {id: 16, vid_url: '9FnO3igOkOk', quote: 'you can\'t handle the truth', startTime: 33, quoteStart: 44, quoteEnd: 47, pauseTime: 10, title: 'A Few Good Men'},
         {id: 17, vid_url: 'YbBiXPVKuTA', quote: 'are you not entertained', startTime: 71, quoteStart: 85, quoteEnd: 87, pauseTime: 10, title: 'Gladiator'},
         {id: 18, vid_url: 'luBk4VrMHNI', quote: 'become a pop star and they give you them for free', startTime: 12, quoteStart: 22, quoteEnd: 25, pauseTime: 10, title: 'Love Actually'},
-        {id: 19, vid_url: 'X4Ng84YEzH4', quote: 'thing go skkkrt and pa pa pa', startTime: 0, quoteStart: 100, quoteEnd: 100, pauseTime: 10, title: 'Love Actually', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'}
+        {id: 19, vid_url: 't9HUyHmLFzA', quote: 'there are many things that I would like to say to you but i dont know how', startTime: 118, quoteStart: 133, quoteEnd: 141, pauseTime: 10, title: 'wndrwll', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
+        {id: 20, vid_url: 'dQw4w9WgXcQ', quote: 'you wouldn\'t get this from any other guy', startTime: 0, quoteStart: 30, quoteEnd: 36, pauseTime: 10, title: 'Never Gonna Give You Up', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
+        {id: 21, vid_url: 'djV11Xbc914', quote: 'in a day or two', startTime: 90, quoteStart: 108, quoteEnd: 115, pauseTime: 10, title: 'Take On Me', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'}
       ])
     })
 }
