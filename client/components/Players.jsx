@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addAllPlayers} from '../actions/players'
+import {enable} from '../actions/memes'
 import Header from './Header'
 const icons = [
   '/images/braveheart.png',
@@ -21,10 +22,9 @@ class Players extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      // players: [{icon: 'icon1', name: 'Bob'}, {icon: null, name: 'Harrison'}]
+      memes: false,
       players: [],
       pendingPlayer: {id: null, icon: null, name: ''},
-      // icon: null,
       dropdownActive: false
     }
     this.addPlayer = this.addPlayer.bind(this)
@@ -32,6 +32,7 @@ class Players extends React.Component {
     this.submitAllPlayers = this.submitAllPlayers.bind(this)
     this.toggleDropDown = this.toggleDropDown.bind(this)
     this.selectIcon = this.selectIcon.bind(this)
+    this.enableMeme = this.enableMeme.bind(this)
   }
   selectIcon (icon) {
     // const icon = evt.target.src
@@ -39,9 +40,12 @@ class Players extends React.Component {
     pendingPlayer.icon = icon
     this.setState({pendingPlayer})
   }
-  // selectPlayer (){
 
-  // }
+  enableMeme () {
+    const {players} = this.state
+    players.forEach(player => player.name.includes('420') ? this.props.dispatch(enable()) : console.log('no meme detected'))
+  }
+
   handleChange (evt) {
     const {pendingPlayer} = this.state
     pendingPlayer[evt.target.name] = evt.target.value
@@ -58,6 +62,7 @@ class Players extends React.Component {
   }
   submitAllPlayers (e) {
     e.preventDefault()
+    this.enableMeme()
     const playersWithId = this.state.players.map((player, i) => {
       const newPlayer = Object.assign({}, player)
       newPlayer.id = i + 1
