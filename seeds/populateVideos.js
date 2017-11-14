@@ -22,7 +22,7 @@ exports.seed = function (knex, Promise) {
         {id: 18, vid_url: 'luBk4VrMHNI', quote: 'become a pop star and they give you them for free', startTime: 12, quoteStart: 22, quoteEnd: 25, pauseTime: 10, title: 'Love Actually'},
         {id: 19, vid_url: 't9HUyHmLFzA', quote: 'there are many things that I would like to say to you but i dont know how', startTime: 118, quoteStart: 133, quoteEnd: 141, pauseTime: 10, title: 'wndrwll', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
         {id: 20, vid_url: 'dQw4w9WgXcQ', quote: 'you wouldn\'t get this from any other guy', startTime: 0, quoteStart: 30, quoteEnd: 36, pauseTime: 10, title: 'Never Gonna Give You Up', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
-        {id: 21, vid_url: '8L4cttwNaDs', quote: 'that\'s it back to winnipeg', startTime: 0, quoteStart: 9, quoteEnd: 13, pauseTime: 10, title: 'Simpsons', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
+        {id: 21, vid_url: '8L4cttwNaDs', quote: 'that\'s it back to winnipeg', startTime: 0, quoteStart: 10, quoteEnd: 13, pauseTime: 10, title: 'Simpsons', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
         {id: 22, vid_url: 'WIrWyr3HgXI', quote: 'i\'m still gonna send it', startTime: 0, quoteStart: 3, quoteEnd: 6, pauseTime: 10, title: 'Send it', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
         {id: 23, vid_url: 'du-TY1GUFGk', quote: 'it is wednesday my dudes', startTime: 0, quoteStart: 0, quoteEnd: 5, pauseTime: 10, title: 'wednesday', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
         {id: 24, vid_url: 'G7RgN9ijwE4', quote: 'you could do anything', startTime: 0, quoteStart: 16, quoteEnd: 19, pauseTime: 10, title: 'I have a dream', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
