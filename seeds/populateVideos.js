@@ -22,7 +22,12 @@ exports.seed = function (knex, Promise) {
         {id: 18, vid_url: 'luBk4VrMHNI', quote: 'become a pop star and they give you them for free', startTime: 12, quoteStart: 22, quoteEnd: 25, pauseTime: 10, title: 'Love Actually'},
         {id: 19, vid_url: 't9HUyHmLFzA', quote: 'there are many things that I would like to say to you but i dont know how', startTime: 118, quoteStart: 133, quoteEnd: 141, pauseTime: 10, title: 'wndrwll', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
         {id: 20, vid_url: 'dQw4w9WgXcQ', quote: 'you wouldn\'t get this from any other guy', startTime: 0, quoteStart: 30, quoteEnd: 36, pauseTime: 10, title: 'Never Gonna Give You Up', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
-        {id: 21, vid_url: 'djV11Xbc914', quote: 'in a day or two', startTime: 90, quoteStart: 108, quoteEnd: 115, pauseTime: 10, title: 'Take On Me', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'}
+        {id: 21, vid_url: 'djV11Xbc914', quote: 'in a day or two', startTime: 90, quoteStart: 109, quoteEnd: 115, pauseTime: 10, title: 'Take On Me', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
+        {id: 22, vid_url: 'yFhR1fKWG0', quote: 'that student was albert einstein', startTime: 158, quoteStart: 211, quoteEnd: 225, pauseTime: 10, title: 'Paradigm Shift', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
+        {id: 23, vid_url: 'WIrWyr3HgXI', quote: 'i\'m still gonna send it', startTime: 0, quoteStart: 3, quoteEnd: 6, pauseTime: 10, title: 'Send it', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
+        {id: 24, vid_url: 'du-TY1GUFGk', quote: 'it is wednesday my dudes', startTime: 0, quoteStart: 0, quoteEnd: 5, pauseTime: 10, title: 'wednesday', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
+        {id: 25, vid_url: 'G7RgN9ijwE4', quote: 'you want them to do you so much you could do anything', startTime: 0, quoteStart: 14, quoteEnd: 19, pauseTime: 10, title: 'I have a dream', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'},
+        {id: 26, vid_url: 'jUjw41YucDY', quote: 'I am the one don\'t weigh a ton don\'t need a gun to get respect up on the street', startTime: 0, quoteStart: 14, quoteEnd: 18, pauseTime: 10, title: 'Spongebob Curry', isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'}
       ])
     })
 }
