@@ -22,6 +22,7 @@ class Players extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      playerComplete: false,
       memes: false,
       players: [],
       pendingPlayer: {id: null, icon: null, name: ''},
@@ -33,6 +34,7 @@ class Players extends React.Component {
     this.toggleDropDown = this.toggleDropDown.bind(this)
     this.selectIcon = this.selectIcon.bind(this)
     this.enableMeme = this.enableMeme.bind(this)
+    this.readyUp = this.readyUp.bind(this)
   }
   selectIcon (icon) {
     // const icon = evt.target.src
@@ -40,6 +42,13 @@ class Players extends React.Component {
     pendingPlayer.icon = icon
     this.setState({pendingPlayer})
   }
+
+
+
+readyUp () {
+  const {icon, name} = this.state.pendingPlayer
+  !icon.endsWith('g') && name.length > 0 ? this.setState({playerComplete: true}) : console.log('not done')
+}
 
   enableMeme () {
     const {players} = this.state
@@ -49,13 +58,14 @@ class Players extends React.Component {
   handleChange (evt) {
     const {pendingPlayer} = this.state
     pendingPlayer[evt.target.name] = evt.target.value
+    this.readyUp()
     this.setState({pendingPlayer})
   }
   addPlayer (evt) {
-    let {players, pendingPlayer} = this.state
+    let {players, pendingPlayer, playerComplete} = this.state
     players.push(pendingPlayer)
     pendingPlayer = {id: null, icon: null, name: ''}
-    this.setState({players, pendingPlayer})
+    this.setState({players, pendingPlayer, playerComplete: false})
   }
   toggleDropDown (dropdownActive) {
     this.setState({dropdownActive})
@@ -125,9 +135,12 @@ class Players extends React.Component {
                 </div>
               </div>
             </div>
-            <button className="button" onClick={this.addPlayer}>
+            {!this.state.playerComplete && <button className="button" disabled>
+              Please select a name and icon
+            </button>}
+            {this.state.playerComplete && <button className="button" onClick={this.addPlayer}>
                 Add Player
-            </button>
+            </button>}
           </div>
         </div>
       </div>
