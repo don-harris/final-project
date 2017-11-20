@@ -14,7 +14,7 @@ export const receiveWinners = (winners) => {
 export function getAllWinners () {
   return dispatch => {
     getWinners()
-      .then (res => {
+      .then(res => {
         dispatch(receiveWinners(res.body))
       })
       .catch(err => {
@@ -25,14 +25,14 @@ export function getAllWinners () {
 
 export function addWinner () {
   return (dispatch) => {
-    request 
+    request
       .post('/api/v1/winners')
       .end((err, res) => {
-          if(err) {
-            console.error(err.message)
-            return
-          }
-          dispatch(getAllWinners(res.body))
+        if (err) {
+          console.error(err.message)
+          return
+        }
+        dispatch(getAllWinners(res.body))
       })
   }
 }

@@ -5,6 +5,7 @@ import {startRound, nextPlayer} from '../actions/round'
 import Video from './Video'
 import Header from './Header'
 import {getVideos} from '../actions/videos'
+import {getMemes} from '../actions/memes'
 import {nextVideo} from '../actions/videoChanger'
 
 class Round extends React.Component {
@@ -26,7 +27,7 @@ class Round extends React.Component {
     const remainingPlayers = this.props.players.slice(1)
     this.props.dispatch(startRound(currentPlayer, remainingPlayers))
     window.localStorage.setItem('round', JSON.stringify(this.props.round))
-    this.props.dispatch(getVideos())
+    this.props.memes === true ? this.props.dispatch(getMemes()) : this.props.dispatch(getVideos())
   }
   componentWillReceiveProps (nextProps) {
     if (!this.state.randomVid) this.randomiseVideo(nextProps)
@@ -81,6 +82,7 @@ class Round extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    memes: state.memes,
     players: state.players,
     round: state.round,
     videos: state.videos,

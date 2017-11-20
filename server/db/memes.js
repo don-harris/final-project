@@ -1,12 +1,12 @@
 const defaultConn = require('./connection')
 
-const getVideos = (testConn) => {
+const getMemes = (testConn) => {
   const db = testConn || defaultConn
   return db('videos')
-    .whereNot({isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'})
+    .where({isMeme: 'meOhMyIHaveEnjoyedThatYesBoy'})
     .select()
 }
 
 module.exports = {
-  getVideos
+  getMemes
 }

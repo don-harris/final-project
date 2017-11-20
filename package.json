@@ -5,7 +5,6 @@
   "repository": "https://github.com/dev-academy-challenges/boilerplate-react-webpack.git",
   "main": "server/index.js",
   "scripts": {
-    "postinstall": "webpack && knex migrate:latest",
     "dev": "nodemon --watch server & webpack --watch",
     "devtest": "jest && nodemon --watch server & webpack --watch",
     "start": "node server/index",

@@ -8,6 +8,7 @@ exports.up = function (knex, Promise) {
     table.integer('quoteEnd')
     table.integer('pauseTime')
     table.string('title')
+    table.string('isMeme')
   })
 }
 

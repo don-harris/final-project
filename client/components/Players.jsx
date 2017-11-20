@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addAllPlayers} from '../actions/players'
+import {enable} from '../actions/memes'
 import Header from './Header'
 const icons = [
   '/images/braveheart.png',
@@ -21,10 +22,10 @@ class Players extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      // players: [{icon: 'icon1', name: 'Bob'}, {icon: null, name: 'Harrison'}]
+      playerComplete: false,
+      memes: false,
       players: [],
-      pendingPlayer: {id: null, icon: null, name: ''},
-      // icon: null,
+      pendingPlayer: {id: null, icon: '', name: ''},
       dropdownActive: false
     }
     this.addPlayer = this.addPlayer.bind(this)
@@ -32,32 +33,44 @@ class Players extends React.Component {
     this.submitAllPlayers = this.submitAllPlayers.bind(this)
     this.toggleDropDown = this.toggleDropDown.bind(this)
     this.selectIcon = this.selectIcon.bind(this)
+    this.enableMeme = this.enableMeme.bind(this)
+    this.readyUp = this.readyUp.bind(this)
   }
   selectIcon (icon) {
-    // const icon = evt.target.src
     const {pendingPlayer} = this.state
     pendingPlayer.icon = icon
     this.setState({pendingPlayer})
+    this.readyUp()
   }
-  // selectPlayer (){
 
-  // }
+  readyUp () {
+    const {icon, name} = this.state.pendingPlayer
+    icon.endsWith('g') && name.length > 0 ? this.setState({playerComplete: true}) : this.setState({playerComplete: false})
+  }
+
+  enableMeme () {
+    const {players} = this.state
+    players.forEach(player => player.name.includes('boi') ? this.props.dispatch(enable()) : console.log('no meme detected'))
+  }
+
   handleChange (evt) {
     const {pendingPlayer} = this.state
     pendingPlayer[evt.target.name] = evt.target.value
     this.setState({pendingPlayer})
+    this.readyUp()
   }
   addPlayer (evt) {
     let {players, pendingPlayer} = this.state
     players.push(pendingPlayer)
-    pendingPlayer = {id: null, icon: null, name: ''}
-    this.setState({players, pendingPlayer})
+    pendingPlayer = {id: null, icon: '', name: ''}
+    this.setState({players, pendingPlayer, playerComplete: false})
   }
   toggleDropDown (dropdownActive) {
     this.setState({dropdownActive})
   }
   submitAllPlayers (e) {
     e.preventDefault()
+    this.enableMeme()
     const playersWithId = this.state.players.map((player, i) => {
       const newPlayer = Object.assign({}, player)
       newPlayer.id = i + 1
@@ -120,13 +133,16 @@ class Players extends React.Component {
                 </div>
               </div>
             </div>
-            <button className="button" onClick={this.addPlayer}>
+            {!this.state.playerComplete && <button className="button" disabled>
+              Please select a name and icon
+            </button>}
+            {this.state.playerComplete && <button className="button is-success" onClick={this.addPlayer}>
                 Add Player
-            </button>
+            </button>}
           </div>
         </div>
       </div>
-      <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />
+      {this.state.players.length > 0 && <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />}
     </div>
   }
 }
