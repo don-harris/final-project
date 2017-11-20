@@ -37,7 +37,6 @@ class Players extends React.Component {
     this.readyUp = this.readyUp.bind(this)
   }
   selectIcon (icon) {
-    // const icon = evt.target.src
     const {pendingPlayer} = this.state
     pendingPlayer.icon = icon
     this.setState({pendingPlayer})
@@ -46,7 +45,7 @@ class Players extends React.Component {
 
   readyUp () {
     const {icon, name} = this.state.pendingPlayer
-    icon.length > 0 && name.length > 0 ? this.setState({playerComplete: true}) : this.setState({playerComplete: false})
+    icon.endsWith('g') && name.length > 0 ? this.setState({playerComplete: true}) : this.setState({playerComplete: false})
   }
 
   enableMeme () {
@@ -63,7 +62,7 @@ class Players extends React.Component {
   addPlayer (evt) {
     let {players, pendingPlayer} = this.state
     players.push(pendingPlayer)
-    pendingPlayer = {id: null, icon: null, name: ''}
+    pendingPlayer = {id: null, icon: '', name: ''}
     this.setState({players, pendingPlayer, playerComplete: false})
   }
   toggleDropDown (dropdownActive) {
@@ -137,7 +136,7 @@ class Players extends React.Component {
             {!this.state.playerComplete && <button className="button" disabled>
               Please select a name and icon
             </button>}
-            {this.state.playerComplete && <button className="button" onClick={this.addPlayer}>
+            {this.state.playerComplete && <button className="button is-success" onClick={this.addPlayer}>
                 Add Player
             </button>}
           </div>
