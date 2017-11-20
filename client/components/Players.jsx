@@ -25,7 +25,7 @@ class Players extends React.Component {
       playerComplete: false,
       memes: false,
       players: [],
-      pendingPlayer: {id: null, icon: null, name: ''},
+      pendingPlayer: {id: null, icon: '', name: ''},
       dropdownActive: false
     }
     this.addPlayer = this.addPlayer.bind(this)
@@ -41,14 +41,13 @@ class Players extends React.Component {
     const {pendingPlayer} = this.state
     pendingPlayer.icon = icon
     this.setState({pendingPlayer})
+    this.readyUp()
   }
 
-
-
-readyUp () {
-  const {icon, name} = this.state.pendingPlayer
-  !icon.endsWith('g') && name.length > 0 ? this.setState({playerComplete: true}) : console.log('not done')
-}
+  readyUp () {
+    const {icon, name} = this.state.pendingPlayer
+    icon.length > 0 && name.length > 0 ? this.setState({playerComplete: true}) : this.setState({playerComplete: false})
+  }
 
   enableMeme () {
     const {players} = this.state
@@ -58,11 +57,11 @@ readyUp () {
   handleChange (evt) {
     const {pendingPlayer} = this.state
     pendingPlayer[evt.target.name] = evt.target.value
-    this.readyUp()
     this.setState({pendingPlayer})
+    this.readyUp()
   }
   addPlayer (evt) {
-    let {players, pendingPlayer, playerComplete} = this.state
+    let {players, pendingPlayer} = this.state
     players.push(pendingPlayer)
     pendingPlayer = {id: null, icon: null, name: ''}
     this.setState({players, pendingPlayer, playerComplete: false})
@@ -144,7 +143,7 @@ readyUp () {
           </div>
         </div>
       </div>
-      <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />
+      {this.state.players.length > 0 && <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />}
     </div>
   }
 }
