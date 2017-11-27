@@ -50,7 +50,7 @@ class Players extends React.Component {
 
   enableMeme () {
     const {players} = this.state
-    players.forEach(player => player.name.includes('boi') ? this.props.dispatch(enable()) : console.log('no meme detected'))
+    players.forEach(player => player.name.includes('ready player one') ? this.props.dispatch(enable()) : console.log('no meme detected'))
   }
 
   handleChange (evt) {
