@@ -100,7 +100,7 @@ class Players extends React.Component {
         {players.map((player, i) => (
           <PlayerReady key={i} player={player} />
         ))}
-        <div className="box column is-6 has-text-centered">
+        {players.length < 4 && <div className="box column is-6 has-text-centered">
           <div>
             <p className="title is-3">
               {pendingPlayer.name || 'Join the cast'}
@@ -140,7 +140,7 @@ class Players extends React.Component {
                 Add Player
             </button>}
           </div>
-        </div>
+        </div>}
       </div>
       {this.state.players.length > 0 && <input className="button strong is-large is-danger" type="button" onClick={this.submitAllPlayers} value="Ready... action!" />}
     </div>
