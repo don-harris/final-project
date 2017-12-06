@@ -1,5 +1,7 @@
 # Spoken, Not Stirred - an at home game to play with your mates.
 
+Please visit the game at: https://miromiro-grad-project.herokuapp.com/ 
+
 # group DYNAMICS
 ## TEAM ROLES ##
 
