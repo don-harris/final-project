@@ -8,7 +8,7 @@ const getAllWinners = (testConn) => {
 
 const addWinner = (winner, testConn) => {
   const db = testConn || defaultConn
-  return db ('winners')
+  return db('winners')
     .insert({
       name: winner.name,
       icon: winner.icon,
