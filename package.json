@@ -8,7 +8,7 @@
     "postinstall": "webpack && knex migrate:latest",
     "dev": "nodemon --watch server & webpack --watch",
     "devtest": "jest && nodemon --watch server & webpack --watch",
-    "devtestcodecept": "codeceptjs run --steps",
+    "testcodecept": "codeceptjs run --steps",
     "start": "node server/index",
     "test": "jest",
     "testinit": "codeceptjs init",
