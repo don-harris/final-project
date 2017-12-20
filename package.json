@@ -8,8 +8,13 @@
     "postinstall": "webpack && knex migrate:latest",
     "dev": "nodemon --watch server & webpack --watch",
     "devtest": "jest && nodemon --watch server & webpack --watch",
+    "devtestcodecept": "codeceptjs run --steps",
     "start": "node server/index",
     "test": "jest",
+    "testinit": "codeceptjs init",
+    "testgenerate": "codeceptjs gt",
+    "seleniuminit": "selenium-standalone install",
+    "seleniumstart": "selenium-standalone start",
     "watch": "nodemon -e js,jsx -x npm test",
     "h:deploy": "git push heroku master",
     "h:migrate": "heroku run knex migrate:latest",
@@ -32,11 +37,12 @@
   "author": "EDA",
   "license": "ISC",
   "devDependencies": {
+    "codeceptjs-webdriverio": "^1.1.0",
     "enzyme": "^2.8.2",
     "jest": "^21.2.1",
     "jest-localstorage-mock": "^2.0.1",
     "nodemon": "^1.11.0",
-    "sqlite3": "^3.1.8",
+    "sqlite3": "^3.1.13",
     "supertest": "^3.0.0"
   },
   "dependencies": {
